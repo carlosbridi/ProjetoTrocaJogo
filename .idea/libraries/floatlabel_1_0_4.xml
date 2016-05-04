@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="floatlabel-1.0.4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.iangclifton.android/floatlabel/1.0.4/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.iangclifton.android/floatlabel/1.0.4/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.iangclifton.android/floatlabel/1.0.4/861be787aa7c70e96b3f07318cd1a4e7c15015f5/floatlabel-1.0.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
