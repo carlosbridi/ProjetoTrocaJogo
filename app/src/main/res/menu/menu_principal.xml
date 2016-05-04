@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_search"
+        android:title="@string/search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/perfil"
+        android:title="Perfil" />
+
+    <item android:id="@+id/dadosEndereco"
+        android:title="Dados de endereço" />
+
+    <item android:id="@+id/logoff"
+        android:title="Logoff" />
+
+    <item android:id="@+id/sair"
+        android:title="Sair" />
+</menu>

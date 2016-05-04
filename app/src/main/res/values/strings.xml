@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Troca Jogo</string>
+    <string name="search">Pesquisar</string>
+
+    <string name="login_email">Email</string>
+    <string name="login_senha">Senha</string>
+    <string name="login_login">Login</string>
+    <string name="login_cadastre">Cadastre-se</string>
+
+    <string name="cadastro_nome">Nome</string>
+    <string name="cadastro_nomeusuario">Nome Usuário</string>
+    <string name="cadastro_email">Email</string>
+    <string name="cadastro_senha">Senha</string>
+    <string name="cadastro_telefone">Telefone</string>
+    <string name="cadastro_membrologin">Já é membro? Faça login!</string>
+
+
+    <string name="cadastro_cep">CEP*</string>
+    <string name="cadastro_estado">Estado*</string>
+    <string name="cadastro_cidade">Cidade*</string>
+    <string name="cadastro_bairro">Bairro</string>
+    <string name="cadastro_logradouro">Logradouro</string>
+    <string name="cadastro_numero">Nº</string>
+    <string name="cadastro_complemento">Complemento</string>
+
+
+
+    <string name="cadastro_criar">Criar conta</string>
+    <string name="cadastro_atualizarDados">Atualizar Dados</string>
+
+    <string name="incluirjogofiltro_nomejogo">Nome Jogo</string>
+    <string name="incluirjogofiltro_generojogo">Genero Jogo</string>
+    <string name="incluirjogofiltro_buscar">Buscar</string>
+
+
+    <string name="lista_nomejogo">Nome jogo</string>
+    <string name="lista_plataformajogo">Plataforma jogo</string>
+    <string name="lista_categoriajogo">Categoria jogo</string>
+    <string name="lista_anojogo">Ano jogo</string>
+
+    <string name="detalhesNomeJogo">Nome Jogo</string>
+    <string name="detalhesCategoriaJogo">Categoria Jogo</string>
+    <string name="detalhesAnoJogo">Ano Jogo</string>
+    <string name="detalhesDescricaoJogo">Descrição Jogo</string>
+    <string name="action_searchable_activity">Buscar carros</string>
+    <string name="search_hint">Buscar</string>
+
+    <string name="nomejogooferta">Nome jogo Oferta</string>
+    <string name="nomejogotroca">Nome jogo Troca</string>
+    <string name="statustroca">Status Troca</string>
+
+    <string name="adicionarContatos">Adicionar a contatos</string>
+    <string name="Fechar">Fechar</string>
+
+
+</resources>

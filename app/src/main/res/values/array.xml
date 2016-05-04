@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="genero">
+        <item>Todas Categorias</item>
+        <item>2D - Fighting</item>
+        <item>Plataforma</item>
+        <item>Luta</item>
+        <item>Ação</item>
+        <item>Aventura</item>
+        <item>Esporte</item>
+        <item>Simulador</item>
+        <item>Tabuleiro</item>
+        <item>Estratégia</item>
+        <item>Corrida</item>
+        <item>Casino</item>
+        <item>RPG</item>
+        <item>Educativo</item>
+        <item>Tiro</item>
+        <item>Fantasia</item>
+        <item>Interativo</item>
+        <item>Puzzle</item>
+        <item>Variados</item>
+        <item>Guerra</item>
+        <item>Pinball</item>
+    </string-array>
+
+    <string-array name="estados">
+        <item>AC - Acre</item>
+        <item>AL - Alagoas</item>
+        <item>AM - Amazonas</item>
+        <item>BA - Bahia </item>
+        <item>CE - Ceara</item>
+        <item>DF - Distrito Federal</item>
+        <item>ES - Espírito Santo </item>
+        <item>GO - Goiás</item>
+        <item>MA - Maranhão</item>
+        <item>MT - Mato Grosso</item>
+        <item>MS - Mato Grosso do Sul</item>
+        <item>MG - Minas Gerais</item>
+        <item>PA - Pará</item>
+        <item>PB - Paraíba</item>
+        <item>PR - Paraná</item>
+        <item>PE - Pernambuco</item>
+        <item>PI - Piauí</item>
+        <item>RJ - Rio de Janeiro</item>
+        <item>RN - Rio Grande do Norte</item>
+        <item>RS - Rio Grande do Sul</item>
+        <item>RO - Rondonia</item>
+        <item>RR - Roraima</item>
+        <item>SC - Santa Catarina </item>
+        <item>SP - São Paulo</item>
+        <item>SE - Sergipe</item>
+        <item>TO - Tocantis</item>
+    </string-array>
+
+    <string-array name="plataforma">
+        <item>Todas Plataformas</item>
+        <item>PS2 - PLAYSTATION 2</item>
+        <item>PS3 - PLAYSTATION 3</item>
+        <item>PS4 - PLAYSTATION 4</item>
+        <item>PS - VITA</item>
+        <item>XBOX 360</item>
+        <item>XBOX ONE</item>
+        <item>PC - COMPUTADOR/NOTEBOOK</item>
+        <item>NINTENDO WII</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <!--  Name Label -->
+        <com.iangclifton.android.floatlabel.FloatLabel
+            android:id="@+id/input_nomeJogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:hint="@string/incluirjogofiltro_nomejogo" />
+
+        <!--  Name Label -->
+        <Spinner android:id="@+id/spinnerCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/genero"
+            android:layout_marginTop="15dp"/>
+
+        <Spinner android:id="@+id/spinnerPlataforma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/plataforma"
+            android:layout_marginTop="15dp"/>
+
+        <Button
+            android:id="@+id/btn_buscarJogo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:onClick="buscarJogo"
+            android:textColor="@color/md_white_1000"
+            android:background="@color/colorPrimary"
+            android:text="@string/incluirjogofiltro_buscar"/>
+
+    </LinearLayout>
+</ScrollView>

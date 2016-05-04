@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.27">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="140dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="140dp"
+                android:layout_height="180dp"
+                android:id="@+id/imageDetalheTrocaOferta"
+                android:src="@drawable/ic_oferta"
+                android:scaleType="fitXY" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/txtDetalheTituloTroca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:layout_marginLeft="5dp" />
+
+
+            <TextView
+                android:id="@+id/txtDetalheNomeUsuarioTroca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_marginLeft="5dp" />
+
+            <TextView
+                android:id="@+id/txtDetalheCategoriaTroca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text=""
+                android:layout_marginLeft="5dp" />
+
+            <TextView
+                android:id="@+id/txtDetalhePlataformaTroca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text=""
+                android:layout_marginLeft="5dp" />
+
+            <TextView
+                android:id="@+id/txtDetalheAnoTroca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text=""
+                android:layout_marginLeft="5dp" />
+
+            <LinearLayout
+                android:id="@+id/ll_detalhesDetalheDescricaoJogo"
+                android:layout_below="@+id/detalhesanojogo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtDetalheDescricaoTroca"
+                    android:layout_marginTop="0dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorSecondText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.28">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="140dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/imageDetalheTrocaColecao"
+                android:layout_width="140dp"
+                android:layout_height="180dp"
+                android:src="@drawable/ic_oferta"
+                android:scaleType="fitXY" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/txtDetalheTituloOferta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:layout_marginLeft="5dp" />
+
+            <TextView
+                android:id="@+id/txtDetalheNomeUsuarioOferta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_marginLeft="5dp" />
+
+            <TextView
+                android:id="@+id/txtDetalheCategoriaOferta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text=""
+                android:layout_marginLeft="5dp" />
+
+            <TextView
+                android:id="@+id/txtDetalhePlataformaOferta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text=""
+                android:layout_marginLeft="5dp" />
+
+            <TextView
+                android:id="@+id/txtDetalheAnoOferta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text=""
+                android:layout_marginLeft="5dp" />
+
+            <LinearLayout
+                android:id="@+id/ll_detalhesDetalheDescricaoJogo1"
+                android:layout_below="@+id/detalhesanojogo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtDetalheDescricaoOferta"
+                    android:layout_marginTop="0dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorSecondText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:layout_weight="0.45">
+
+        <Button
+            android:id="@+id/btnRejeitarTroca"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancelar troca"
+            android:onClick="cancelarTroca"
+            android:background="@color/md_red_300"
+            android:textColor="@color/md_white_1000"
+            android:layout_weight="0.5" />
+    </LinearLayout>
+
+</LinearLayout>

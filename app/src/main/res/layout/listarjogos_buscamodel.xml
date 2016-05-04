@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:weightSum="1">
+
+        <ImageView
+                android:id="@+id/list_image"
+                android:layout_width="80dip"
+                android:layout_height="80dip" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_weight="0.7">
+
+                <TextView
+                    android:id="@+id/nomeJogo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/thumbnail"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:text="@string/lista_nomejogo"
+                    android:textColor="#040404"
+                    android:textSize="15dip"
+                    android:textStyle="bold"
+                    android:typeface="sans" />
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+
+
+                <TextView
+                    android:id="@+id/txtUsuarioBusca"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/imageView1"
+                    android:layout_below="@+id/nomeJogo"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:text="@string/lista_plataformajogo"
+                    android:textColor="#343434"
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/plataformaJogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/imageView1"
+                    android:layout_below="@+id/nomeJogo"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:text="@string/lista_plataformajogo"
+                    android:textColor="#343434"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/categoriaJogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lista_categoriajogo"
+                    android:textColor="#343434"
+                    android:textSize="10sp"
+                    android:layout_below="@+id/plataformaJogo"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:layout_toEndOf="@+id/thumbnail"/>
+
+                <TextView
+                    android:id="@+id/anoJogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lista_anojogo"
+                    android:textColor="#343434"
+                    android:textSize="10sp"
+                    android:layout_below="@+id/categoriaJogo"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:layout_toEndOf="@+id/thumbnail"/>
+            </LinearLayout>
+
+         </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+
+

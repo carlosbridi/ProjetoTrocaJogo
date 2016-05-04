@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <ImageView
+            android:src="@drawable/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center_horizontal" />
+
+        <!--  Name Label -->
+        <com.iangclifton.android.floatlabel.FloatLabel
+            android:id="@+id/edtNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:hint="@string/cadastro_nome" />
+
+        <com.iangclifton.android.floatlabel.FloatLabel
+            android:id="@+id/edtNomeUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cadastro_nomeusuario" />
+
+        <com.iangclifton.android.floatlabel.FloatLabel
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="@string/cadastro_email" />
+
+        <com.iangclifton.android.floatlabel.FloatLabel
+            android:id="@+id/edtTelefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:hint="@string/cadastro_telefone"/>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnAdicionarContatos"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#5289FB"
+            android:layout_marginTop="20dip"
+            android:textColor="@color/md_white_1000"
+            android:text="@string/adicionarContatos"
+            android:layout_weight="0.5"
+            android:onClick="adicionarContatos"
+            />
+
+        <Button
+            android:id="@+id/btnFechar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/md_red_300"
+            android:textColor="@color/md_white_1000"
+            android:layout_weight="0.5"
+            android:layout_marginTop="20dip"
+            android:text="@string/Fechar"
+            android:onClick="fechar" />
+
+    </LinearLayout>
+    </LinearLayout>
+</ScrollView>
