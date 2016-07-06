@@ -15,8 +15,7 @@
             android:orientation="vertical"
             android:layout_width="140dp"
             android:layout_marginLeft="10dp"
-            android:layout_height="match_parent"
-            android:weightSum="1">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:layout_width="140dp"
@@ -104,35 +103,16 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.28">
+        android:layout_weight="0.27">
+
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="140dp"
-            android:layout_marginLeft="10dp"
-            android:layout_height="match_parent" >
+            android:layout_width="247dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1"
+            android:layout_gravity="left">
 
-            <ImageView
-                android:id="@+id/imageDetalheTrocaColecao"
-                android:layout_width="140dp"
-                android:layout_height="180dp"
-                android:src="@drawable/ic_oferta"
-                android:scaleType="fitXY" />
-
-            <ImageView
-                android:id="@+id/imgJogo2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical">
 
             <TextView
                 android:id="@+id/txtDetalheTituloOferta"
@@ -192,6 +172,29 @@
                     android:layout_marginRight="5dp" />
             </LinearLayout>
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp">
+
+            <ImageView
+                android:id="@+id/imageDetalheTrocaColecao"
+                android:layout_width="140dp"
+                android:layout_height="180dp"
+                android:src="@drawable/ic_oferta"
+                android:scaleType="fitXY"/>
+
+            <ImageView
+                android:id="@+id/imgJogo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 
 
@@ -199,7 +202,7 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_weight="0.45"
+        android:layout_weight="0.46"
         android:layout_alignParentBottom="true">
 
         <LinearLayout
