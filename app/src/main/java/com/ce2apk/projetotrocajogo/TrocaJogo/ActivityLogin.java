@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
+import android.os.AsyncTask;
 import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
@@ -39,6 +40,7 @@ public class ActivityLogin extends FragmentActivity implements AsyncTaskComplete
     private TextView _criarConta;
     private static final int REQUEST_SIGNUP = 0;
     private SnackBar mSnackBar;
+    private WebServiceTask wst;
 
 
     @Override
@@ -86,7 +88,7 @@ public class ActivityLogin extends FragmentActivity implements AsyncTaskComplete
 
         _loginButton.setEnabled(false);
         try {
-            WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK, this, "Efetuando login", this, "Erro ao efetuar o login, tente novamente mais tarde!");
+            wst = new WebServiceTask(WebServiceTask.POST_TASK, this, "Efetuando login", this, "Erro ao efetuar o login, tente novamente mais tarde!");
             wst.addParameter("email", _emailText.getEditText().getText().toString());
             wst.addParameter("senha", CryptPass.Crype(_senhaText.getEditText().getText().toString()));
             wst.execute(new String[]{consts.SERVICE_URL + "login"});
@@ -98,6 +100,13 @@ public class ActivityLogin extends FragmentActivity implements AsyncTaskComplete
 
     public void onLoginFailed() {
         _loginButton.setEnabled(true);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (wst.getStatus() == AsyncTask.Status.RUNNING) {
+            wst.cancel(true);
+        }
     }
 
     public boolean isOnline() {
