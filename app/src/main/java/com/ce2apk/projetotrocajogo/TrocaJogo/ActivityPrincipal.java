@@ -4,10 +4,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -43,7 +48,7 @@ import java.util.Map;
  * Created by carlosbridi on 03/11/15.
  */
 public class ActivityPrincipal  extends AppCompatActivity
-        implements AsyncTaskCompleteListener{
+        implements AsyncTaskCompleteListener, NavigationView.OnNavigationItemSelectedListener{
 
     int[] colorIntArray = {R.color.colorAccent};
     int[] iconIntArray = {R.drawable.ic_adicionar_white,R.drawable.ic_troca_white, R.drawable.ic_interesse_white,};
@@ -58,11 +63,22 @@ public class ActivityPrincipal  extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activityprincipal);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             UsuarioUtil.gravarID(getApplicationContext(), extras.getInt("codResultado", 0));
             recuperarDadosUsuario(extras);
         }
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         registerClickFloatingButton(0);
@@ -327,4 +343,10 @@ public class ActivityPrincipal  extends AppCompatActivity
                 .show();
     }
 
+    @Override
+    public boolean onNavigationItemSelected(MenuItem menuItem) {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }
