@@ -1,4 +1,4 @@
-package com.ce2apk.projetotrocajogo.TrocaJogo;
+package com.ce2apk.projetotrocajogo.TrocaJogo.Adapters;
 
 import android.content.Context;
 import android.media.Image;

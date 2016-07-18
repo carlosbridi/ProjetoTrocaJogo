@@ -27,6 +27,7 @@ import com.ce2apk.projetotrocajogo.Jogo.JogoCRUD;
 import com.ce2apk.projetotrocajogo.Jogo.JogoInteresseCRUD;
 import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoCRUD;
 import com.ce2apk.projetotrocajogo.R;
+import com.ce2apk.projetotrocajogo.TrocaJogo.Adapters.JogoListAdapter;
 import com.ce2apk.projetotrocajogo.Usuario.UsuarioUtil;
 import com.ce2apk.projetotrocajogo.Util.ListaJogos;
 import com.ce2apk.projetotrocajogo.WebService.AsyncTaskCompleteListener;

@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import com.ce2apk.projetotrocajogo.Jogo.Jogo;
 import com.ce2apk.projetotrocajogo.Jogo.JogoCRUD;
 import com.ce2apk.projetotrocajogo.R;
+import com.ce2apk.projetotrocajogo.TrocaJogo.Adapters.JogosColecaoAdapter;
 
 import java.util.List;
 
