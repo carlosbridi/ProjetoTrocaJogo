@@ -1,16 +1,9 @@
 package com.ce2apk.projetotrocajogo.TrocaJogo;
 
 import android.app.AlertDialog;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.MatrixCursor;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.view.MenuItemCompat;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,21 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.ce2apk.projetotrocajogo.Jogo.Jogo;
 import com.ce2apk.projetotrocajogo.Jogo.JogoCRUD;
-import com.ce2apk.projetotrocajogo.Jogo.JogoDAO;
 import com.ce2apk.projetotrocajogo.Jogo.JogoUtil;
 import com.ce2apk.projetotrocajogo.R;
-import com.ce2apk.projetotrocajogo.Usuario.Usuario;
+import com.ce2apk.projetotrocajogo.TrocaJogo.Adapters.ActivityMeusJogosListAdapter;
 import com.ce2apk.projetotrocajogo.Usuario.UsuarioUtil;
 import com.ce2apk.projetotrocajogo.WebService.AsyncTaskCompleteListener;
 import com.ce2apk.projetotrocajogo.WebService.WebServiceTask;
 import com.ce2apk.projetotrocajogo.consts;
-import com.github.mrengineer13.snackbar.SnackBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,8 +32,6 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by carlosbridi on 09/11/15.

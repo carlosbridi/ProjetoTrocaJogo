@@ -13,6 +13,7 @@ import com.ce2apk.projetotrocajogo.Troca.ItensJogoTroca;
 import com.ce2apk.projetotrocajogo.Troca.StatusTroca;
 import com.ce2apk.projetotrocajogo.Troca.Troca;
 import com.ce2apk.projetotrocajogo.Troca.TrocaCRUD;
+import com.ce2apk.projetotrocajogo.TrocaJogo.Adapters.ActivityTrocasListAdapter;
 import com.ce2apk.projetotrocajogo.Usuario.Usuario;
 import com.ce2apk.projetotrocajogo.Usuario.UsuarioUtil;
 import com.ce2apk.projetotrocajogo.WebService.AsyncTaskCompleteListener;

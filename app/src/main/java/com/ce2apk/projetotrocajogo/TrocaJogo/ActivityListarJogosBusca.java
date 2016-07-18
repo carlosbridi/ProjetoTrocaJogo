@@ -1,45 +1,22 @@
 package com.ce2apk.projetotrocajogo.TrocaJogo;
 
-import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.Toast;
 
-import com.ce2apk.projetotrocajogo.Jogo.Jogo;
-import com.ce2apk.projetotrocajogo.Jogo.JogoCRUD;
-import com.ce2apk.projetotrocajogo.Jogo.JogoInteresseCRUD;
 import com.ce2apk.projetotrocajogo.Jogo.TempJogoBusca;
 import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoBuscaCRUD;
-import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoCRUD;
 import com.ce2apk.projetotrocajogo.R;
-import com.ce2apk.projetotrocajogo.Troca.ItensJogoTroca;
-import com.ce2apk.projetotrocajogo.Usuario.UsuarioUtil;
-import com.ce2apk.projetotrocajogo.Util.ListaJogos;
-import com.ce2apk.projetotrocajogo.WebService.AsyncTaskCompleteListener;
-import com.ce2apk.projetotrocajogo.WebService.WebServiceTask;
-import com.ce2apk.projetotrocajogo.consts;
+import com.ce2apk.projetotrocajogo.TrocaJogo.Adapters.JogoBuscaUsuariosListAdapter;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.Serializable;
 import java.util.List;
 
 

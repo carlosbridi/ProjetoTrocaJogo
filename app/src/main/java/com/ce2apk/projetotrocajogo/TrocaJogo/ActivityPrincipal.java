@@ -30,6 +30,7 @@ import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoCRUD;
 import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoInteresseCRUD;
 import com.ce2apk.projetotrocajogo.R;
 import com.ce2apk.projetotrocajogo.Troca.TrocaCRUD;
+import com.ce2apk.projetotrocajogo.TrocaJogo.Adapters.PagerAdapter;
 import com.ce2apk.projetotrocajogo.Usuario.UsuarioUtil;
 import com.ce2apk.projetotrocajogo.Util.SharedPref;
 import com.ce2apk.projetotrocajogo.Util.SharedPrefDAO;
