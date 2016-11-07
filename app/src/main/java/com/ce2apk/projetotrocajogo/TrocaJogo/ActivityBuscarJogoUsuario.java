@@ -11,8 +11,6 @@ import android.widget.Spinner;
 
 import com.ce2apk.projetotrocajogo.Jogo.JogoUtil;
 import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoBuscaCRUD;
-import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoCRUD;
-import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoInteresseCRUD;
 import com.ce2apk.projetotrocajogo.R;
 import com.ce2apk.projetotrocajogo.Usuario.UsuarioUtil;
 import com.ce2apk.projetotrocajogo.WebService.AsyncTaskCompleteListener;

@@ -61,7 +61,7 @@ public class ActivityMeusInteressesListAdapter extends BaseAdapter  {
         nomeJogo.setText(jogo.getNomejogo());
 
         TextView plataformaJogo = (TextView) view.findViewById(R.id.plataformaJogo);
-        plataformaJogo.setText(ParserArray.plataformaJogo(jogo.getPlataforma()));
+        plataformaJogo.setText(ParserArray.plataformaJogo(jogo.getPlataforma().getId()));
 
         TextView anoJogo = (TextView) view.findViewById(R.id.anoJogo);
         anoJogo.setText(String.valueOf(jogo.getAno()));

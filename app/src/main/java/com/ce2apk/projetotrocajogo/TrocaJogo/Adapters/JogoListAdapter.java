@@ -58,7 +58,7 @@ public class JogoListAdapter extends BaseAdapter{
 		nomeJogo.setText(jogo.getNomejogo());
 
 		TextView plataformaJogo = (TextView) view.findViewById(R.id.plataformaJogo);
-		plataformaJogo.setText(ParserArray.plataformaJogo(jogo.getPlataforma()));
+		plataformaJogo.setText(ParserArray.plataformaJogo(jogo.getPlataforma().getId()));
 
 		TextView anoJogo = (TextView) view.findViewById(R.id.anoJogo);
 		anoJogo.setText(String.valueOf(jogo.getAno()));
@@ -73,7 +73,7 @@ public class JogoListAdapter extends BaseAdapter{
         imgAdicionarJogo = (ImageView) view.findViewById(R.id.imageJogoColecao);
 
 		JogoDAO jogoDAO = new JogoDAO(view.getContext());
-		if(jogoDAO.jogoNaColecao(jogo.getId(), jogo.getPlataforma())){
+		if(jogoDAO.jogoNaColecao(jogo.getId(), jogo.getPlataforma().getId())){
             imgAdicionarJogo.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_deletejogo));
             imgAdicionarJogo.invalidate();
 
@@ -87,7 +87,7 @@ public class JogoListAdapter extends BaseAdapter{
 		}
 
         imgAdicionarColecao = (ImageView) view.findViewById(R.id.imageInteresse);
-        if(jogoDAO.jogoNosInteresses(jogo.getId(), jogo.getPlataforma())){
+        if(jogoDAO.jogoNosInteresses(jogo.getId(), jogo.getPlataforma().getId())){
 
             imgAdicionarColecao.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_interesse_marcado));
             imgAdicionarColecao.invalidate();

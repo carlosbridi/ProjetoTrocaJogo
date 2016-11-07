@@ -104,7 +104,8 @@ public class ActivityLogin extends FragmentActivity implements AsyncTaskComplete
 
     @Override
     public void onBackPressed() {
-        if (wst.getStatus() == AsyncTask.Status.RUNNING) {
+        super.onBackPressed();
+        if ((wst != null) && (wst.getStatus() == AsyncTask.Status.RUNNING)) {
             wst.cancel(true);
         }
     }

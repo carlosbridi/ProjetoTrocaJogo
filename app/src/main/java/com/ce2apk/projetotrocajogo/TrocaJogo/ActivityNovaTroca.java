@@ -166,7 +166,7 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
         txtAnoOferta.setText(String.valueOf(jogo.getAno()));
         txtCategoriaOferta.setText(ParserArray.categoriaJogo(jogo.getCategoria()));
         txtDescricaoOferta.setText(jogo.getDescricao().substring(0, 200) + "(...)");
-        txtPlataformaOferta.setText(ParserArray.plataformaJogo(jogo.getPlataforma()));
+        txtPlataformaOferta.setText(ParserArray.plataformaJogo(jogo.getPlataforma().getId()));
 
         imagemCache.setCodJogo(jogo.getId());
         if (imagemCache.imageInCacheDir()){
@@ -182,7 +182,7 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
         txtAnoTroca.setText(String.valueOf(itensJogoTroca.getAno()));
         txtCategoriaTroca.setText(ParserArray.categoriaJogo(itensJogoTroca.getCategoria()));
         txtDescricaoTroca.setText(itensJogoTroca.getDescricao().substring(0, 200) + "(...)");
-        txtPlataformaTroca.setText(ParserArray.plataformaJogo(itensJogoTroca.getPlataforma()));
+        txtPlataformaTroca.setText(ParserArray.plataformaJogo(itensJogoTroca.getPlataforma().getId()));
         txtNomeUsuario.setText(itensJogoTroca.getNomeUsuarioTroca());
 
         imagemCache.setCodJogo(itensJogoTroca.getId());
@@ -276,7 +276,7 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
 
         if ((retorno) &&
                 ((novaTroca.getJogosTroca().getJogoOferta().getId() == novaTroca.getJogosTroca().getJogoTroca().getId()) &&
-                novaTroca.getJogosTroca().getJogoTroca().getPlataforma() == novaTroca.getJogosTroca().getJogoTroca().getPlataforma())){
+                novaTroca.getJogosTroca().getJogoTroca().getPlataforma().getId() == novaTroca.getJogosTroca().getJogoTroca().getPlataforma().getId())){
             new SnackBar.Builder(this)
                     .withMessage("Jogo de troca e de oferta são os mesmos!")
                     .withStyle(SnackBar.Style.DEFAULT)
@@ -288,7 +288,7 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
 
         ItensJogoTrocaCRUD itensJogoTrocaCRUD = new ItensJogoTrocaCRUD(this);
 
-        if ((retorno) && (itensJogoTrocaCRUD.itemJogoTrocaEmOferta(novaTroca.getJogosTroca().getJogoOferta().getId(), novaTroca.getJogosTroca().getJogoTroca().getPlataforma()))){
+        if ((retorno) && (itensJogoTrocaCRUD.itemJogoTrocaEmOferta(novaTroca.getJogosTroca().getJogoOferta().getId(), novaTroca.getJogosTroca().getJogoTroca().getPlataforma().getId()))){
             new SnackBar.Builder(this)
                     .withMessage("Jogo de oferta já está participando de uma troca!")
                     .withStyle(SnackBar.Style.DEFAULT)
@@ -298,7 +298,7 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
             retorno = false;
         }
 
-        if ((retorno) && (itensJogoTrocaCRUD.itemJogoTrocaEmTroca(novaTroca.getJogosTroca().getJogoTroca().getId(), novaTroca.getJogosTroca().getJogoTroca().getPlataforma()))){
+        if ((retorno) && (itensJogoTrocaCRUD.itemJogoTrocaEmTroca(novaTroca.getJogosTroca().getJogoTroca().getId(), novaTroca.getJogosTroca().getJogoTroca().getPlataforma().getId()))){
             new SnackBar.Builder(this)
                     .withMessage("Jogo de troca já está participando de uma troca!")
                     .withStyle(SnackBar.Style.DEFAULT)

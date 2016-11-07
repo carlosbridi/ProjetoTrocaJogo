@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.ce2apk.projetotrocajogo.Helper.PersistenceHelper;
+import com.ce2apk.projetotrocajogo.Jogo.Plataforma.Plataforma;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class Temp_JogoBuscaCRUD {
             contentValues.put("nomejogo", itensJogoTroca.getNomejogo());
             contentValues.put("descricao", itensJogoTroca.getDescricao());
             contentValues.put("categoria", itensJogoTroca.getCategoria());
-            contentValues.put("plataforma", itensJogoTroca.getPlataforma());
+            contentValues.put("plataforma", itensJogoTroca.getPlataforma().getId());
             contentValues.put("ano", itensJogoTroca.getAno());
             contentValues.put("imagem", itensJogoTroca.getImagem());
             resultado = db.insert("temp_jogobuscausuarios", null, contentValues);
@@ -88,7 +89,7 @@ public class Temp_JogoBuscaCRUD {
                 itensJogoTroca.setNomeUsuarioTroca(cursor.getString(cursor.getColumnIndex("nomeusuario")));
                 itensJogoTroca.setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogo")));
                 itensJogoTroca.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
-                itensJogoTroca.setPlataforma(cursor.getInt(cursor.getColumnIndex("plataforma")));
+                itensJogoTroca.setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataforma"))));
                 itensJogoTroca.setCategoria(cursor.getInt(cursor.getColumnIndex("categoria")));
                 itensJogoTroca.setAno(cursor.getInt(cursor.getColumnIndex("ano")));
                 itensJogoTroca.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));
@@ -117,7 +118,7 @@ public class Temp_JogoBuscaCRUD {
                 jogo.setIdUsuarioTroca(cursor.getInt(cursor.getColumnIndex("idusuariotroca")));
                 jogo.setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogo")));
                 jogo.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
-                jogo.setPlataforma(cursor.getInt(cursor.getColumnIndex("plataforma")));
+                jogo.setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataforma"))));
                 jogo.setCategoria(cursor.getInt(cursor.getColumnIndex("categoria")));
                 jogo.setAno(cursor.getInt(cursor.getColumnIndex("ano")));
                 jogo.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));

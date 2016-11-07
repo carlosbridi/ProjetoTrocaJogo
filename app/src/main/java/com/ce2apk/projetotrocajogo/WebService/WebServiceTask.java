@@ -4,14 +4,15 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ProgressBar;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
@@ -30,6 +31,8 @@ public class WebServiceTask extends AsyncTask<String, Integer, String>{
 
     public static final int POST_TASK = 1;
     public static final int GET_TASK = 2;
+    public static final int DELETE_TASK = 3;
+    public static final int PUT_TASK = 4;
 
     public JSONObject returnWS;
 
@@ -146,7 +149,6 @@ public class WebServiceTask extends AsyncTask<String, Integer, String>{
 
     // Estabelece conexão e define timeout do socket
     private HttpParams getHttpParams() {
-
         HttpParams htpp = new BasicHttpParams();
 
         HttpConnectionParams.setConnectionTimeout(htpp, CONN_TIMEOUT);
@@ -163,17 +165,29 @@ public class WebServiceTask extends AsyncTask<String, Integer, String>{
 
         try {
             switch (taskType) {
+                case PUT_TASK:
+                    HttpPut httpPut = new HttpPut(url);
+                    httpPut.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+                    response = httpclient.execute(httpPut);
+                    break;
+
                 case POST_TASK:
-                    HttpPost httppost = new HttpPost(url);
-                    // Add parameters
-                    httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-                    response = httpclient.execute(httppost);
+                    HttpPost httpPost = new HttpPost(url);
+                    httpPost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+                    response = httpclient.execute(httpPost);
                     break;
 
                 case GET_TASK:
                     HttpGet httpget = new HttpGet(url);
                     response = httpclient.execute(httpget);
                     break;
+
+                case DELETE_TASK:
+                    HttpDelete httpDelete = new HttpDelete(url);
+                    response = httpclient.execute(httpDelete);
+                    break;
+
+
             }
         } catch (Exception e) {
             Log.e(TAG, e.getLocalizedMessage(), e);

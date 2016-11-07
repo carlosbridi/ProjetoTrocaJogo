@@ -54,7 +54,8 @@ public class ActivityInteresses extends android.support.v4.app.ListFragment impl
     public void onStart() {
         super.onStart();
         if (UsuarioUtil.interessesNaColecao(getActivity().getApplicationContext())) {
-            listaInteresse = jogoInteresseCRUD.listarInteresse();
+
+            listaInteresse = jogoInteresseCRUD.obterListaJogosInteresse();
             mAdapter = new ActivityMeusInteressesListAdapter(getActivity().getApplicationContext(), listaInteresse, this);
             setListAdapter(mAdapter);
         }else{
@@ -84,12 +85,11 @@ public class ActivityInteresses extends android.support.v4.app.ListFragment impl
         mPosicaoJogo = getJogoInteresseList(view);
         final Jogo jogo = listaInteresse.get(mPosicaoJogo);
         if (jogoInteresseCRUD.removerInteresse(jogo) > 0){
-            WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, viewAux.getContext(), "Removendo jogo", tela);
-            webServiceTask.addParameter("idJogo", String.valueOf(jogo.getId()));
-            webServiceTask.addParameter("idUsuario", String.valueOf(UsuarioUtil.obterUsuario(viewAux.getContext(), "dadosUsuario").getId()));
-            webServiceTask.addParameter("idPlataforma", String.valueOf(jogo.getPlataforma()));
+            WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.DELETE_TASK, view.getContext(), "Removendo interesse...", this);
 
-            webServiceTask.execute(new String[]{consts.SERVICE_URL + "RemoverJogoInteresse"});
+            webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoInteresseWS?idJogo="+jogo.getId()+"" +
+                    "&idUsuario="+ UsuarioUtil.obterUsuario(view.getContext(), "dadosUsuario").getId()+"" +
+                    "&idPlataforma="+jogo.getPlataforma().getId()});
 
         }else{
             Toast.makeText(viewAux.getContext(), "Problemas ao remover", Toast.LENGTH_SHORT).show();
@@ -132,16 +132,16 @@ public class ActivityInteresses extends android.support.v4.app.ListFragment impl
                 try {
                     JSONArray jsonArray = result.getJSONArray("Jogo");
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        jogoCRUD.inserirJogoInteresse(JogoUtil.pareserJogo(jsonArray.getJSONObject(i)));
+                        jogoCRUD.inserirJogoInteresse(JogoUtil.parserJogo(jsonArray.getJSONObject(i), true));
                     }
                 }catch (JSONException e){
-                    jogoCRUD.inserirJogoInteresse(JogoUtil.pareserJogo(result.getJSONObject("Jogo")));
+                    jogoCRUD.inserirJogoInteresse(JogoUtil.parserJogo(result.getJSONObject("Jogo"), true));
                 }
             }catch (Exception e){
                 e.printStackTrace();
             }
 
-            listaInteresse = jogoCRUD.listarInteresse();
+            listaInteresse = jogoCRUD.obterListaJogosInteresse();
             mAdapter = new ActivityMeusInteressesListAdapter(getActivity().getApplicationContext(), listaInteresse, this);
             setListAdapter(mAdapter);
 

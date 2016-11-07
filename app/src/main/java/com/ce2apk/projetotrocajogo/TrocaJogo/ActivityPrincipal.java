@@ -27,7 +27,6 @@ import android.widget.Toast;
 import com.ce2apk.projetotrocajogo.Jogo.JogoCRUD;
 import com.ce2apk.projetotrocajogo.Jogo.JogoInteresseCRUD;
 import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoCRUD;
-import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoInteresseCRUD;
 import com.ce2apk.projetotrocajogo.R;
 import com.ce2apk.projetotrocajogo.Troca.TrocaCRUD;
 import com.ce2apk.projetotrocajogo.TrocaJogo.Adapters.PagerAdapter;
@@ -142,9 +141,9 @@ public class ActivityPrincipal  extends AppCompatActivity
 
             fCodUsuario = extras.getInt("codResultado", 0);
 
-            WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, this, "Buscando dados do usuário", this);
+            WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.GET_TASK, this, "Buscando dados do usuário", this);
             webServiceTask.addParameter("id", String.valueOf(fCodUsuario));
-            webServiceTask.execute(new String[]{consts.SERVICE_URL + "DadosUsuario"});
+            webServiceTask.execute(new String[]{consts.SERVICE_URL + "UsuarioWS"});
         }
     }
 
@@ -209,11 +208,9 @@ public class ActivityPrincipal  extends AppCompatActivity
 
         JogoInteresseCRUD jogoInteresseCRUD = new JogoInteresseCRUD(this);
         Temp_JogoCRUD temp_jogoCRUD = new Temp_JogoCRUD(this);
-        Temp_JogoInteresseCRUD temp_jogoInteresseCRUD = new Temp_JogoInteresseCRUD(this);
 
         jogoInteresseCRUD.removerJogosInteresse();
-        temp_jogoCRUD.removerTodaColecao();
-        temp_jogoInteresseCRUD.removerTodaColecao();
+        temp_jogoCRUD.removerTodaListaTemp();
 
         TrocaCRUD trocaCRUD = new TrocaCRUD(this);
         trocaCRUD.deleteTrocas();

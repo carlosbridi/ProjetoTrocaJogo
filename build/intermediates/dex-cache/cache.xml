@@ -2,123 +2,175 @@
 <items version="2" >
 
     <item
-        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
         revision="21.1.2"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/internal_impl-22.2.1-aa363c646ca0d69cb401247e517ca06800ed49bb.jar" />
+        sha1="d98264a55aa40620165910c4373ad0bbf7c86b13">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c4de2c40a09c10d3182f52d28a6fb7dfc04155ac/classes.dex" />
     </item>
     <item
-        jar="/Users/carlosbridi/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/library-2.4.0-62651b87de8072a655b14f570eed436441e48c2a.jar" />
-    </item>
-    <item
-        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/0.9.0/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="39bd9f893c75eac9e76559cc4e96af6e417afdc5">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/classes-655fe5482065c2938bb74d28330622e8d381d562.jar" />
-    </item>
-    <item
-        jar="/Users/carlosbridi/Documents/Android/sdk/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/support-annotations-22.2.1-287b5dd888bef1f188a5d35c2348ca3d54d75728.jar" />
-    </item>
-    <item
-        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="1821601ddbec5ff125653097812823388700af74">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/classes-f0ba4c8b30f2c6b44e455bf1736af67fcea0be0d.jar" />
-    </item>
-    <item
-        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.9.0/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3158c15bb0ae97575debdb40cfcd8f0f9f244526">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/classes-668d20a00ad19173e3c1ebbf0c4ad7dd72634c6b.jar" />
-    </item>
-    <item
-        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/classes-36c51b8d2301a7c8ee0ea258ed9ccf87bf5502ff.jar" />
-    </item>
-    <item
-        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.9.0/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4ee95617ab850030c51486d02bc9d207b14419c6">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/classes-66be2c2fe9b078964ef884a6ed07c53fe7aa20e2.jar" />
-    </item>
-    <item
-        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.mikepenz.iconics/library/1.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="8d43993b8e07bdedefc353b15ab9f4cfe655b924">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/classes-9c418c8b3343275bf06facc47fdcbedc4aeab434.jar" />
-    </item>
-    <item
-        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.9.0/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="57528b5deee77bfa2188fc279fd45066366f17f5">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/classes-45633080cc036c8a70b76c7089615b876609fe4f.jar" />
-    </item>
-    <item
-        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.iangclifton.android/floatlabel/1.0.4/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d3b7ce7a11328cb54cf2d71913dc129349c0d669">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/classes-24c41b4a8ffed58af89e6200f71b9e180a04d2ed.jar" />
-    </item>
-    <item
-        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.github.mrengineer13/snackbar/1.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="cc35903814b2bf137fa6f1df823ed51cdce74977">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/classes-14a72b614034123b26b820eb61649627e36dba85.jar" />
-    </item>
-    <item
-        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.github.cdflynn/crossview/v1.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="75602fe19af8060b6b4ee5849386f4f1c95d9096">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/classes-82ed0fd3e73fa8626a5e89010888abf004c3219a.jar" />
-    </item>
-    <item
-        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/classes-ad0ea68710c21aefe48d880507ef46d72202c254.jar" />
-    </item>
-    <item
-        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.mikepenz.materialdrawer/library/2.9.8/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="794e4ee4dd15254ed3ca7202a7ac7afefbb7e3f5">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/classes-895fea1879299a2c979c8eb5344ffdeb2b3cefda.jar" />
-    </item>
-    <item
-        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.9.0/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="ca51025f4a58fc7fb6cfaa85e7d09b7ae47e6187">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/classes-41b714e8fc0be35caedd9664577a0a9dc3f7ae7c.jar" />
-    </item>
-    <item
+        is-multidex="true"
         jar="/Users/carlosbridi/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.4/129874135e6081269ace2312092031558865de12/bolts-android-1.1.4.jar"
-        jumboMode="false"
+        jumboMode="true"
+        optimize="true"
         revision="21.1.2"
         sha1="129874135e6081269ace2312092031558865de12">
-        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/pre-dexed/release/bolts-android-1.1.4-dfd6560d85fc4ed3963327ffe533d41793c7beff.jar" />
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-android-1.1.4_dfd6560d85fc4ed3963327ffe533d41793c7beff/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.github.cdflynn/crossview/v1.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="75602fe19af8060b6b4ee5849386f4f1c95d9096">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.cdflynn-crossview-v1.0.1_82ed0fd3e73fa8626a5e89010888abf004c3219a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.9.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="3158c15bb0ae97575debdb40cfcd8f0f9f244526">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-drawee-0.9.0_668d20a00ad19173e3c1ebbf0c4ad7dd72634c6b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.mikepenz.iconics/library/1.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="8d43993b8e07bdedefc353b15ab9f4cfe655b924">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.mikepenz.iconics-library-1.0.0_9c418c8b3343275bf06facc47fdcbedc4aeab434/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-22.2.1_ad0ea68710c21aefe48d880507ef46d72202c254/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/0.9.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="39bd9f893c75eac9e76559cc4e96af6e417afdc5">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-imagepipeline-base-0.9.0_655fe5482065c2938bb74d28330622e8d381d562/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="1821601ddbec5ff125653097812823388700af74">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-22.2.1_f0ba4c8b30f2c6b44e455bf1736af67fcea0be0d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.mikepenz.materialdrawer/library/2.9.8/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="794e4ee4dd15254ed3ca7202a7ac7afefbb7e3f5">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.mikepenz.materialdrawer-library-2.9.8_895fea1879299a2c979c8eb5344ffdeb2b3cefda/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/library-2.4.0_62651b87de8072a655b14f570eed436441e48c2a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/Documents/Android/sdk/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-22.2.1_287b5dd888bef1f188a5d35c2348ca3d54d75728/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="e7b6b6923c44a1d699c659bb92250882084afd91">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_c3900f3bdfcdcbe9694e9d97311e9afd8e0dd89f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.9.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="ca51025f4a58fc7fb6cfaa85e7d09b7ae47e6187">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-fresco-0.9.0_41b714e8fc0be35caedd9664577a0a9dc3f7ae7c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.9.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="4ee95617ab850030c51486d02bc9d207b14419c6">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-fbcore-0.9.0_66be2c2fe9b078964ef884a6ed07c53fe7aa20e2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.iangclifton.android/floatlabel/1.0.4/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="d3b7ce7a11328cb54cf2d71913dc129349c0d669">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.iangclifton.android-floatlabel-1.0.4_24c41b4a8ffed58af89e6200f71b9e180a04d2ed/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-22.2.1_aa363c646ca0d69cb401247e517ca06800ed49bb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.github.mrengineer13/snackbar/1.2.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="cc35903814b2bf137fa6f1df823ed51cdce74977">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.mrengineer13-snackbar-1.2.0_14a72b614034123b26b820eb61649627e36dba85/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-22.2.1_36c51b8d2301a7c8ee0ea258ed9ccf87bf5502ff/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.9.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="57528b5deee77bfa2188fc279fd45066366f17f5">
+        <dex dex="/Users/carlosbridi/AndroidStudioProjects/ProjetoTrocaJogo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-imagepipeline-0.9.0_45633080cc036c8a70b76c7089615b876609fe4f/classes.dex" />
     </item>
 
 </items>

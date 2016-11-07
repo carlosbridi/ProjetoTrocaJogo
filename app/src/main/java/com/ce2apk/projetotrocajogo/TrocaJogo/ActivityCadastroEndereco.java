@@ -174,7 +174,7 @@ public class ActivityCadastroEndereco extends FragmentActivity implements AsyncT
             return;
         }
 
-        WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, this, "Atualizando dados", this);
+        WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.PUT_TASK, this, "Atualizando dados", this);
         webServiceTask.addParameter("id", String.valueOf(FCodUsuarioAtualizar));
         webServiceTask.addParameter("cep", _cep.getEditText().getText().toString());
         webServiceTask.addParameter("logradouro", _logradouro.getEditText().getText().toString());
@@ -184,7 +184,7 @@ public class ActivityCadastroEndereco extends FragmentActivity implements AsyncT
         webServiceTask.addParameter("estado", String.valueOf(_estado.getSelectedItemPosition()));
         webServiceTask.addParameter("cidade", _cidade.getEditText().getText().toString());
 
-        webServiceTask.execute(new String[]{consts.SERVICE_URL + "updDadosComplementaresUsuario"});
+        webServiceTask.execute(new String[]{consts.SERVICE_URL + "UsuarioWS"});
     }
 
     public void onCadastroFailed(){
@@ -243,7 +243,12 @@ public class ActivityCadastroEndereco extends FragmentActivity implements AsyncT
         _cep.getEditText().setText(usuario.getCep());
         _logradouro.getEditText().setText(usuario.getLogradouro());
         _numero.getEditText().setText(usuario.getNumero());
-        _estado.setSelection(Integer.valueOf(usuario.getEstado()));
+        if (usuario.getEstado().equals("")){
+         _estado.setSelection(0);
+        }else {
+            _estado.setSelection(Integer.valueOf(usuario.getEstado()));
+        }
+
         _cidade.getEditText().setText(usuario.getCidade());
         _bairro.getEditText().setText(usuario.getBairro());
         _complemento.getEditText().setText(usuario.getComplemento());

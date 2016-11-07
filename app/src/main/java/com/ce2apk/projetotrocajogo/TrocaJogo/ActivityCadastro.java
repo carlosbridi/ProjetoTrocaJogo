@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NotificationCompatBase;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -144,30 +145,29 @@ public class ActivityCadastro extends FragmentActivity implements AsyncTaskCompl
         }
 
         String msgTask;
-
         if (FAtualizarDados){
             msgTask = "Atualizando dados...";
         }else{
             msgTask = "Efetuando cadastro...";
         }
 
-        WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, this, msgTask, this);
+        WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, this, msgTask, this);;
         webServiceTask.addParameter("nome", _nomeText.getEditText().getText().toString());
         webServiceTask.addParameter("nomeusuario", _nomeUsuarioText.getEditText().getText().toString());
         try {
             webServiceTask.addParameter("senha", CryptPass.Crype(_senhaText.getEditText().getText().toString()));
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         webServiceTask.addParameter("email", _emailText.getEditText().getText().toString());
         webServiceTask.addParameter("telefone", _telefoneText.getEditText().getText().toString());
+
         if (FAtualizarDados){
             webServiceTask.addParameter("id", String.valueOf(FCodUsuarioAtualizar));
-            webServiceTask.execute(new String[]{consts.SERVICE_URL + "UpdUsuario"});
+
         }else {
-            webServiceTask.execute(new String[]{consts.SERVICE_URL + "CadUsuario"});
+            webServiceTask.addParameter("id", "0");
+            webServiceTask.execute(new String[]{consts.SERVICE_URL + "UsuarioWS"});
         }
 
     }

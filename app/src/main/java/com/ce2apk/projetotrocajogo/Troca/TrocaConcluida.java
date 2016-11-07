@@ -42,13 +42,13 @@ public class TrocaConcluida {
 
 
         if (mTroca.getJogosTroca().getIdUsuarioOferta() == mUsuario.getId()){
-            jogoCRUD.removerJogoColecao(mTroca.getJogosTroca().getJogoOferta().getId(), mTroca.getJogosTroca().getJogoOferta().getPlataforma());
-            if (!jogoDAO.jogoNaColecao(mTroca.getJogosTroca().getJogoTroca().getId(), mTroca.getJogosTroca().getJogoTroca().getPlataforma())){
+            jogoCRUD.removerJogoColecao(mTroca.getJogosTroca().getJogoOferta().getId(), mTroca.getJogosTroca().getJogoOferta().getPlataforma().getId());
+            if (!jogoDAO.jogoNaColecao(mTroca.getJogosTroca().getJogoTroca().getId(), mTroca.getJogosTroca().getJogoTroca().getPlataforma().getId())){
                 jogoCRUD.inserirJogoColecao(mTroca.getJogosTroca().getJogoTroca());
             }
         }else{
-            jogoCRUD.removerJogoColecao(mTroca.getJogosTroca().getJogoTroca().getId(), mTroca.getJogosTroca().getJogoTroca().getPlataforma());
-            if (!jogoDAO.jogoNaColecao(mTroca.getJogosTroca().getJogoOferta().getId(), mTroca.getJogosTroca().getJogoOferta().getPlataforma())){
+            jogoCRUD.removerJogoColecao(mTroca.getJogosTroca().getJogoTroca().getId(), mTroca.getJogosTroca().getJogoTroca().getPlataforma().getId());
+            if (!jogoDAO.jogoNaColecao(mTroca.getJogosTroca().getJogoOferta().getId(), mTroca.getJogosTroca().getJogoOferta().getPlataforma().getId())){
                jogoCRUD.inserirJogoColecao(mTroca.getJogosTroca().getJogoOferta());
             }
         }

@@ -8,6 +8,7 @@ import android.net.wifi.WifiConfiguration;
 
 import com.ce2apk.projetotrocajogo.Helper.PersistenceHelper;
 import com.ce2apk.projetotrocajogo.Jogo.Jogo;
+import com.ce2apk.projetotrocajogo.Jogo.Plataforma.Plataforma;
 import com.ce2apk.projetotrocajogo.Usuario.UsuarioUtil;
 import com.ce2apk.projetotrocajogo.Util.TrocaJogoUtil;
 
@@ -265,7 +266,7 @@ public class TrocaCRUD {
         itensJogoTroca.getJogoOferta().setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogooferta")));
         itensJogoTroca.getJogoOferta().setDescricao(cursor.getString(cursor.getColumnIndex("descricaooferta")));
         itensJogoTroca.getJogoOferta().setCategoria(cursor.getInt(cursor.getColumnIndex("categoriaoferta")));
-        itensJogoTroca.getJogoOferta().setPlataforma(cursor.getInt(cursor.getColumnIndex("plataformaOferta")));
+        itensJogoTroca.getJogoOferta().setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataformaOferta"))));
         itensJogoTroca.getJogoOferta().setAno(cursor.getInt(cursor.getColumnIndex("anooferta")));
         itensJogoTroca.getJogoOferta().setImagem(cursor.getString(cursor.getColumnIndex("imagemoferta")));
 
@@ -273,7 +274,7 @@ public class TrocaCRUD {
         itensJogoTroca.getJogoTroca().setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogotroca")));
         itensJogoTroca.getJogoTroca().setDescricao(cursor.getString(cursor.getColumnIndex("descricaotroca")));
         itensJogoTroca.getJogoTroca().setCategoria(cursor.getInt(cursor.getColumnIndex("categoriatroca")));
-        itensJogoTroca.getJogoTroca().setPlataforma(cursor.getInt(cursor.getColumnIndex("plataformaTroca")));
+        itensJogoTroca.getJogoTroca().setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataformaTroca"))));
         itensJogoTroca.getJogoTroca().setAno(cursor.getInt(cursor.getColumnIndex("anotroca")));
         itensJogoTroca.getJogoTroca().setImagem(cursor.getString(cursor.getColumnIndex("imagemtroca")));
 

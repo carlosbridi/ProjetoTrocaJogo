@@ -4,6 +4,8 @@ package com.ce2apk.projetotrocajogo.Jogo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.ce2apk.projetotrocajogo.Jogo.Plataforma.Plataforma;
+
 import java.io.Serializable;
 
 public class Jogo implements Serializable, Parcelable {
@@ -13,15 +15,16 @@ public class Jogo implements Serializable, Parcelable {
 	private String descricao;
 	private int categoria;
 	private int ano;
-	private int plataforma; 
+	private Plataforma plataforma;
 	private String imagem;
+	private boolean interesse;
 	
 	public Jogo(){
 		
 	}
 
 	public Jogo(int id, String nomejogo, String descricao, int categoria,
-			int ano, int plataforma, String imagem) {
+			int ano, Plataforma plataforma, String imagem) {
 		super();
 		this.id = id;
 		this.nomejogo = nomejogo;
@@ -30,6 +33,20 @@ public class Jogo implements Serializable, Parcelable {
 		this.ano = ano;
 		this.plataforma = plataforma;
 		this.imagem = imagem;
+		this.interesse = false;
+	}
+
+
+	public Jogo(int id, String nomejogo, String descricao, int categoria, int ano, Plataforma plataforma, String imagem, boolean interesse) {
+		super();
+		this.id = id;
+		this.nomejogo = nomejogo;
+		this.descricao = descricao;
+		this.categoria = categoria;
+		this.ano = ano;
+		this.plataforma = plataforma;
+		this.imagem = imagem;
+		this.interesse = interesse;
 	}
 
 	public Jogo(Parcel source) {
@@ -38,7 +55,7 @@ public class Jogo implements Serializable, Parcelable {
 		setDescricao(source.readString());
 		setCategoria(source.readInt());
 		setAno(source.readInt());
-		setPlataforma(source.readInt());
+		setPlataforma(new Plataforma(source.readInt()));
 		setImagem(source.readString());
 	}
 
@@ -72,19 +89,24 @@ public class Jogo implements Serializable, Parcelable {
 	public void setAno(int ano) {
 		this.ano = ano;
 	}
-	public int getPlataforma() {
+	public Plataforma getPlataforma() {
 		return plataforma;
 	}
-	public void setPlataforma(int plataforma) {
+	public void setPlataforma(Plataforma plataforma) {
 		this.plataforma = plataforma;
 	}
-	public String getImagem() {
-		return imagem;
-	}
+	public String getImagem() {return imagem;}
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
 
+	public boolean isInteresse() {
+		return interesse;
+	}
+
+	public void setInteresse(boolean interesse) {
+		this.interesse = interesse;
+	}
 
 	@Override
 	public int describeContents() {
@@ -98,7 +120,7 @@ public class Jogo implements Serializable, Parcelable {
 		dest.writeString(getDescricao());
 		dest.writeInt(getCategoria());
 		dest.writeInt(getAno());
-		dest.writeInt(getPlataforma());
+		dest.writeInt(getPlataforma().getId());
 		dest.writeString(getImagem());
 	}
 

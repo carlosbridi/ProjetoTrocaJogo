@@ -5,14 +5,25 @@ package com.ce2apk.projetotrocajogo.TableUtils;
  */
 public class DDLTables {
 
-    public static final String ddlJogo = "CREATE TABLE JOGO ("+
+    public static final String ddlJogo = "CREATE TABLE JOGOUSUARIO ("+
                     "id INTEGER NOT NULL," +
                     "nomejogo TEXT NOT NULL," +
                     "descricao TEXT NOT NULL," +
                     "categoria INTEGER NOT NULL," +
                     "plataforma integer not null,"+
                     "ano INTEGER NOT NULL," +
-                    "imagem TEXT)" ;
+                    "imagem TEXT, " +
+                    "interesse boolean)" ;
+
+    public static final String ddlInteresse = "CREATE TABLE JOGOUSUARIOINTERESSE ("+
+            "id INTEGER NOT NULL," +
+            "nomejogo TEXT NOT NULL," +
+            "descricao TEXT NOT NULL," +
+            "categoria INTEGER NOT NULL," +
+            "plataforma integer not null,"+
+            "ano INTEGER NOT NULL," +
+            "imagem TEXT)" ;
+
 
     public static final String ddltemp_Jogo = "CREATE TABLE TEMP_JOGO ("+
             "id INTEGER NOT NULL," +
@@ -21,25 +32,8 @@ public class DDLTables {
             "categoria INTEGER NOT NULL," +
             "plataforma integer not null,"+
             "ano INTEGER NOT NULL," +
-            "imagem TEXT)" ;
-
-    public static final String ddltemp_jogoInteresse = "CREATE TABLE TEMP_JOGOINTERESSE ("+
-            "id INTEGER NOT NULL," +
-            "nomejogo TEXT NOT NULL," +
-            "descricao TEXT NOT NULL," +
-            "categoria INTEGER NOT NULL," +
-            "plataforma integer not null,"+
-            "ano INTEGER NOT NULL," +
-            "imagem TEXT)" ;
-
-    public static final String ddlInteresse = "CREATE TABLE INTERESSE ("+
-            "id INTEGER NOT NULL," +
-            "nomejogo TEXT NOT NULL," +
-            "descricao TEXT NOT NULL," +
-            "categoria INTEGER NOT NULL," +
-            "plataforma integer not null,"+
-            "ano INTEGER NOT NULL," +
-            "imagem TEXT)" ;
+            "imagem TEXT, " +
+            "interesse boolean)" ;
 
 
     public static final String ddltemp_jogoBuscaUsuarios = "CREATE TABLE TEMP_JOGOBUSCAUSUARIOS ("+

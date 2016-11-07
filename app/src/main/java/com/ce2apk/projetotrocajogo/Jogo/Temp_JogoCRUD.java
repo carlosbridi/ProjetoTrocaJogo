@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.ce2apk.projetotrocajogo.Helper.PersistenceHelper;
+import com.ce2apk.projetotrocajogo.Jogo.Plataforma.Plataforma;
 import com.ce2apk.projetotrocajogo.Util.ListaJogos;
 
 import java.util.ArrayList;
@@ -35,9 +36,10 @@ public class Temp_JogoCRUD {
             contentValues.put("nomejogo", jogo.getNomejogo());
             contentValues.put("descricao", jogo.getDescricao());
             contentValues.put("categoria", jogo.getCategoria());
-            contentValues.put("plataforma", jogo.getPlataforma());
+            contentValues.put("plataforma", jogo.getPlataforma().getId());
             contentValues.put("ano", jogo.getAno());
             contentValues.put("imagem", jogo.getImagem());
+            contentValues.put("interesse", jogo.isInteresse());
             resultado = db.insert("temp_jogo", null, contentValues);
             db.setTransactionSuccessful();
         }catch (Exception e){
@@ -50,7 +52,7 @@ public class Temp_JogoCRUD {
         return resultado;
     }
 
-    public long removerTodaColecao(){
+    public long removerTodaListaTemp(){
         long resultado;
 
         String where = "id > 0";
@@ -71,7 +73,7 @@ public class Temp_JogoCRUD {
     }
 
     public ListaJogos listarJogo() {
-        String sql = "select * from temp_jogo";
+        String sql = "select * from temp_jogo where interesse = 0";
 
         ListaJogos listaJogos = new ListaJogos();
 
@@ -84,10 +86,11 @@ public class Temp_JogoCRUD {
                 jogo.setId(cursor.getInt(cursor.getColumnIndex("id")));
                 jogo.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
                 jogo.setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogo")));
-                jogo.setPlataforma(cursor.getInt(cursor.getColumnIndex("plataforma")));
+                jogo.setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataforma"))));
                 jogo.setCategoria(cursor.getInt(cursor.getColumnIndex("categoria")));
                 jogo.setAno(cursor.getInt(cursor.getColumnIndex("ano")));
                 jogo.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));
+                jogo.setInteresse(false);
                 listaJogos.addJogo(jogo);
             }
         }catch (Exception e){
@@ -95,6 +98,33 @@ public class Temp_JogoCRUD {
         }
 
         return  listaJogos;
+    }
 
+    public ListaJogos listarJogoInteresse() {
+        String sql = "select * from temp_jogo where interesse = 1";
+
+        ListaJogos listaJogos = new ListaJogos();
+
+        try{
+            db = banco.getReadableDatabase();
+            Cursor cursor = db.rawQuery(sql, null);
+
+            while (cursor.moveToNext()){
+                Jogo jogo = new Jogo();
+                jogo.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                jogo.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
+                jogo.setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogo")));
+                jogo.setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataforma"))));
+                jogo.setCategoria(cursor.getInt(cursor.getColumnIndex("categoria")));
+                jogo.setAno(cursor.getInt(cursor.getColumnIndex("ano")));
+                jogo.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));
+                jogo.setInteresse(true);
+                listaJogos.addJogo(jogo);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return  listaJogos;
     }
 }

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.ce2apk.projetotrocajogo.Helper.PersistenceHelper;
+import com.ce2apk.projetotrocajogo.Jogo.Plataforma.Plataforma;
 import com.ce2apk.projetotrocajogo.Util.ListaJogos;
 
 import java.util.ArrayList;
@@ -37,10 +38,11 @@ public class JogoCRUD {
             contentValues.put("nomejogo", jogo.getNomejogo());
             contentValues.put("descricao", jogo.getDescricao());
             contentValues.put("categoria", jogo.getCategoria());
-            contentValues.put("plataforma", jogo.getPlataforma());
+            contentValues.put("plataforma", jogo.getPlataforma().getId());
             contentValues.put("ano", jogo.getAno());
             contentValues.put("imagem", jogo.getImagem());
-            resultado = db.insert("jogo", null, contentValues);
+            contentValues.put("interesse", jogo.isInteresse());
+            resultado = db.insert("jogousuario", null, contentValues);
             db.setTransactionSuccessful();
         }catch (Exception e){
             db.endTransaction();
@@ -52,12 +54,12 @@ public class JogoCRUD {
     }
 
     public void removerJogos(){
-        String where = "1=1";
+        String where = "1=1 and interesse = 0 ";
         db = banco.getReadableDatabase();
         db.beginTransaction();
         try {
 
-            db.delete("jogo", where, null);
+            db.delete("jogousuario", where, null);
 
             db.setTransactionSuccessful();
         }catch(Exception e){
@@ -73,12 +75,12 @@ public class JogoCRUD {
     public long removerJogoColecao(int idJogo, int idPlataforma){
         long resultado;
 
-        String where = "id = "+ idJogo + " and plataforma = "+idPlataforma;
+        String where = "interesse = 0 and id = "+ idJogo + " and plataforma = "+idPlataforma;
         db = banco.getReadableDatabase();
         db.beginTransaction();
         try {
 
-            resultado = db.delete("jogo", where, null);
+            resultado = db.delete("jogousuario", where, null);
 
             db.setTransactionSuccessful();
         }catch(Exception e){
@@ -94,12 +96,12 @@ public class JogoCRUD {
     public long removerJogoColecao(Jogo jogo){
         long resultado;
 
-        String where = "id = "+ jogo.getId()+ " and plataforma = "+jogo.getPlataforma()+ " and categoria = " + jogo.getCategoria();
+        String where = "interesse = 0 and id = "+ jogo.getId()+ " and plataforma = "+jogo.getPlataforma().getId()+ " and categoria = " + jogo.getCategoria();
         db = banco.getReadableDatabase();
         db.beginTransaction();
         try {
 
-            resultado = db.delete("jogo", where, null);
+            resultado = db.delete("jogousuario", where, null);
 
             db.setTransactionSuccessful();
         }catch(Exception e){
@@ -113,7 +115,7 @@ public class JogoCRUD {
     }
 
     public List<Jogo> listarJogo() {
-        String sql = "select * from jogo";
+        String sql = "select * from jogousuario where interesse = 0 ";
 
         List<Jogo> listaJogos = new ArrayList<Jogo>();
 
@@ -126,7 +128,7 @@ public class JogoCRUD {
                 jogo.setId(cursor.getInt(cursor.getColumnIndex("id")));
                 jogo.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
                 jogo.setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogo")));
-                jogo.setPlataforma(cursor.getInt(cursor.getColumnIndex("plataforma")));
+                jogo.setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataforma"))));
                 jogo.setCategoria(cursor.getInt(cursor.getColumnIndex("categoria")));
                 jogo.setAno(cursor.getInt(cursor.getColumnIndex("ano")));
                 jogo.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));
@@ -141,7 +143,7 @@ public class JogoCRUD {
 
     public Jogo obterDadosJogo(int idJogo){
 
-        String sql = "select * from jogo where id = " + idJogo ;
+        String sql = "select * from jogousuario where id = " + idJogo + " and interesse = 0 ";
         Jogo jogo = new Jogo();
 
         try{
@@ -152,7 +154,7 @@ public class JogoCRUD {
                 jogo.setId(cursor.getInt(cursor.getColumnIndex("id")));
                 jogo.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
                 jogo.setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogo")));
-                jogo.setPlataforma(cursor.getInt(cursor.getColumnIndex("plataforma")));
+                jogo.setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataforma"))));
                 jogo.setCategoria(cursor.getInt(cursor.getColumnIndex("categoria")));
                 jogo.setAno(cursor.getInt(cursor.getColumnIndex("ano")));
                 jogo.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));

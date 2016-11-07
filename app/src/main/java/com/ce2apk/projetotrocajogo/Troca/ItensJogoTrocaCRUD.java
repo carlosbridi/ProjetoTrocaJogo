@@ -46,8 +46,8 @@ public class ItensJogoTrocaCRUD {
             contentValues.put("descricaotroca", itemJogoTroca.getJogoTroca().getDescricao());
             contentValues.put("categoriaoferta", itemJogoTroca.getJogoOferta().getCategoria());
             contentValues.put("categoriatroca", itemJogoTroca.getJogoTroca().getCategoria());
-            contentValues.put("plataformaoferta", itemJogoTroca.getJogoOferta().getPlataforma());
-            contentValues.put("plataformatroca", itemJogoTroca.getJogoTroca().getPlataforma());
+            contentValues.put("plataformaoferta", itemJogoTroca.getJogoOferta().getPlataforma().getId());
+            contentValues.put("plataformatroca", itemJogoTroca.getJogoTroca().getPlataforma().getId());
             contentValues.put("anotroca", itemJogoTroca.getJogoTroca().getAno());
             contentValues.put("anooferta", itemJogoTroca.getJogoOferta().getAno());
             contentValues.put("imagemoferta", itemJogoTroca.getJogoOferta().getImagem());

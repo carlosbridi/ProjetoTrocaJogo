@@ -36,7 +36,6 @@ public class PersistenceHelper extends SQLiteOpenHelper {
         db.execSQL(DDLTables.ddlJogo);
         db.execSQL(DDLTables.ddltemp_Jogo);
         db.execSQL(DDLTables.ddlInteresse);
-        db.execSQL(DDLTables.ddltemp_jogoInteresse);
         db.execSQL(DDLTables.ddltemp_jogoBuscaUsuarios);
         db.execSQL(DDLTables.ddlCabecalhoTroca);
         db.execSQL(DDLTables.ddlItensTroca);

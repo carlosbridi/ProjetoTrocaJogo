@@ -1,5 +1,6 @@
 package com.ce2apk.projetotrocajogo.Jogo;
 
+import com.ce2apk.projetotrocajogo.Jogo.Plataforma.Plataforma;
 import com.ce2apk.projetotrocajogo.Troca.ItensJogoTroca;
 
 import org.json.JSONException;
@@ -10,7 +11,13 @@ import org.json.JSONObject;
  */
 public class JogoUtil {
 
-    public static Jogo pareserJogo(JSONObject jsonObject){
+    public static Jogo parserJogo(JSONObject jsonObject, boolean interesse){
+        Jogo jogo = parserJogo(jsonObject);
+        jogo.setInteresse(interesse);
+        return jogo;
+    }
+
+    public static Jogo parserJogo(JSONObject jsonObject){
         JSONObject field = jsonObject;
 
         Jogo jogo = new Jogo();
@@ -20,7 +27,7 @@ public class JogoUtil {
             jogo.setNomejogo(field.getString("nomejogo"));
             jogo.setDescricao(field.getString("descricao"));
             jogo.setCategoria(field.getInt("categoria"));
-            jogo.setPlataforma(field.getInt("plataforma"));
+            jogo.setPlataforma(obterPlataforma(field));
             jogo.setCategoria(field.getInt("categoria"));
             jogo.setAno(field.getInt("ano"));
             if (field.has("imagem"))
@@ -30,6 +37,11 @@ public class JogoUtil {
         }
 
         return jogo;
+    }
+
+
+    public static Plataforma obterPlataforma(JSONObject jsonObject) throws JSONException {
+        return new Plataforma(jsonObject.getJSONObject("plataforma").getInt("id"), jsonObject.getJSONObject("plataforma").getString("descricao"));
     }
 
 
@@ -43,7 +55,7 @@ public class JogoUtil {
             itensJogoTroca.getJogoOferta().setNomejogo(jsonJogos.getString("nomejogooferta"));
             itensJogoTroca.getJogoOferta().setDescricao(jsonJogos.getString("descricaooferta"));
             itensJogoTroca.getJogoOferta().setCategoria(jsonJogos.getInt("categoriaoferta"));
-            itensJogoTroca.getJogoOferta().setPlataforma(jsonJogos.getInt("plataformaoferta"));
+            itensJogoTroca.getJogoOferta().setPlataforma(new Plataforma(jsonJogos.getInt("plataformaoferta")));
             itensJogoTroca.getJogoOferta().setImagem(jsonJogos.getString("imagemoferta"));
             itensJogoTroca.getJogoOferta().setAno(jsonJogos.getInt("anooferta"));
 
@@ -51,7 +63,7 @@ public class JogoUtil {
             itensJogoTroca.getJogoTroca().setNomejogo(jsonJogos.getString("nomejogotroca"));
             itensJogoTroca.getJogoTroca().setDescricao(jsonJogos.getString("descricaotroca"));
             itensJogoTroca.getJogoTroca().setCategoria(jsonJogos.getInt("categoriatroca"));
-            itensJogoTroca.getJogoTroca().setPlataforma(jsonJogos.getInt("plataformatroca"));
+            itensJogoTroca.getJogoTroca().setPlataforma(new Plataforma(jsonJogos.getInt("plataformatroca")));
             itensJogoTroca.getJogoTroca().setImagem(jsonJogos.getString("imagemtroca"));
             itensJogoTroca.getJogoTroca().setAno(jsonJogos.getInt("anotroca"));
 
@@ -79,7 +91,7 @@ public class JogoUtil {
             itensJogoTroca.setNomejogo(field.getString("nomejogo"));
             itensJogoTroca.setDescricao(field.getString("descricao"));
             itensJogoTroca.setCategoria(field.getInt("categoria"));
-            itensJogoTroca.setPlataforma(field.getInt("plataforma"));
+            itensJogoTroca.setPlataforma(new Plataforma(field.getInt("plataforma")));
             itensJogoTroca.setCategoria(field.getInt("categoria"));
             itensJogoTroca.setAno(field.getInt("ano"));
             if (field.has("imagem"))

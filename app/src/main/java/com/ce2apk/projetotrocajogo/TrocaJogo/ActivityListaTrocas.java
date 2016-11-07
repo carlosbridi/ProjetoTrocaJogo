@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.ce2apk.projetotrocajogo.Jogo.Plataforma.Plataforma;
 import com.ce2apk.projetotrocajogo.R;
 import com.ce2apk.projetotrocajogo.Troca.ItensJogoTroca;
 import com.ce2apk.projetotrocajogo.Troca.StatusTroca;
@@ -177,7 +178,7 @@ public class ActivityListaTrocas extends android.support.v4.app.ListFragment imp
             itensJogoTroca.getJogoOferta().setNomejogo(jsonJogos.getString("nomejogo"));
             itensJogoTroca.getJogoOferta().setDescricao(jsonJogos.getString("descricao"));
             itensJogoTroca.getJogoOferta().setCategoria(jsonJogos.getInt("categoria"));
-            itensJogoTroca.getJogoOferta().setPlataforma(jsonJogos.getInt("plataforma"));
+            itensJogoTroca.getJogoOferta().setPlataforma(new Plataforma(jsonJogos.getInt("plataforma")));
             itensJogoTroca.getJogoOferta().setImagem(jsonJogos.getString("imagem"));
             itensJogoTroca.getJogoOferta().setAno(jsonJogos.getInt("ano"));
 
@@ -186,7 +187,7 @@ public class ActivityListaTrocas extends android.support.v4.app.ListFragment imp
             itensJogoTroca.getJogoTroca().setNomejogo(jsonJogos.getString("nomejogo"));
             itensJogoTroca.getJogoTroca().setDescricao(jsonJogos.getString("descricao"));
             itensJogoTroca.getJogoTroca().setCategoria(jsonJogos.getInt("categoria"));
-            itensJogoTroca.getJogoTroca().setPlataforma(jsonJogos.getInt("plataforma"));
+            itensJogoTroca.getJogoTroca().setPlataforma(new Plataforma(jsonJogos.getInt("plataforma")));
             itensJogoTroca.getJogoTroca().setImagem(jsonJogos.getString("imagem"));
             itensJogoTroca.getJogoTroca().setAno(jsonJogos.getInt("ano"));
             

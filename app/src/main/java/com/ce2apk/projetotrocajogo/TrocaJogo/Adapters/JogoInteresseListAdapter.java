@@ -54,7 +54,7 @@ public class JogoInteresseListAdapter extends BaseAdapter{
 		nomeJogo.setText(jogo.getNomejogo());
 
 		TextView plataformaJogo = (TextView) view.findViewById(R.id.plataformaJogo);
-		plataformaJogo.setText(ParserArray.plataformaJogo(jogo.getPlataforma()));
+		plataformaJogo.setText(ParserArray.plataformaJogo(jogo.getPlataforma().getId()));
 
 		TextView anoJogo = (TextView) view.findViewById(R.id.anoJogo);
 		anoJogo.setText(String.valueOf(jogo.getAno()));
@@ -64,7 +64,7 @@ public class JogoInteresseListAdapter extends BaseAdapter{
 
 		JogoDAO jogoDAO = new JogoDAO(view.getContext());
 
-		if(jogoDAO.jogoNosInteresses(jogo.getId(), jogo.getPlataforma())){
+		if(jogoDAO.jogoNosInteresses(jogo.getId(), jogo.getPlataforma().getId())){
 			ImageView imageView = (ImageView) view.findViewById(R.id.imageInteresse);
 			imageView.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_interesse_marcado));
 			imageView.setTag("1");

@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import com.ce2apk.projetotrocajogo.Jogo.Jogo;
 import com.ce2apk.projetotrocajogo.Jogo.JogoInteresseCRUD;
-import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoInteresseCRUD;
+import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoCRUD;
 import com.ce2apk.projetotrocajogo.R;
 import com.ce2apk.projetotrocajogo.TrocaJogo.Adapters.JogoInteresseListAdapter;
 import com.ce2apk.projetotrocajogo.Usuario.UsuarioUtil;
@@ -76,7 +76,7 @@ public class ActivityListarInteresses extends ListActivity implements AsyncTaskC
     protected void onStart() {
         super.onStart();
 
-        Temp_JogoInteresseCRUD temp_jogoInteresseCRUD = new Temp_JogoInteresseCRUD(getApplicationContext());
+        Temp_JogoCRUD temp_jogoInteresseCRUD = new Temp_JogoCRUD(getApplicationContext());
         lista = temp_jogoInteresseCRUD.listarJogoInteresse();
 
         mListaJogos = lista.getListaJogo();
@@ -110,25 +110,24 @@ public class ActivityListarInteresses extends ListActivity implements AsyncTaskC
 
         final Jogo jogo = mListaJogos.get(getJogoList(view));
 
-        if(image.getTag().toString() != "1"){
+        if(!image.getTag().toString().equals("1")){
             if(jogoInteresseCRUD.inserirJogoInteresse(jogo) > 0) {
                 WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, this, "Adicionando interesse...", this);
                 webServiceTask.addParameter("idJogo", String.valueOf(jogo.getId()));
                 webServiceTask.addParameter("idUsuario", String.valueOf(UsuarioUtil.obterUsuario(this, "dadosUsuario").getId()));
-                webServiceTask.addParameter("idPlataforma", String.valueOf(jogo.getPlataforma()));
+                webServiceTask.addParameter("idPlataforma", String.valueOf(jogo.getPlataforma().getId()));
 
-                webServiceTask.execute(new String[]{consts.SERVICE_URL + "AdicionarJogoInteresse"});
+                webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoInteresseWS"});
 
                 doAnimationFloatingButton(image, 1);
             }
         }else{
             if(jogoInteresseCRUD.removerInteresse(jogo) > 0) {
-                WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, this, "Removendo interesse...", this);
-                webServiceTask.addParameter("idJogo", String.valueOf(jogo.getId()));
-                webServiceTask.addParameter("idUsuario", String.valueOf(UsuarioUtil.obterUsuario(this, "dadosUsuario").getId()));
-                webServiceTask.addParameter("idPlataforma", String.valueOf(jogo.getPlataforma()));
+                WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.DELETE_TASK, this, "Removendo interesse...", this);
 
-                webServiceTask.execute(new String[]{consts.SERVICE_URL + "RemoverJogoInteresse"});
+                webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoInteresseWS?idJogo="+jogo.getId()+"" +
+                                                                                        "&idUsuario="+ UsuarioUtil.obterUsuario(this, "dadosUsuario").getId()+"" +
+                                                                                        "&idPlataforma="+jogo.getPlataforma()});
 
                 doAnimationFloatingButton(image, 0);
             }

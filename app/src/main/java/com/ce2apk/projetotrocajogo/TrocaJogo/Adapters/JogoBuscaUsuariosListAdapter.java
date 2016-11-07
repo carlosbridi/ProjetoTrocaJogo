@@ -60,7 +60,7 @@ public class JogoBuscaUsuariosListAdapter extends BaseAdapter{
 		usuarioBusca.setText(itensJogoTroca.getNomeUsuarioTroca());
 
 		TextView plataformaJogo = (TextView) view.findViewById(R.id.plataformaJogo);
-		plataformaJogo.setText(ParserArray.plataformaJogo(itensJogoTroca.getPlataforma()));
+		plataformaJogo.setText(ParserArray.plataformaJogo(itensJogoTroca.getPlataforma().getId()));
 
 		TextView anoJogo = (TextView) view.findViewById(R.id.anoJogo);
 		anoJogo.setText(String.valueOf(itensJogoTroca.getAno()));

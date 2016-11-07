@@ -9,12 +9,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import com.ce2apk.projetotrocajogo.Jogo.Jogo;
 import com.ce2apk.projetotrocajogo.Jogo.JogoUtil;
 import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoCRUD;
-import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoInteresseCRUD;
 import com.ce2apk.projetotrocajogo.R;
-import com.ce2apk.projetotrocajogo.Util.ListaJogos;
 import com.ce2apk.projetotrocajogo.WebService.AsyncTaskCompleteListener;
 import com.ce2apk.projetotrocajogo.WebService.WebServiceTask;
 import com.ce2apk.projetotrocajogo.consts;
@@ -51,7 +48,6 @@ public class ActivityIncluirJogoFiltro extends AppCompatActivity implements Asyn
                 buscarJogos();
             }
         });
-
     }
 
     public boolean valid(){
@@ -107,34 +103,22 @@ public class ActivityIncluirJogoFiltro extends AppCompatActivity implements Asyn
             boolean isInteresses = ((extras != null) && (extras.getBoolean("interesses")));
 
             Temp_JogoCRUD temp_jogoCRUD = new Temp_JogoCRUD(getApplicationContext());
-            Temp_JogoInteresseCRUD temp_jogoInteresseCRUD = new Temp_JogoInteresseCRUD(getApplicationContext());
-
-            temp_jogoCRUD.removerTodaColecao();
-            temp_jogoInteresseCRUD.removerTodaColecao();
+            temp_jogoCRUD.removerTodaListaTemp();
 
             try {
                 try {
                     JSONArray jsonArray = result.getJSONArray("Jogo");
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        if (isInteresses) {
-                            temp_jogoInteresseCRUD.inserirJogoColecao(JogoUtil.pareserJogo(jsonArray.getJSONObject(i)));
-                        }else {
-                            temp_jogoCRUD.inserirJogoColecao(JogoUtil.pareserJogo(jsonArray.getJSONObject(i)));
-                        }
+                        temp_jogoCRUD.inserirJogoColecao(JogoUtil.parserJogo(jsonArray.getJSONObject(i), isInteresses));
                     }
                 } catch (JSONException e) {
-
-                    if (isInteresses) {
-                        temp_jogoInteresseCRUD.inserirJogoColecao(JogoUtil.pareserJogo(result.getJSONObject("Jogo")));
-                    }else {
-                        temp_jogoCRUD.inserirJogoColecao(JogoUtil.pareserJogo(result.getJSONObject("Jogo")));
-                    }
+                    temp_jogoCRUD.inserirJogoColecao(JogoUtil.parserJogo(result.getJSONObject("Jogo"), isInteresses));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            Intent it;
+            Intent it = null;
             if(isInteresses){
                 it = new Intent(this, ActivityListarInteresses.class);
             }else{
@@ -145,11 +129,11 @@ public class ActivityIncluirJogoFiltro extends AppCompatActivity implements Asyn
             startActivity(it);
 
             }else{
-            new SnackBar.Builder(this)
-                    .withMessage("Nenhum jogo encontrado com esse filtro!")
-                    .withStyle(SnackBar.Style.DEFAULT)
-                    .withDuration((short)3000)
-                    .show();
+                new SnackBar.Builder(this)
+                        .withMessage("Nenhum jogo encontrado com esse filtro!")
+                        .withStyle(SnackBar.Style.DEFAULT)
+                        .withDuration((short)3000)
+                        .show();
         }
     }
 

@@ -22,7 +22,7 @@ public class JogoDAO {
     public boolean jogoNaColecao(int codJogo, int codPlataforma){
         db = banco.getWritableDatabase();
 
-        String sql = "select 1 from jogo where id = "+codJogo+" and plataforma = "+codPlataforma;
+        String sql = "select 1 from jogousuario where id = "+codJogo+" and plataforma = "+codPlataforma;
 
         Cursor cursor = db.rawQuery(sql, null);
 
@@ -32,7 +32,7 @@ public class JogoDAO {
     public boolean jogoNosInteresses(int codJogo, int codPlataforma){
         db = banco.getWritableDatabase();
 
-        String sql = "select 1 from interesse where id = "+codJogo+" and plataforma = "+codPlataforma;
+        String sql = "select 1 from jogousuariointeresse where id = "+codJogo+" and plataforma = "+codPlataforma;
 
         Cursor cursor = db.rawQuery(sql, null);
 

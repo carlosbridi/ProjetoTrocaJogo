@@ -165,10 +165,10 @@ public class ActivityMeusJogos extends android.support.v4.app.ListFragment imple
                 try {
                     JSONArray jsonArray = result.getJSONArray("Jogo");
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        jogoCRUD.inserirJogoColecao(JogoUtil.pareserJogo(jsonArray.getJSONObject(i)));
+                        jogoCRUD.inserirJogoColecao(JogoUtil.parserJogo(jsonArray.getJSONObject(i)));
                     }
                 }catch (JSONException e){
-                    jogoCRUD.inserirJogoColecao(JogoUtil.pareserJogo(result.getJSONObject("Jogo")));
+                    jogoCRUD.inserirJogoColecao(JogoUtil.parserJogo(result.getJSONObject("Jogo")));
                 }
             }catch (Exception e){
                 e.printStackTrace();

@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.ce2apk.projetotrocajogo.Helper.PersistenceHelper;
 import com.ce2apk.projetotrocajogo.Jogo.Jogo;
+import com.ce2apk.projetotrocajogo.Jogo.Plataforma.Plataforma;
+import com.ce2apk.projetotrocajogo.Util.ListaJogos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +37,10 @@ public class JogoInteresseCRUD {
             contentValues.put("nomejogo", jogo.getNomejogo());
             contentValues.put("descricao", jogo.getDescricao());
             contentValues.put("categoria", jogo.getCategoria());
-            contentValues.put("plataforma", jogo.getPlataforma());
+            contentValues.put("plataforma", jogo.getPlataforma().getId());
             contentValues.put("ano", jogo.getAno());
             contentValues.put("imagem", jogo.getImagem());
-            resultado = db.insert("interesse", null, contentValues);
+            resultado = db.insert("jogousuariointeresse", null, contentValues);
             db.setTransactionSuccessful();
         }catch (Exception e){
             db.endTransaction();
@@ -50,12 +52,12 @@ public class JogoInteresseCRUD {
 
 
     public void removerJogosInteresse(){
-        String where = "1=1";
+        String where = "1=1 and interesse = true ";
         db = banco.getReadableDatabase();
         db.beginTransaction();
         try {
 
-            db.delete("interesse", where, null);
+            db.delete("jogousuariointeresse", where, null);
 
             db.setTransactionSuccessful();
         }catch(Exception e){
@@ -69,13 +71,13 @@ public class JogoInteresseCRUD {
 
 
     public long removerInteresse(Jogo jogo){
-        long resultado;
+        long resultado = 1;
 
-        String where = "id = "+ jogo.getId()+ " and plataforma = "+jogo.getPlataforma()+ " and categoria = " + jogo.getCategoria();
+        String where = "id = "+ jogo.getId()+ " and plataforma = "+jogo.getPlataforma().getId()+ " and categoria = " + jogo.getCategoria();
         db = banco.getReadableDatabase();
         db.beginTransaction();
         try {
-            resultado = db.delete("interesse", where, null);
+            resultado = db.delete("jogousuariointeresse", where, null);
             db.setTransactionSuccessful();
         }catch (Exception e){
             db.endTransaction();
@@ -86,10 +88,14 @@ public class JogoInteresseCRUD {
         return resultado;
     }
 
-    public List<Jogo> listarInteresse(){
-        String sql = "select * from interesse ORDER BY nomejogo, ID";
+    public List<Jogo> obterListaJogosInteresse(){
+        return listarInteresse().getListaJogo();
+    }
 
-        List<Jogo> listaJogos = new ArrayList<Jogo>();
+    public ListaJogos listarInteresse(){
+        String sql = "select * from jogousuariointeresse ORDER BY nomejogo, ID";
+
+        ListaJogos listaJogos = new ListaJogos() ;
         db = banco.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
 
@@ -98,15 +104,15 @@ public class JogoInteresseCRUD {
             jogo.setId(cursor.getInt(cursor.getColumnIndex("id")));
             jogo.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
             jogo.setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogo")));
-            jogo.setPlataforma(cursor.getInt(cursor.getColumnIndex("plataforma")));
+            jogo.setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataforma"))));
             jogo.setCategoria(cursor.getInt(cursor.getColumnIndex("categoria")));
             jogo.setAno(cursor.getInt(cursor.getColumnIndex("ano")));
             jogo.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));
-            listaJogos.add(jogo);
+            jogo.setInteresse(true);
+            listaJogos.addJogo(jogo);
         }
 
-        return  listaJogos;
-
+        return listaJogos;
     }
 
 }
