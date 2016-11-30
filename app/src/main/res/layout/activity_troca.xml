@@ -114,34 +114,34 @@
 
             <TextView
                 android:id="@+id/txtTituloOferta"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text=""
+                android:textAlignment="viewEnd"
                 android:layout_marginLeft="5dp" />
 
             <TextView
                 android:id="@+id/txtCategoriaOferta"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text=""
+                android:textAlignment="viewEnd"
                 android:layout_marginLeft="5dp" />
 
             <TextView
                 android:id="@+id/txtPlataformaOferta"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text=""
+                android:textAlignment="viewEnd"
                 android:layout_marginLeft="5dp" />
 
             <TextView
                 android:id="@+id/txtAnoOferta"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text=""
+                android:textAlignment="viewEnd"
                 android:layout_marginLeft="5dp" />
 
             <LinearLayout
