@@ -12,7 +12,7 @@ import com.ce2apk.projetotrocajogo.TableUtils.DDLTables;
 public class PersistenceHelper extends SQLiteOpenHelper {
 
     public static final String NOME_BANCO =  "TrocaJogo.db";
-    public static final int VERSAO = 1;
+    public static final int VERSAO = 2;
 
     private static PersistenceHelper instance;
 

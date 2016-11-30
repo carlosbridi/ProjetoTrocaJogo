@@ -11,6 +11,7 @@ public class DDLTables {
                     "descricao TEXT NOT NULL," +
                     "categoria INTEGER NOT NULL," +
                     "plataforma integer not null,"+
+                    "idjogoplataforma integer not null,"+
                     "ano INTEGER NOT NULL," +
                     "imagem TEXT, " +
                     "interesse boolean)" ;
@@ -21,6 +22,7 @@ public class DDLTables {
             "descricao TEXT NOT NULL," +
             "categoria INTEGER NOT NULL," +
             "plataforma integer not null,"+
+            "idjogoplataforma integer not null,"+
             "ano INTEGER NOT NULL," +
             "imagem TEXT)" ;
 
@@ -31,6 +33,7 @@ public class DDLTables {
             "descricao TEXT NOT NULL," +
             "categoria INTEGER NOT NULL," +
             "plataforma integer not null,"+
+            "idjogoplataforma integer not null,"+
             "ano INTEGER NOT NULL," +
             "imagem TEXT, " +
             "interesse boolean)" ;
@@ -45,6 +48,7 @@ public class DDLTables {
             "descricao TEXT NOT NULL," +
             "categoria INTEGER NOT NULL," +
             "plataforma integer not null,"+
+            "idjogoplataforma integer not null,"+
             "ano INTEGER NOT NULL," +
             "imagem TEXT)" ;
 

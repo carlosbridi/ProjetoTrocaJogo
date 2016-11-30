@@ -16,6 +16,7 @@ public class Jogo implements Serializable, Parcelable {
 	private int categoria;
 	private int ano;
 	private Plataforma plataforma;
+	private int idJogoPlataforma;
 	private String imagem;
 	private boolean interesse;
 	
@@ -24,7 +25,7 @@ public class Jogo implements Serializable, Parcelable {
 	}
 
 	public Jogo(int id, String nomejogo, String descricao, int categoria,
-			int ano, Plataforma plataforma, String imagem) {
+				int ano, Plataforma plataforma, int idJogoPlataforma, String imagem) {
 		super();
 		this.id = id;
 		this.nomejogo = nomejogo;
@@ -32,12 +33,13 @@ public class Jogo implements Serializable, Parcelable {
 		this.categoria = categoria;
 		this.ano = ano;
 		this.plataforma = plataforma;
+		this.idJogoPlataforma = idJogoPlataforma;
 		this.imagem = imagem;
 		this.interesse = false;
 	}
 
 
-	public Jogo(int id, String nomejogo, String descricao, int categoria, int ano, Plataforma plataforma, String imagem, boolean interesse) {
+	public Jogo(int id, String nomejogo, String descricao, int categoria, int ano, Plataforma plataforma, int idJogoPlataforma, String imagem, boolean interesse) {
 		super();
 		this.id = id;
 		this.nomejogo = nomejogo;
@@ -45,6 +47,7 @@ public class Jogo implements Serializable, Parcelable {
 		this.categoria = categoria;
 		this.ano = ano;
 		this.plataforma = plataforma;
+		this.idJogoPlataforma = idJogoPlataforma;
 		this.imagem = imagem;
 		this.interesse = interesse;
 	}
@@ -56,56 +59,74 @@ public class Jogo implements Serializable, Parcelable {
 		setCategoria(source.readInt());
 		setAno(source.readInt());
 		setPlataforma(new Plataforma(source.readInt()));
+		setIdJogoPlataforma(source.readInt());
 		setImagem(source.readString());
 	}
 
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public Jogo setId(int id) {
 		this.id = id;
+		return this;
 	}
 	public String getNomejogo() {
 		return nomejogo;
 	}
-	public void setNomejogo(String nomejogo) {
+	public Jogo setNomejogo(String nomejogo) {
 		this.nomejogo = nomejogo;
+		return this;
 	}
 	public String getDescricao() {
 		return descricao;
 	}
-	public void setDescricao(String descricao) {
+	public Jogo setDescricao(String descricao) {
 		this.descricao = descricao;
+		return this;
 	}
 	public int getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(int categoria) {
+	public Jogo setCategoria(int categoria) {
 		this.categoria = categoria;
+		return this;
 	}
 	public int getAno() {
 		return ano;
 	}
-	public void setAno(int ano) {
+	public Jogo setAno(int ano) {
 		this.ano = ano;
+		return this;
 	}
 	public Plataforma getPlataforma() {
 		return plataforma;
 	}
-	public void setPlataforma(Plataforma plataforma) {
+	public Jogo setPlataforma(Plataforma plataforma) {
 		this.plataforma = plataforma;
+		return this;
 	}
 	public String getImagem() {return imagem;}
-	public void setImagem(String imagem) {
+	public Jogo setImagem(String imagem) {
 		this.imagem = imagem;
+		return this;
 	}
 
 	public boolean isInteresse() {
 		return interesse;
 	}
 
-	public void setInteresse(boolean interesse) {
+	public Jogo setInteresse(boolean interesse) {
 		this.interesse = interesse;
+		return this;
+	}
+
+	public int getIdJogoPlataforma() {
+		return idJogoPlataforma;
+	}
+
+	public Jogo setIdJogoPlataforma(int idJogoPlataforma) {
+		this.idJogoPlataforma = idJogoPlataforma;
+		return this;
 	}
 
 	@Override
@@ -121,6 +142,7 @@ public class Jogo implements Serializable, Parcelable {
 		dest.writeInt(getCategoria());
 		dest.writeInt(getAno());
 		dest.writeInt(getPlataforma().getId());
+		dest.writeInt(getIdJogoPlataforma());
 		dest.writeString(getImagem());
 	}
 

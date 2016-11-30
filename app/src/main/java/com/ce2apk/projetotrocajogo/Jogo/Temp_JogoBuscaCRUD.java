@@ -39,6 +39,7 @@ public class Temp_JogoBuscaCRUD {
             contentValues.put("descricao", itensJogoTroca.getDescricao());
             contentValues.put("categoria", itensJogoTroca.getCategoria());
             contentValues.put("plataforma", itensJogoTroca.getPlataforma().getId());
+            contentValues.put("idjogoplataforma", itensJogoTroca.getIdJogoPlataforma());
             contentValues.put("ano", itensJogoTroca.getAno());
             contentValues.put("imagem", itensJogoTroca.getImagem());
             resultado = db.insert("temp_jogobuscausuarios", null, contentValues);
@@ -90,6 +91,7 @@ public class Temp_JogoBuscaCRUD {
                 itensJogoTroca.setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogo")));
                 itensJogoTroca.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
                 itensJogoTroca.setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataforma"))));
+                itensJogoTroca.setIdJogoPlataforma(cursor.getInt(cursor.getColumnIndex("idjogoplataforma")));
                 itensJogoTroca.setCategoria(cursor.getInt(cursor.getColumnIndex("categoria")));
                 itensJogoTroca.setAno(cursor.getInt(cursor.getColumnIndex("ano")));
                 itensJogoTroca.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));
@@ -119,6 +121,7 @@ public class Temp_JogoBuscaCRUD {
                 jogo.setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogo")));
                 jogo.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
                 jogo.setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataforma"))));
+                jogo.setIdJogoPlataforma(cursor.getInt(cursor.getColumnIndex("idjogoplataforma")));
                 jogo.setCategoria(cursor.getInt(cursor.getColumnIndex("categoria")));
                 jogo.setAno(cursor.getInt(cursor.getColumnIndex("ano")));
                 jogo.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));

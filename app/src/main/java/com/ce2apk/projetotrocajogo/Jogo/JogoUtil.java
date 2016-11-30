@@ -1,48 +1,92 @@
 package com.ce2apk.projetotrocajogo.Jogo;
 
+import android.util.JsonToken;
+
 import com.ce2apk.projetotrocajogo.Jogo.Plataforma.Plataforma;
 import com.ce2apk.projetotrocajogo.Troca.ItensJogoTroca;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by carlosbridi on 20/02/16.
  */
 public class JogoUtil {
 
-    public static Jogo parserJogo(JSONObject jsonObject, boolean interesse){
-        Jogo jogo = parserJogo(jsonObject);
-        jogo.setInteresse(interesse);
-        return jogo;
-    }
+    private static List<Integer> listaIdJogoPlataforma;
 
-    public static Jogo parserJogo(JSONObject jsonObject){
-        JSONObject field = jsonObject;
+    public static List<Jogo> parserJogo(JSONObject jsonObject) throws JSONException {
+        List<Jogo> listaJogo = new ArrayList<Jogo>();
+        listaIdJogoPlataforma = new ArrayList();
+        int xControle = 0;
 
-        Jogo jogo = new Jogo();
+        try{
+            JSONArray jsonArrayJogo = jsonObject.getJSONArray("Jogo");
+            for (int x = 0; x< jsonArrayJogo.length(); x++){
+                JSONObject jsonJogo = jsonArrayJogo.getJSONObject(x);
+                List<Plataforma> listaPlataforma = obterPlataformas(jsonJogo);
 
-        try {
-            jogo.setId(field.getInt("id"));
-            jogo.setNomejogo(field.getString("nomejogo"));
-            jogo.setDescricao(field.getString("descricao"));
-            jogo.setCategoria(field.getInt("categoria"));
-            jogo.setPlataforma(obterPlataforma(field));
-            jogo.setCategoria(field.getInt("categoria"));
-            jogo.setAno(field.getInt("ano"));
-            if (field.has("imagem"))
-                jogo.setImagem(field.getString("imagem"));
+                for (Plataforma xPlataforma : listaPlataforma) {
+                    Jogo jogo = new Jogo();
+                    jogo.setId(jsonJogo.getInt("id"))
+                            .setDescricao(jsonJogo.getString("descricao"))
+                            .setNomejogo(jsonJogo.getString("nomejogo"))
+                            .setAno(jsonJogo.getInt("ano"))
+                            .setCategoria(jsonJogo.getInt("categoria"))
+                            .setPlataforma(xPlataforma)
+                            .setIdJogoPlataforma(listaIdJogoPlataforma.get(xControle))
+                            .setImagem(jsonJogo.getString("imagem"));
+
+                    listaJogo.add(jogo);
+                    xControle = xControle + 1;
+                }
+            }
         }catch (JSONException e){
-            e.printStackTrace();
+            JSONObject jsonJogo = jsonObject.getJSONObject("jogo");
+            List<Plataforma> listaPlataforma = obterPlataformas(jsonJogo);
+
+            for (Plataforma xPlataforma : listaPlataforma) {
+                Jogo jogo = new Jogo();
+                jogo.setId(jsonJogo.getInt("id"))
+                        .setDescricao(jsonJogo.getString("descricao"))
+                        .setNomejogo(jsonJogo.getString("nomejogo"))
+                        .setAno(jsonJogo.getInt("ano"))
+                        .setCategoria(jsonJogo.getInt("categoria"))
+                        .setPlataforma(xPlataforma)
+                        .setIdJogoPlataforma(listaIdJogoPlataforma.get(xControle))
+                        .setImagem(jsonJogo.getString("imagem"));
+
+                listaJogo.add(jogo);
+                xControle =+ 1;
+            }
         }
+        return listaJogo;
 
-        return jogo;
     }
 
+    public static List<Plataforma> obterPlataformas(JSONObject jsonObjectPlataforma) throws JSONException {
+        List<Plataforma> listaPlataforma = new ArrayList<Plataforma>();
 
-    public static Plataforma obterPlataforma(JSONObject jsonObject) throws JSONException {
-        return new Plataforma(jsonObject.getJSONObject("plataforma").getInt("id"), jsonObject.getJSONObject("plataforma").getString("descricao"));
+        try{
+            JSONArray jsonArrayPlataforma = jsonObjectPlataforma.getJSONArray("plataforma");
+            for (int x = 0; x < jsonArrayPlataforma.length(); x++){
+                listaIdJogoPlataforma.add(jsonArrayPlataforma.getJSONObject(x).getInt("id"));
+                JSONObject jsonPlataforma = jsonArrayPlataforma.getJSONObject(x).getJSONObject("plataforma");
+                listaPlataforma.add(new Plataforma(jsonPlataforma.getInt("id")));
+            }
+        }catch (JSONException e){
+            listaIdJogoPlataforma.add(jsonObjectPlataforma.getJSONObject("plataforma").getInt("id"));
+            JSONObject jsonPlataforma = jsonObjectPlataforma.getJSONObject("plataforma").getJSONObject("plataforma");
+            listaPlataforma.add(new Plataforma(jsonPlataforma.getInt("id")));
+        }
+        return listaPlataforma;
     }
+
 
 
     public static ItensJogoTroca pareserJogoItensTroca(JSONObject jsonJogos){
@@ -86,12 +130,14 @@ public class JogoUtil {
         TempJogoBusca itensJogoTroca = new TempJogoBusca();
 
         try {
+            JSONObject jsonPlataforma = field.getJSONObject("plataforma");
+
             itensJogoTroca.setId(field.getInt("id"));
             //itensJogoTroca.setId(field.getInt("idJogoTroca"));
             itensJogoTroca.setNomejogo(field.getString("nomejogo"));
             itensJogoTroca.setDescricao(field.getString("descricao"));
             itensJogoTroca.setCategoria(field.getInt("categoria"));
-            itensJogoTroca.setPlataforma(new Plataforma(field.getInt("plataforma")));
+            itensJogoTroca.setPlataforma(new Plataforma(jsonPlataforma.getInt("id")));
             itensJogoTroca.setCategoria(field.getInt("categoria"));
             itensJogoTroca.setAno(field.getInt("ano"));
             if (field.has("imagem"))

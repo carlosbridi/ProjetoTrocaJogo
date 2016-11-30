@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.ce2apk.projetotrocajogo.Helper.PersistenceHelper;
 
+import java.util.List;
+
 /**
  * Created by carlosbridi on 28/12/15.
  */
@@ -38,5 +40,6 @@ public class JogoDAO {
 
         return cursor.moveToNext();
     }
+
 
 }

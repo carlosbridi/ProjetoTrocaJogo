@@ -106,14 +106,7 @@ public class ActivityIncluirJogoFiltro extends AppCompatActivity implements Asyn
             temp_jogoCRUD.removerTodaListaTemp();
 
             try {
-                try {
-                    JSONArray jsonArray = result.getJSONArray("Jogo");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        temp_jogoCRUD.inserirJogoColecao(JogoUtil.parserJogo(jsonArray.getJSONObject(i), isInteresses));
-                    }
-                } catch (JSONException e) {
-                    temp_jogoCRUD.inserirJogoColecao(JogoUtil.parserJogo(result.getJSONObject("Jogo"), isInteresses));
-                }
+               temp_jogoCRUD.inserirJogosColecao(JogoUtil.parserJogo(result));
             } catch (Exception e) {
                 e.printStackTrace();
             }

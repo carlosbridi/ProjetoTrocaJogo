@@ -334,8 +334,8 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
             wst.addParameter("nomeusuariotroca", novaTroca.getJogosTroca().getNomeUsuarioTroca());
             wst.addParameter("idJogoTroca", String.valueOf(novaTroca.getJogosTroca().getJogoTroca().getId()));
             wst.addParameter("idJogoOferta", String.valueOf(novaTroca.getJogosTroca().getJogoOferta().getId()));
-            wst.addParameter("plataformaoferta", String.valueOf(novaTroca.getJogosTroca().getJogoOferta().getPlataforma()));
-            wst.addParameter("plataformatroca", String.valueOf(novaTroca.getJogosTroca().getJogoTroca().getPlataforma()));
+            wst.addParameter("idPlataformaOferta", String.valueOf(novaTroca.getJogosTroca().getJogoOferta().getPlataforma().getId()));
+            wst.addParameter("idPlataformaTroca", String.valueOf(novaTroca.getJogosTroca().getJogoTroca().getPlataforma().getId()));
 
             wst.execute(new String[]{consts.SERVICE_URL + "IncluirTroca"});
         }catch(Exception e){

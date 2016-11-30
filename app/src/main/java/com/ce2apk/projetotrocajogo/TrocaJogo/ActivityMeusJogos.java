@@ -67,9 +67,8 @@ public class ActivityMeusJogos extends android.support.v4.app.ListFragment imple
             mAdapter = new ActivityMeusJogosListAdapter(getActivity().getApplicationContext(), listaJogo, this);
             setListAdapter(mAdapter);
         }else {
-            WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, getActivity().getApplicationContext(), "Buscando dados do usuário", this, false);
-            webServiceTask.addParameter("idUsuario", String.valueOf(UsuarioUtil.obterUsuario(getActivity().getApplicationContext(), "dadosUsuario").getId()));
-            webServiceTask.execute(new String[]{consts.SERVICE_URL + "listarColecaoJogosUsuario"});
+            WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.GET_TASK, getActivity().getApplicationContext(), "Buscando dados do usuário", this, false);
+            webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoColecaoWS?idUsuario="+UsuarioUtil.obterUsuario(getActivity().getApplicationContext(), "dadosUsuario").getId()});
         }
 
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -162,14 +161,7 @@ public class ActivityMeusJogos extends android.support.v4.app.ListFragment imple
             JogoCRUD jogoCRUD = new JogoCRUD(getActivity().getApplicationContext());
             jogoCRUD.removerJogos();
             try{
-                try {
-                    JSONArray jsonArray = result.getJSONArray("Jogo");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        jogoCRUD.inserirJogoColecao(JogoUtil.parserJogo(jsonArray.getJSONObject(i)));
-                    }
-                }catch (JSONException e){
-                    jogoCRUD.inserirJogoColecao(JogoUtil.parserJogo(result.getJSONObject("Jogo")));
-                }
+                jogoCRUD.inserirJogosColecao(JogoUtil.parserJogo(result));
             }catch (Exception e){
                 e.printStackTrace();
             }

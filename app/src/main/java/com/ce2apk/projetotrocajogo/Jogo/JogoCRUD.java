@@ -26,6 +26,13 @@ public class JogoCRUD {
         banco = new PersistenceHelper(context);
     }
 
+    public long inserirJogosColecao(List<Jogo> jogos){
+        for (Jogo xJogo : jogos) {
+            inserirJogoColecao(xJogo);
+        }
+        return 0;
+    }
+
     public long inserirJogoColecao(Jogo jogo){
         ContentValues contentValues;
         long resultado;
@@ -39,6 +46,7 @@ public class JogoCRUD {
             contentValues.put("descricao", jogo.getDescricao());
             contentValues.put("categoria", jogo.getCategoria());
             contentValues.put("plataforma", jogo.getPlataforma().getId());
+            contentValues.put("idjogoplataforma", jogo.getIdJogoPlataforma());
             contentValues.put("ano", jogo.getAno());
             contentValues.put("imagem", jogo.getImagem());
             contentValues.put("interesse", jogo.isInteresse());
@@ -129,6 +137,7 @@ public class JogoCRUD {
                 jogo.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
                 jogo.setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogo")));
                 jogo.setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataforma"))));
+                jogo.setIdJogoPlataforma(cursor.getInt(cursor.getColumnIndex("idjogoplataforma")));
                 jogo.setCategoria(cursor.getInt(cursor.getColumnIndex("categoria")));
                 jogo.setAno(cursor.getInt(cursor.getColumnIndex("ano")));
                 jogo.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));
@@ -155,6 +164,7 @@ public class JogoCRUD {
                 jogo.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
                 jogo.setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogo")));
                 jogo.setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataforma"))));
+                jogo.setIdJogoPlataforma(cursor.getInt(cursor.getColumnIndex("idjogoplataforma")));
                 jogo.setCategoria(cursor.getInt(cursor.getColumnIndex("categoria")));
                 jogo.setAno(cursor.getInt(cursor.getColumnIndex("ano")));
                 jogo.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));

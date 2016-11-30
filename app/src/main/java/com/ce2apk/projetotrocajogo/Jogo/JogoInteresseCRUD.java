@@ -25,6 +25,13 @@ public class JogoInteresseCRUD {
         banco = new PersistenceHelper(context);
     }
 
+    public long inserirJogosInteresse(List<Jogo> listaJogos){
+        for (Jogo xJogo : listaJogos) {
+            inserirJogoInteresse(xJogo);
+        }
+        return 0;
+    }
+    
     public long inserirJogoInteresse(Jogo jogo){
         ContentValues contentValues;
         long resultado;
@@ -38,6 +45,7 @@ public class JogoInteresseCRUD {
             contentValues.put("descricao", jogo.getDescricao());
             contentValues.put("categoria", jogo.getCategoria());
             contentValues.put("plataforma", jogo.getPlataforma().getId());
+            contentValues.put("idjogoplataforma", jogo.getIdJogoPlataforma());
             contentValues.put("ano", jogo.getAno());
             contentValues.put("imagem", jogo.getImagem());
             resultado = db.insert("jogousuariointeresse", null, contentValues);
@@ -105,6 +113,7 @@ public class JogoInteresseCRUD {
             jogo.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
             jogo.setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogo")));
             jogo.setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataforma"))));
+            jogo.setIdJogoPlataforma(cursor.getInt(cursor.getColumnIndex("idjogoplataforma")));
             jogo.setCategoria(cursor.getInt(cursor.getColumnIndex("categoria")));
             jogo.setAno(cursor.getInt(cursor.getColumnIndex("ano")));
             jogo.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));

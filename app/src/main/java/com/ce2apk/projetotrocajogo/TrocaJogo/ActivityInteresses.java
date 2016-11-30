@@ -59,9 +59,8 @@ public class ActivityInteresses extends android.support.v4.app.ListFragment impl
             mAdapter = new ActivityMeusInteressesListAdapter(getActivity().getApplicationContext(), listaInteresse, this);
             setListAdapter(mAdapter);
         }else{
-            WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, getActivity().getApplicationContext(), "Buscando dados do usuário", this, true);
-            webServiceTask.addParameter("idUsuario", String.valueOf(UsuarioUtil.obterUsuario(getActivity().getApplicationContext(), "dadosUsuario").getId()));
-            webServiceTask.execute(new String[]{consts.SERVICE_URL + "listarInteressesJogosUsuario"});
+            WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.GET_TASK, getActivity().getApplicationContext(), "Buscando dados do usuário", this, true);
+            webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoInteresseWS?idUsuario="+UsuarioUtil.obterUsuario(getActivity().getApplicationContext(), "dadosUsuario").getId()});
         }
 
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -129,14 +128,7 @@ public class ActivityInteresses extends android.support.v4.app.ListFragment impl
         }else{
             JogoInteresseCRUD jogoCRUD = new JogoInteresseCRUD(getActivity().getApplicationContext());
             try{
-                try {
-                    JSONArray jsonArray = result.getJSONArray("Jogo");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        jogoCRUD.inserirJogoInteresse(JogoUtil.parserJogo(jsonArray.getJSONObject(i), true));
-                    }
-                }catch (JSONException e){
-                    jogoCRUD.inserirJogoInteresse(JogoUtil.parserJogo(result.getJSONObject("Jogo"), true));
-                }
+                jogoCRUD.inserirJogosInteresse(JogoUtil.parserJogo(result));
             }catch (Exception e){
                 e.printStackTrace();
             }

@@ -24,6 +24,14 @@ public class Temp_JogoCRUD {
         banco = new PersistenceHelper(context);
     }
 
+
+    public long inserirJogosColecao(List<Jogo> jogos){
+        for (Jogo xJogo : jogos) {
+            inserirJogoColecao(xJogo);
+        }
+        return 0;
+    }
+
     public long inserirJogoColecao(Jogo jogo){
         ContentValues contentValues;
         long resultado;
@@ -40,6 +48,7 @@ public class Temp_JogoCRUD {
             contentValues.put("ano", jogo.getAno());
             contentValues.put("imagem", jogo.getImagem());
             contentValues.put("interesse", jogo.isInteresse());
+            contentValues.put("idjogoplataforma", jogo.getIdJogoPlataforma());
             resultado = db.insert("temp_jogo", null, contentValues);
             db.setTransactionSuccessful();
         }catch (Exception e){
@@ -90,6 +99,7 @@ public class Temp_JogoCRUD {
                 jogo.setCategoria(cursor.getInt(cursor.getColumnIndex("categoria")));
                 jogo.setAno(cursor.getInt(cursor.getColumnIndex("ano")));
                 jogo.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));
+                jogo.setIdJogoPlataforma(cursor.getInt(cursor.getColumnIndex("idjogoplataforma")));
                 jogo.setInteresse(false);
                 listaJogos.addJogo(jogo);
             }
@@ -118,6 +128,7 @@ public class Temp_JogoCRUD {
                 jogo.setCategoria(cursor.getInt(cursor.getColumnIndex("categoria")));
                 jogo.setAno(cursor.getInt(cursor.getColumnIndex("ano")));
                 jogo.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));
+                jogo.setIdJogoPlataforma(cursor.getInt(cursor.getColumnIndex("idjogoplataforma")));
                 jogo.setInteresse(true);
                 listaJogos.addJogo(jogo);
             }

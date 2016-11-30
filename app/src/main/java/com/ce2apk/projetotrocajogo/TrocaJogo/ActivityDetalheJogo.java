@@ -50,14 +50,6 @@ public class ActivityDetalheJogo extends AppCompatActivity implements AsyncTaskC
     protected void onCreate(Bundle savedInstanceState) {
 
         if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ){
-                /*Explode trans1 = new Explode();
-                trans1.setDuration(3000);
-                Fade trans2 = new Fade();
-                trans2.setDuration(3000);
-
-                getWindow().setEnterTransition( trans1 );
-                getWindow().setReturnTransition( trans2 );*/
-
             TransitionInflater inflater = TransitionInflater.from( this );
             Transition transition = inflater.inflateTransition( R.transition.transitions );
 
@@ -128,10 +120,7 @@ public class ActivityDetalheJogo extends AppCompatActivity implements AsyncTaskC
         }else{
             simpleDraweeView.setImageBitmap(ImagemUtil.getBitmapFromString(jogo.getImagem())); //cache temporário até download
             imagemCache.loadImageRemoteServer();
-
         }
-
-
     }
 
     @Override
