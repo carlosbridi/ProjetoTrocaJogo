@@ -182,7 +182,7 @@ public class ActivityDetalheTroca extends Activity implements AsyncTaskCompleteL
         txtDetalheTituloOferta.setText(jogo.getNomejogo());
         txtDetalheAnoOferta.setText(String.valueOf(jogo.getAno()));
         txtDetalheCategoriaOferta.setText(ParserArray.categoriaJogo(jogo.getCategoria()));
-        txtDetalheDescricaoOferta.setText(jogo.getDescricao().substring(0, 200) + "(...)");
+        txtDetalheDescricaoOferta.setText(jogo.getDescricao());
         txtDetalhePlataformaOferta.setText(ParserArray.plataformaJogo(jogo.getPlataforma().getId()));
         txtDetalheNomeUsuarioOferta.setText(mTroca.getJogosTroca().getNomeUsuarioOferta());
 
@@ -201,7 +201,7 @@ public class ActivityDetalheTroca extends Activity implements AsyncTaskCompleteL
         txtDetalheTituloTroca.setText(itensJogoTroca.getJogoTroca().getNomejogo());
         txtDetalheAnoTroca.setText(String.valueOf(itensJogoTroca.getJogoTroca().getAno()));
         txtDetalheCategoriaTroca.setText(ParserArray.categoriaJogo(itensJogoTroca.getJogoTroca().getCategoria()));
-        txtDetalheDescricaoTroca.setText(itensJogoTroca.getJogoTroca().getDescricao().substring(0, 200) + "(...)");
+        txtDetalheDescricaoTroca.setText(itensJogoTroca.getJogoTroca().getDescricao());
         txtDetalhePlataformaTroca.setText(ParserArray.plataformaJogo(itensJogoTroca.getJogoTroca().getPlataforma().getId()));
         txtDetalheNomeUsuarioTroca.setText(itensJogoTroca.getNomeUsuarioTroca());
 

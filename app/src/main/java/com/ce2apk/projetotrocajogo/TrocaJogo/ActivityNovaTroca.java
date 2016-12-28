@@ -152,6 +152,7 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
                 itemTroca.getJogoTroca().setPlataforma(itensJogoTroca.getPlataforma());
                 itemTroca.getJogoTroca().setDescricao(itensJogoTroca.getDescricao());
                 itemTroca.getJogoTroca().setNomejogo(itensJogoTroca.getNomejogo());
+                itemTroca.getJogoTroca().setIdJogoPlataforma(itensJogoTroca.getIdJogoPlataforma());
 
                 //novaTroca.setIdUsuarioTroca(itemTroca.getIdUsuarioTroca());
                 novaTroca.getJogosTroca().setNomeUsuarioTroca(itensJogoTroca.getNomeUsuarioTroca());
@@ -165,7 +166,7 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
         txtTituloOferta.setText(jogo.getNomejogo());
         txtAnoOferta.setText(String.valueOf(jogo.getAno()));
         txtCategoriaOferta.setText(ParserArray.categoriaJogo(jogo.getCategoria()));
-        txtDescricaoOferta.setText(jogo.getDescricao().substring(0, 200) + "(...)");
+        txtDescricaoOferta.setText(jogo.getDescricao().substring(0, 150) + "(...)");
         txtPlataformaOferta.setText(ParserArray.plataformaJogo(jogo.getPlataforma().getId()));
 
         imagemCache.setCodJogo(jogo.getId());
@@ -181,7 +182,7 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
         txtTituloTroca.setText(itensJogoTroca.getNomejogo());
         txtAnoTroca.setText(String.valueOf(itensJogoTroca.getAno()));
         txtCategoriaTroca.setText(ParserArray.categoriaJogo(itensJogoTroca.getCategoria()));
-        txtDescricaoTroca.setText(itensJogoTroca.getDescricao().substring(0, 200) + "(...)");
+        txtDescricaoTroca.setText(itensJogoTroca.getDescricao().substring(0, 150) + "(...)");
         txtPlataformaTroca.setText(ParserArray.plataformaJogo(itensJogoTroca.getPlataforma().getId()));
         txtNomeUsuario.setText(itensJogoTroca.getNomeUsuarioTroca());
 
@@ -276,7 +277,7 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
 
         if ((retorno) &&
                 ((novaTroca.getJogosTroca().getJogoOferta().getId() == novaTroca.getJogosTroca().getJogoTroca().getId()) &&
-                novaTroca.getJogosTroca().getJogoTroca().getPlataforma().getId() == novaTroca.getJogosTroca().getJogoTroca().getPlataforma().getId())){
+                novaTroca.getJogosTroca().getJogoOferta().getPlataforma().getId() == novaTroca.getJogosTroca().getJogoTroca().getPlataforma().getId())){
             new SnackBar.Builder(this)
                     .withMessage("Jogo de troca e de oferta são os mesmos!")
                     .withStyle(SnackBar.Style.DEFAULT)
@@ -322,7 +323,7 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK, this, "Gravando troca. Aguarde..", this);
+            WebServiceTask wst = new WebServiceTask(WebServiceTask.PUT_TASK, this, "Gravando troca. Aguarde..", this);
             wst.addParameter("idTroca", String.valueOf(novaTroca.getId()));
             wst.addParameter("statusTroca", novaTroca.getStatusTroca().toString());
             wst.addParameter("dataTroca", simpleDateFormat.format(novaTroca.getDataTroca()));
@@ -330,14 +331,12 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
             //Dados dos itens
             wst.addParameter("idUsuarioOferta", String.valueOf(novaTroca.getJogosTroca().getIdUsuarioOferta()));
             wst.addParameter("idUsuarioTroca", String.valueOf(novaTroca.getJogosTroca().getIdUsuarioTroca()));
-            wst.addParameter("nomeusuariooferta", novaTroca.getJogosTroca().getNomeUsuarioOferta());
-            wst.addParameter("nomeusuariotroca", novaTroca.getJogosTroca().getNomeUsuarioTroca());
             wst.addParameter("idJogoTroca", String.valueOf(novaTroca.getJogosTroca().getJogoTroca().getId()));
             wst.addParameter("idJogoOferta", String.valueOf(novaTroca.getJogosTroca().getJogoOferta().getId()));
-            wst.addParameter("idPlataformaOferta", String.valueOf(novaTroca.getJogosTroca().getJogoOferta().getPlataforma().getId()));
-            wst.addParameter("idPlataformaTroca", String.valueOf(novaTroca.getJogosTroca().getJogoTroca().getPlataforma().getId()));
+            wst.addParameter("idJogoPlataformaOferta", String.valueOf(novaTroca.getJogosTroca().getJogoOferta().getIdJogoPlataforma()));
+            wst.addParameter("idJogoPlataformaTroca", String.valueOf(novaTroca.getJogosTroca().getJogoTroca().getIdJogoPlataforma()));
 
-            wst.execute(new String[]{consts.SERVICE_URL + "IncluirTroca"});
+            wst.execute(new String[]{consts.SERVICE_URL + "TrocaWS"});
         }catch(Exception e){
             new SnackBar.Builder(this)
                     .withMessage("Problemas ao registrar a troca no servidor.")

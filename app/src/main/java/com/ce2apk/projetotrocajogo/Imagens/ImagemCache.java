@@ -95,10 +95,8 @@ public class ImagemCache implements AsyncTaskCompleteListener, ImagemCacheFuncs,
 
     @Override
     public void loadImageRemoteServer() {
-        WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, context, "Carregando imagem...", this);
-        webServiceTask.addParameter("idJogo", String.valueOf(codJogo));
-
-        webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoImagem"});
+        WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.GET_TASK, context, "Carregando imagem...", this);
+        webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoImagem?idJogo="+ codJogo});
     }
 
     @Override

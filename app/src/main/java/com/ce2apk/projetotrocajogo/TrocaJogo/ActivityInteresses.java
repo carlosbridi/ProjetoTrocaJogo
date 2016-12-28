@@ -53,15 +53,9 @@ public class ActivityInteresses extends android.support.v4.app.ListFragment impl
     @Override
     public void onStart() {
         super.onStart();
-        if (UsuarioUtil.interessesNaColecao(getActivity().getApplicationContext())) {
-
-            listaInteresse = jogoInteresseCRUD.obterListaJogosInteresse();
-            mAdapter = new ActivityMeusInteressesListAdapter(getActivity().getApplicationContext(), listaInteresse, this);
-            setListAdapter(mAdapter);
-        }else{
-            WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.GET_TASK, getActivity().getApplicationContext(), "Buscando dados do usuário", this, true);
-            webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoInteresseWS?idUsuario="+UsuarioUtil.obterUsuario(getActivity().getApplicationContext(), "dadosUsuario").getId()});
-        }
+        listaInteresse = jogoInteresseCRUD.obterListaJogosInteresse();
+        mAdapter = new ActivityMeusInteressesListAdapter(getActivity().getApplicationContext(), listaInteresse, this);
+        setListAdapter(mAdapter);
 
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -86,9 +80,9 @@ public class ActivityInteresses extends android.support.v4.app.ListFragment impl
         if (jogoInteresseCRUD.removerInteresse(jogo) > 0){
             WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.DELETE_TASK, view.getContext(), "Removendo interesse...", this);
 
-            webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoInteresseWS?idJogo="+jogo.getId()+"" +
-                    "&idUsuario="+ UsuarioUtil.obterUsuario(view.getContext(), "dadosUsuario").getId()+"" +
-                    "&idPlataforma="+jogo.getPlataforma().getId()});
+            webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoInteresseWS?" +
+                    "idUsuario="+ UsuarioUtil.obterUsuario(view.getContext(), "dadosUsuario").getId()+"" +
+                    "&idJogoPlataforma="+jogo.getIdJogoPlataforma()});
 
         }else{
             Toast.makeText(viewAux.getContext(), "Problemas ao remover", Toast.LENGTH_SHORT).show();
@@ -120,25 +114,6 @@ public class ActivityInteresses extends android.support.v4.app.ListFragment impl
 
     @Override
     public void onTaskComplete(JSONObject result) throws JSONException {
-        if(UsuarioUtil.interessesNaColecao(getActivity().getApplicationContext())) {
-            if (result.get("codResultado").equals("1")) {
-                listaInteresse.remove(mPosicaoJogo);
-                mAdapter.notifyDataSetChanged();
-            }
-        }else{
-            JogoInteresseCRUD jogoCRUD = new JogoInteresseCRUD(getActivity().getApplicationContext());
-            try{
-                jogoCRUD.inserirJogosInteresse(JogoUtil.parserJogo(result));
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-            listaInteresse = jogoCRUD.obterListaJogosInteresse();
-            mAdapter = new ActivityMeusInteressesListAdapter(getActivity().getApplicationContext(), listaInteresse, this);
-            setListAdapter(mAdapter);
-
-            UsuarioUtil.carregouInteresses(getActivity().getApplicationContext());
-        }
     }
 
     @Override

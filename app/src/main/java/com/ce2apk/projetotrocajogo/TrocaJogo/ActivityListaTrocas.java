@@ -2,6 +2,7 @@ package com.ce2apk.projetotrocajogo.TrocaJogo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,9 +69,8 @@ public class ActivityListaTrocas extends android.support.v4.app.ListFragment imp
             mAdapter = new ActivityTrocasListAdapter(getActivity().getApplicationContext(), mListaTroca);
             setListAdapter(mAdapter);
         }else{
-            WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, getActivity().getApplicationContext(), "Buscando trocas", this, true);
-            webServiceTask.addParameter("idUsuario", String.valueOf(dadosUsuario.getId()));
-            webServiceTask.execute(new String[]{consts.SERVICE_URL + "BuscarTrocas"});
+            WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.GET_TASK, getActivity().getApplicationContext(), "Buscando trocas", this, true);
+            webServiceTask.execute(new String[]{consts.SERVICE_URL + "TrocaWS?idUsuario"+String.valueOf(dadosUsuario.getId())});
         }
 
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -90,13 +90,13 @@ public class ActivityListaTrocas extends android.support.v4.app.ListFragment imp
         if (!result.toString().equals("{}") || (!result.toString().equals(""))) {
             mListaWebService.clear();
             try {
-                JSONArray jsonArray = result.getJSONArray("Troca");
+                JSONArray jsonArray = result.getJSONArray("TrocaDTO");
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     mListaWebService.add(parseTroca(jsonArray.getJSONObject(i)));
                 }
             } catch (JSONException e) {
-                mListaWebService.add(parseTroca(result.getJSONObject("Troca")));
+                mListaWebService.add(parseTroca(result.getJSONObject("TrocaDTO")));
             }
 
             TrocaCRUD trocaCRUD = new TrocaCRUD(getActivity().getApplicationContext());
@@ -122,6 +122,7 @@ public class ActivityListaTrocas extends android.support.v4.app.ListFragment imp
         Toast.makeText(getActivity().getApplicationContext(), "Ocorreu um erro ao buscar os dados, tente novamente mais tarde!", Toast.LENGTH_LONG).show();
     }
 
+    @Nullable
     private Troca parseTroca(JSONObject jsonObject){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -138,59 +139,43 @@ public class ActivityListaTrocas extends android.support.v4.app.ListFragment imp
 
 
             switch(jsonObject.getString("statusTroca")){
-                case "TROCA_ANALISE":{
+                case "ANALISE":{
                     troca.setStatusTroca(StatusTroca.TROCA_ANALISE);
                     break;
                 }
 
-                case "TROCA_ANDAMENTO":{
+                case "ANDAMENTO":{
                     troca.setStatusTroca(StatusTroca.TROCA_ANDAMENTO);
                     break;
                 }
 
-                case "TROCA_CANCELADA":{
+                case "CANCELADA":{
                     troca.setStatusTroca(StatusTroca.TROCA_CANCELADA);
                     break;
                 }
 
-                case "TROCA_CONCLUIDA":{
+                case "CONCLUIDA":{
                     troca.setStatusTroca(StatusTroca.TROCA_CONCLUIDA);
                     break;
                 }
 
-                case "TROCA_REJEITADA":{
+                case "REJEITADA":{
                     troca.setStatusTroca(StatusTroca.TROCA_REJEITADA);
                     break;
                 }
             }
 
-            JSONObject jsonJogos =  jsonObject.getJSONObject("jogoTroca");
 
             ItensJogoTroca itensJogoTroca = new ItensJogoTroca();
 
-            itensJogoTroca.setNomeUsuarioTroca(jsonJogos.getString("nomeUsuarioTroca"));
-            itensJogoTroca.setNomeUsuarioOferta(jsonJogos.getString("nomeUsuarioOferta"));
-            itensJogoTroca.setIdUsuarioTroca(jsonJogos.getInt("idUsuarioTroca"));
-            itensJogoTroca.setIdUsuarioOferta(jsonJogos.getInt("idUsuarioOferta"));
+            itensJogoTroca.setNomeUsuarioTroca(jsonObject.getString("nomeUsuarioTroca"));
+            itensJogoTroca.setNomeUsuarioOferta(jsonObject.getString("nomeUsuarioOferta"));
+            itensJogoTroca.setIdUsuarioTroca(jsonObject.getInt("idUsuarioTroca"));
+            itensJogoTroca.setIdUsuarioOferta(jsonObject.getInt("idUsuarioOferta"));
 
-            jsonJogos = jsonObject.getJSONObject("jogoTroca").getJSONObject("jogoOferta");
-            itensJogoTroca.getJogoOferta().setId(jsonJogos.getInt("id"));
-            itensJogoTroca.getJogoOferta().setNomejogo(jsonJogos.getString("nomejogo"));
-            itensJogoTroca.getJogoOferta().setDescricao(jsonJogos.getString("descricao"));
-            itensJogoTroca.getJogoOferta().setCategoria(jsonJogos.getInt("categoria"));
-            itensJogoTroca.getJogoOferta().setPlataforma(new Plataforma(jsonJogos.getInt("plataforma")));
-            itensJogoTroca.getJogoOferta().setImagem(jsonJogos.getString("imagem"));
-            itensJogoTroca.getJogoOferta().setAno(jsonJogos.getInt("ano"));
+            definirJogoOferta(jsonObject, itensJogoTroca);
+            definirJogoTroca(jsonObject, itensJogoTroca);
 
-            jsonJogos = jsonObject.getJSONObject("jogoTroca").getJSONObject("jogoTroca");
-            itensJogoTroca.getJogoTroca().setId(jsonJogos.getInt("id"));
-            itensJogoTroca.getJogoTroca().setNomejogo(jsonJogos.getString("nomejogo"));
-            itensJogoTroca.getJogoTroca().setDescricao(jsonJogos.getString("descricao"));
-            itensJogoTroca.getJogoTroca().setCategoria(jsonJogos.getInt("categoria"));
-            itensJogoTroca.getJogoTroca().setPlataforma(new Plataforma(jsonJogos.getInt("plataforma")));
-            itensJogoTroca.getJogoTroca().setImagem(jsonJogos.getString("imagem"));
-            itensJogoTroca.getJogoTroca().setAno(jsonJogos.getInt("ano"));
-            
             troca.setJogosTroca(itensJogoTroca);
 
             return troca;
@@ -200,6 +185,52 @@ public class ActivityListaTrocas extends android.support.v4.app.ListFragment imp
             return null;
         }
 
+    }
+
+
+    private void definirJogoOferta(JSONObject jsonJogos, ItensJogoTroca itensJogoTroca){
+        try {
+            JSONObject jsonItemTroca = jsonJogos = jsonJogos.getJSONObject("itemTroca");
+            JSONObject jsonJogoOferta = jsonItemTroca.getJSONObject("jogoOferta");
+
+            itensJogoTroca.getJogoOferta().setId(jsonJogoOferta.getInt("id"));
+            itensJogoTroca.getJogoOferta().setNomejogo(jsonJogoOferta.getString("nomejogo"));
+            itensJogoTroca.getJogoOferta().setDescricao(jsonJogoOferta.getString("descricao"));
+            itensJogoTroca.getJogoOferta().setCategoria(jsonJogoOferta.getInt("categoria"));
+
+            JSONObject jsonJogoPlataforma = jsonItemTroca.getJSONObject("jogoPlataformaTroca");
+            JSONObject jsonPlataforma = jsonJogoPlataforma.getJSONObject("plataforma");
+            itensJogoTroca.getJogoOferta().setPlataforma(new Plataforma(jsonPlataforma.getInt("id")));
+
+            itensJogoTroca.getJogoOferta().setIdJogoPlataforma(jsonJogoPlataforma.getInt("id"));
+            itensJogoTroca.getJogoOferta().setImagem(jsonJogoOferta.getString("imagem"));
+            itensJogoTroca.getJogoOferta().setAno(jsonJogoOferta.getInt("ano"));
+        }catch (JSONException e){
+            throw new RuntimeException("Erro ao definir jogo de oferta.");
+        }
+    }
+
+    private void definirJogoTroca(JSONObject jsonJogos, ItensJogoTroca itensJogoTroca){
+        try {
+            JSONObject jsonItemTroca = jsonJogos = jsonJogos.getJSONObject("itemTroca");
+            JSONObject jsonJogoTroca = jsonItemTroca.getJSONObject("jogoTroca");
+
+            itensJogoTroca.getJogoTroca().setId(jsonJogoTroca.getInt("id"));
+            itensJogoTroca.getJogoTroca().setNomejogo(jsonJogoTroca.getString("nomejogo"));
+            itensJogoTroca.getJogoTroca().setDescricao(jsonJogoTroca.getString("descricao"));
+            itensJogoTroca.getJogoTroca().setCategoria(jsonJogoTroca.getInt("categoria"));
+
+            JSONObject jsonJogoPlataforma = jsonItemTroca.getJSONObject("jogoPlataformaTroca");
+            JSONObject jsonPlataforma = jsonJogoPlataforma.getJSONObject("plataforma");
+            itensJogoTroca.getJogoTroca().setPlataforma(new Plataforma(jsonPlataforma.getInt("id")));
+
+            itensJogoTroca.getJogoOferta().setIdJogoPlataforma(jsonJogoPlataforma.getInt("id"));
+
+            itensJogoTroca.getJogoTroca().setImagem(jsonJogoTroca.getString("imagem"));
+            itensJogoTroca.getJogoTroca().setAno(jsonJogoTroca.getInt("ano"));
+        }catch(JSONException e){
+            throw new RuntimeException("Erro ao definir jogo de troca.");
+        }
     }
 
     public void buscarDadosServidor(){

@@ -93,7 +93,7 @@ public class ActivityBuscarJogoUsuario extends AppCompatActivity implements Asyn
         webServiceTask.addParameter("nome", _nomeJogo.getEditText().getText().toString());
         webServiceTask.addParameter("categoria", String.valueOf(_categoriaJogo.getSelectedItemPosition()));
         webServiceTask.addParameter("plataforma", String.valueOf(_plataformaJogo.getSelectedItemPosition()));
-        webServiceTask.execute(new String[]{consts.SERVICE_URL + "BuscarJogosUsuario"});
+        webServiceTask.execute(new String[]{consts.SERVICE_URL + "BuscarJogos/JogosUsuarios"});
 
     }
 
@@ -107,12 +107,12 @@ public class ActivityBuscarJogoUsuario extends AppCompatActivity implements Asyn
 
             try {
                 try {
-                    JSONArray jsonArray = result.getJSONArray("TempJogoBusca");
+                    JSONArray jsonArray = result.getJSONArray("JogoUsuarioDTO");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         temp_jogoCRUD.inserirJogoColecao(JogoUtil.parserTempBusca(jsonArray.getJSONObject(i)));
                     }
                 } catch (JSONException e) {
-                    temp_jogoCRUD.inserirJogoColecao(JogoUtil.parserTempBusca(result.getJSONObject("TempJogoBusca")));
+                    temp_jogoCRUD.inserirJogoColecao(JogoUtil.parserTempBusca(result.getJSONObject("JogoUsuarioDTO")));
                 }
             } catch (Exception e) {
                 e.printStackTrace();

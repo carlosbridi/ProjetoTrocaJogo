@@ -119,9 +119,8 @@ public class ActivityListarJogos extends ListActivity implements AsyncTaskComple
         if(!image.getTag().toString().equals("1")){
             if(jogoInteresseCRUD.inserirJogoInteresse(jogo) > 0) {
                 WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, this, "Adicionando interesse...", this);
-                webServiceTask.addParameter("idJogo", String.valueOf(jogo.getId()));
                 webServiceTask.addParameter("idUsuario", String.valueOf(UsuarioUtil.obterUsuario(this, "dadosUsuario").getId()));
-                webServiceTask.addParameter("idPlataforma", String.valueOf(jogo.getPlataforma().getId()));
+                webServiceTask.addParameter("idJogoPlataforma", String.valueOf(jogo.getIdJogoPlataforma()));
 
                 webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoInteresseWS"});
 
@@ -130,7 +129,8 @@ public class ActivityListarJogos extends ListActivity implements AsyncTaskComple
         }else{
             if(jogoInteresseCRUD.removerInteresse(jogo) > 0) {
                 WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.DELETE_TASK, this, "Removendo interesse...", this);
-                webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoInteresseWS?idJogo="+jogo.getId()+"&idUsuario="+ UsuarioUtil.obterUsuario(this, "dadosUsuario").getId()+"&idPlataforma="+jogo.getPlataforma().getId() });
+                webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoInteresseWS?idUsuario="+ UsuarioUtil.obterUsuario(this, "dadosUsuario").getId()
+                                                                       +"&idJogoPlataforma="+jogo.getIdJogoPlataforma()});
 
                 doAnimationInteresses(image, 0);
             }
@@ -156,10 +156,8 @@ public class ActivityListarJogos extends ListActivity implements AsyncTaskComple
         if (imageViewJogoColecao.getTag().toString().equals("0")){
             if (jogoCRUD.inserirJogoColecao(jogo) > 0){
                 WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, this, "Adicionando jogo", this);
-                webServiceTask.addParameter("idJogo", String.valueOf(jogo.getId()));
                 webServiceTask.addParameter("idUsuario", String.valueOf(UsuarioUtil.obterUsuario(this, "dadosUsuario").getId()));
-                webServiceTask.addParameter("idPlataforma", String.valueOf(jogo.getPlataforma().getId()));
-
+                webServiceTask.addParameter("idJogoPlataforma", String.valueOf(jogo.getIdJogoPlataforma()));
                 webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoColecaoWS"});
                 mAdicionarJogoColecao = 0;
             }else {
@@ -169,8 +167,7 @@ public class ActivityListarJogos extends ListActivity implements AsyncTaskComple
             if (jogoCRUD.removerJogoColecao(jogo) > 0){
                 WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.DELETE_TASK, this, "Removendo jogo da coleção", this);
                 webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoColecaoWS?idJogo="+jogo.getId()+"" +
-                                                                                      "&idUsuario="+UsuarioUtil.obterUsuario(this, "dadosUsuario").getId()+
-                                                                                      "&idPlataforma="+jogo.getPlataforma().getId()});
+                                                                                      "&idJogoPlataforma="+jogo.getIdJogoPlataforma()});
                 mAdicionarJogoColecao = 1;
             }else{
                 Toast.makeText(getApplicationContext(), "Problemas ao remover", Toast.LENGTH_SHORT).show();

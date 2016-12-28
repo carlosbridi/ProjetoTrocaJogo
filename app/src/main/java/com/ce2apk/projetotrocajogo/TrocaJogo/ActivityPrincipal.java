@@ -142,8 +142,7 @@ public class ActivityPrincipal  extends AppCompatActivity
             fCodUsuario = extras.getInt("codResultado", 0);
 
             WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.GET_TASK, this, "Buscando dados do usuário", this);
-            webServiceTask.addParameter("id", String.valueOf(fCodUsuario));
-            webServiceTask.execute(new String[]{consts.SERVICE_URL + "UsuarioWS"});
+            webServiceTask.execute(new String[]{consts.SERVICE_URL + "UsuarioWS?idUsuario="+fCodUsuario});
         }
     }
 

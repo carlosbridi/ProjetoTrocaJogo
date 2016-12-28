@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textAlignment="viewEnd"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginRight="5dp" />
 
             <TextView
                 android:id="@+id/txtCategoriaOferta"
@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textAlignment="viewEnd"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginRight="5dp" />
 
             <TextView
                 android:id="@+id/txtPlataformaOferta"
@@ -134,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textAlignment="viewEnd"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginRight="5dp" />
 
             <TextView
                 android:id="@+id/txtAnoOferta"
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textAlignment="viewEnd"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginRight="5dp" />
 
             <LinearLayout
                 android:id="@+id/ll_detalhesdescricaojogo1"
@@ -159,7 +159,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:visibility="visible"
-                    android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp" />
             </LinearLayout>
         </LinearLayout>

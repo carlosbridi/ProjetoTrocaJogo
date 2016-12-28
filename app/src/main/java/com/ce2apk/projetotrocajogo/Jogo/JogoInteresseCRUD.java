@@ -48,7 +48,9 @@ public class JogoInteresseCRUD {
             contentValues.put("idjogoplataforma", jogo.getIdJogoPlataforma());
             contentValues.put("ano", jogo.getAno());
             contentValues.put("imagem", jogo.getImagem());
-            resultado = db.insert("jogousuariointeresse", null, contentValues);
+            contentValues.put("interesse", true);
+
+            resultado = db.insert("jogousuario", null, contentValues);
             db.setTransactionSuccessful();
         }catch (Exception e){
             db.endTransaction();
@@ -60,12 +62,12 @@ public class JogoInteresseCRUD {
 
 
     public void removerJogosInteresse(){
-        String where = "1=1 and interesse = true ";
+        String where = "1=1 and interesse = 1 ";
         db = banco.getReadableDatabase();
         db.beginTransaction();
         try {
 
-            db.delete("jogousuariointeresse", where, null);
+            db.delete("jogousuario", where, null);
 
             db.setTransactionSuccessful();
         }catch(Exception e){
@@ -81,11 +83,11 @@ public class JogoInteresseCRUD {
     public long removerInteresse(Jogo jogo){
         long resultado = 1;
 
-        String where = "id = "+ jogo.getId()+ " and plataforma = "+jogo.getPlataforma().getId()+ " and categoria = " + jogo.getCategoria();
+        String where = "id = "+ jogo.getId()+ " and plataforma = "+jogo.getPlataforma().getId()+ " and categoria = " + jogo.getCategoria() + "and interesse = 1";
         db = banco.getReadableDatabase();
         db.beginTransaction();
         try {
-            resultado = db.delete("jogousuariointeresse", where, null);
+            resultado = db.delete("jogousuario", where, null);
             db.setTransactionSuccessful();
         }catch (Exception e){
             db.endTransaction();
@@ -101,7 +103,7 @@ public class JogoInteresseCRUD {
     }
 
     public ListaJogos listarInteresse(){
-        String sql = "select * from jogousuariointeresse ORDER BY nomejogo, ID";
+        String sql = "select * from jogousuario where interesse = 1 ORDER BY nomejogo, ID";
 
         ListaJogos listaJogos = new ListaJogos() ;
         db = banco.getReadableDatabase();

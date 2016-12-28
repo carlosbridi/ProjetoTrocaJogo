@@ -243,11 +243,13 @@ public class ActivityCadastroEndereco extends FragmentActivity implements AsyncT
         _cep.getEditText().setText(usuario.getCep());
         _logradouro.getEditText().setText(usuario.getLogradouro());
         _numero.getEditText().setText(usuario.getNumero());
-        if (usuario.getEstado().equals("")){
-         _estado.setSelection(0);
-        }else {
-            _estado.setSelection(Integer.valueOf(usuario.getEstado()));
-        }
+//        if (usuario.getEstado().equals("")){
+//         _estado.setSelection(0);
+//        }else {
+//            _estado.setSelection(Integer.valueOf(usuario.getEstado()));
+//        }
+//
+//        _estado.getitem
 
         _cidade.getEditText().setText(usuario.getCidade());
         _bairro.getEditText().setText(usuario.getBairro());

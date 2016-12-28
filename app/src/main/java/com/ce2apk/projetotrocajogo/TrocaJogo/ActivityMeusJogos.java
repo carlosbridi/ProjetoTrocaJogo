@@ -114,12 +114,9 @@ public class ActivityMeusJogos extends android.support.v4.app.ListFragment imple
         mPosicaoJogo = getJogoList(view);
         final Jogo jogo = listaJogo.get(mPosicaoJogo);
         if (jogoCRUD.removerJogoColecao(jogo) > 0){
-            WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, viewAux.getContext(), "Removendo jogo", tela);
-            webServiceTask.addParameter("idJogo", String.valueOf(jogo.getId()));
-            webServiceTask.addParameter("idUsuario", String.valueOf(UsuarioUtil.obterUsuario(viewAux.getContext(), "dadosUsuario").getId()));
-            webServiceTask.addParameter("idPlataforma", String.valueOf(jogo.getPlataforma()));
-
-            webServiceTask.execute(new String[]{consts.SERVICE_URL + "RemoverJogoColecao"});
+            WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.DELETE_TASK, viewAux.getContext(), "Removendo jogo", tela);
+            webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoColecaoWS?idUsuario="+ String.valueOf(UsuarioUtil.obterUsuario(viewAux.getContext(), "dadosUsuario").getId()) +
+                                                                        "&idJogoPlataforma="+ String.valueOf(jogo.getIdJogoPlataforma())});
 
         }else{
             Toast.makeText(viewAux.getContext(), "Problemas ao remover", Toast.LENGTH_SHORT).show();
@@ -161,7 +158,7 @@ public class ActivityMeusJogos extends android.support.v4.app.ListFragment imple
             JogoCRUD jogoCRUD = new JogoCRUD(getActivity().getApplicationContext());
             jogoCRUD.removerJogos();
             try{
-                jogoCRUD.inserirJogosColecao(JogoUtil.parserJogo(result));
+                jogoCRUD.inserirJogosColecao(JogoUtil.parserJogoUsuario(result));
             }catch (Exception e){
                 e.printStackTrace();
             }

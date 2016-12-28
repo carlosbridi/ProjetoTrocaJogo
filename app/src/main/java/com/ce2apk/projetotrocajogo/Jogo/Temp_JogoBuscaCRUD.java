@@ -23,6 +23,14 @@ public class Temp_JogoBuscaCRUD {
         banco = new PersistenceHelper(context);
     }
 
+    public long inserirJogoColecao(List<TempJogoBusca> listaJogo){
+        int xQuantidadeInclusao = 0;
+        for (TempJogoBusca jogoColecaoUsuarios : listaJogo) {
+            xQuantidadeInclusao += inserirJogoColecao(jogoColecaoUsuarios);
+        }
+        return xQuantidadeInclusao;
+    }
+
     public long inserirJogoColecao(TempJogoBusca itensJogoTroca){
         ContentValues contentValues;
         long resultado;
@@ -31,7 +39,7 @@ public class Temp_JogoBuscaCRUD {
         db.beginTransaction();
         try {
             contentValues = new ContentValues();
-            contentValues.put("id", itensJogoTroca.getId()); // Gambi
+            contentValues.put("id", itensJogoTroca.getId());
             contentValues.put("idjogotroca", itensJogoTroca.getId());
             contentValues.put("idusuariotroca", itensJogoTroca.getIdUsuarioTroca());
             contentValues.put("nomeusuario", itensJogoTroca.getNomeUsuarioTroca());
