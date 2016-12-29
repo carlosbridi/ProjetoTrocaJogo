@@ -25,7 +25,7 @@ import android.widget.Toast;
 import com.ce2apk.projetotrocajogo.Jogo.Jogo;
 import com.ce2apk.projetotrocajogo.Jogo.JogoCRUD;
 import com.ce2apk.projetotrocajogo.Jogo.JogoInteresseCRUD;
-import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoCRUD;
+import com.ce2apk.projetotrocajogo.Jogo.TempJogoCRUD;
 import com.ce2apk.projetotrocajogo.R;
 import com.ce2apk.projetotrocajogo.TrocaJogo.Adapters.JogoListAdapter;
 import com.ce2apk.projetotrocajogo.Usuario.UsuarioUtil;
@@ -82,7 +82,7 @@ public class ActivityListarJogos extends ListActivity implements AsyncTaskComple
 
         Bundle extras = this.getIntent().getExtras();
 
-        Temp_JogoCRUD temp_jogoCRUD = new Temp_JogoCRUD(getApplicationContext());
+        TempJogoCRUD temp_jogoCRUD = new TempJogoCRUD(getApplicationContext());
 
         lista = (ListaJogos) temp_jogoCRUD.listarJogo();
         mListaJogos = lista.getListaJogo();
@@ -119,7 +119,7 @@ public class ActivityListarJogos extends ListActivity implements AsyncTaskComple
         if(!image.getTag().toString().equals("1")){
             if(jogoInteresseCRUD.inserirJogoInteresse(jogo) > 0) {
                 WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, this, "Adicionando interesse...", this);
-                webServiceTask.addParameter("idUsuario", String.valueOf(UsuarioUtil.obterUsuario(this, "dadosUsuario").getId()));
+                webServiceTask.addParameter("idUsuario", String.valueOf(UsuarioUtil.obterUsuario(this).getId()));
                 webServiceTask.addParameter("idJogoPlataforma", String.valueOf(jogo.getIdJogoPlataforma()));
 
                 webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoInteresseWS"});
@@ -129,7 +129,7 @@ public class ActivityListarJogos extends ListActivity implements AsyncTaskComple
         }else{
             if(jogoInteresseCRUD.removerInteresse(jogo) > 0) {
                 WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.DELETE_TASK, this, "Removendo interesse...", this);
-                webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoInteresseWS?idUsuario="+ UsuarioUtil.obterUsuario(this, "dadosUsuario").getId()
+                webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoInteresseWS?idUsuario="+ UsuarioUtil.obterUsuario(this).getId()
                                                                        +"&idJogoPlataforma="+jogo.getIdJogoPlataforma()});
 
                 doAnimationInteresses(image, 0);
@@ -156,7 +156,7 @@ public class ActivityListarJogos extends ListActivity implements AsyncTaskComple
         if (imageViewJogoColecao.getTag().toString().equals("0")){
             if (jogoCRUD.inserirJogoColecao(jogo) > 0){
                 WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, this, "Adicionando jogo", this);
-                webServiceTask.addParameter("idUsuario", String.valueOf(UsuarioUtil.obterUsuario(this, "dadosUsuario").getId()));
+                webServiceTask.addParameter("idUsuario", String.valueOf(UsuarioUtil.obterUsuario(this).getId()));
                 webServiceTask.addParameter("idJogoPlataforma", String.valueOf(jogo.getIdJogoPlataforma()));
                 webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoColecaoWS"});
                 mAdicionarJogoColecao = 0;

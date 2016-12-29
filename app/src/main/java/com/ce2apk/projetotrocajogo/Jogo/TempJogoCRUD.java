@@ -15,12 +15,12 @@ import java.util.List;
 /**
  * Created by carlosbridi on 19/12/15.
  */
-public class Temp_JogoCRUD {
+public class TempJogoCRUD {
 
     private SQLiteDatabase db;
     private PersistenceHelper banco;
 
-    public Temp_JogoCRUD(Context context){
+    public TempJogoCRUD(Context context){
         banco = new PersistenceHelper(context);
     }
 

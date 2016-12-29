@@ -14,14 +14,15 @@ import com.ce2apk.projetotrocajogo.Imagens.ImagemCache;
 import com.ce2apk.projetotrocajogo.Imagens.ImagemUtil;
 import com.ce2apk.projetotrocajogo.Jogo.Jogo;
 import com.ce2apk.projetotrocajogo.Jogo.JogoCRUD;
-import com.ce2apk.projetotrocajogo.Jogo.TempJogoBusca;
-import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoBuscaCRUD;
+import com.ce2apk.projetotrocajogo.Jogo.JogoBuscaUsuario;
+import com.ce2apk.projetotrocajogo.Jogo.TempJogoBuscaCRUD;
 import com.ce2apk.projetotrocajogo.R;
-import com.ce2apk.projetotrocajogo.Troca.ItensJogoTroca;
-import com.ce2apk.projetotrocajogo.Troca.ItensJogoTrocaCRUD;
+import com.ce2apk.projetotrocajogo.Troca.ItemJogoTroca.ItemJogoTroca;
+import com.ce2apk.projetotrocajogo.Troca.ItemJogoTroca.ItemJogoTrocaCRUD;
 import com.ce2apk.projetotrocajogo.Troca.StatusTroca;
 import com.ce2apk.projetotrocajogo.Troca.Troca;
 import com.ce2apk.projetotrocajogo.Troca.TrocaCRUD;
+import com.ce2apk.projetotrocajogo.Usuario.Usuario;
 import com.ce2apk.projetotrocajogo.Usuario.UsuarioUtil;
 import com.ce2apk.projetotrocajogo.Util.ParserArray;
 import com.ce2apk.projetotrocajogo.WebService.AsyncTaskCompleteListener;
@@ -40,8 +41,8 @@ import java.util.Date;
  */
 public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskCompleteImageCache, AsyncTaskCompleteListener {
 
-    private ImageView imagemJogoTroca;
-    private ImageView imagemJogoOferta;
+    private ImageView imgJogoTroca;
+    private ImageView imgJogoOferta;
 
     private TextView txtTituloTroca;
     private TextView txtAnoTroca;
@@ -59,44 +60,41 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
     private ImagemCache imagemCache;
 
     private Troca novaTroca;
-    private ItensJogoTroca itemTroca;
-    private Temp_JogoBuscaCRUD temp_jogoBuscaCRUD;
+    private ItemJogoTroca itemTroca;
+    private TempJogoBuscaCRUD temp_jogoBuscaCRUD;
 
     private enum IMG_BUSCA  {IMG_OFERTA, IMG_TROCA};
 
     private IMG_BUSCA imagemBusca;
+
+    private final int COD_BUSCAR_JOGO_TROCA = 190;
+    private final int COD_BUSCAR_JOGO_OFERTA = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_troca);
 
-        imagemJogoTroca = (ImageView) findViewById(R.id.imageTrocaOferta);
-        imagemJogoOferta = (ImageView) findViewById(R.id.imageTrocaColecao);
-
+        imgJogoOferta = (ImageView) findViewById(R.id.imageTrocaColecao);
         txtTituloOferta = (TextView) findViewById(R.id.txtTituloOferta);
-        txtTituloTroca = (TextView) findViewById(R.id.txtTituloTroca);
-
         txtCategoriaOferta = (TextView) findViewById(R.id.txtCategoriaOferta);
-        txtCategoriaTroca = (TextView) findViewById(R.id.txtCategoriaTroca);
-
         txtPlataformaOferta = (TextView) findViewById(R.id.txtPlataformaOferta);
-        txtPlataformaTroca = (TextView) findViewById(R.id.txtPlataformaTroca);
-
         txtAnoOferta = (TextView) findViewById(R.id.txtAnoOferta);
-        txtAnoTroca = (TextView) findViewById(R.id.txtAnoTroca);
-
         txtDescricaoOferta = (TextView) findViewById(R.id.txtDescricaoOferta);
-        txtDescricaoTroca = (TextView) findViewById(R.id.txtDescricaoTroca);
-
         txtNomeUsuario = (TextView) findViewById(R.id.txtNomeUsuario);
 
+        imgJogoTroca = (ImageView) findViewById(R.id.imageTrocaOferta);
+        txtTituloTroca = (TextView) findViewById(R.id.txtTituloTroca);
+        txtCategoriaTroca = (TextView) findViewById(R.id.txtCategoriaTroca);
+        txtPlataformaTroca = (TextView) findViewById(R.id.txtPlataformaTroca);
+        txtAnoTroca = (TextView) findViewById(R.id.txtAnoTroca);
+        txtDescricaoTroca = (TextView) findViewById(R.id.txtDescricaoTroca);
 
         imagemCache = new ImagemCache();
         imagemCache.setContext(this);
         imagemCache.setCallback(this);
 
-        itemTroca = new ItensJogoTroca();
+        itemTroca = new ItemJogoTroca();
         itemTroca.setJogoOferta(new Jogo());
         itemTroca.setJogoTroca(new Jogo());
 
@@ -104,26 +102,28 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
         novaTroca.setDataTroca(new Date());
         novaTroca.setStatusTroca(StatusTroca.TROCA_ANALISE);
         novaTroca.setJogosTroca(itemTroca);
-        novaTroca.getJogosTroca().setIdUsuarioOferta(UsuarioUtil.obterUsuario(this, "dadosUsuario").getId());
-        novaTroca.getJogosTroca().setNomeUsuarioOferta(UsuarioUtil.obterUsuario(this, "dadosUsuario").getNome());
 
-        temp_jogoBuscaCRUD = new Temp_JogoBuscaCRUD(this);
+        Usuario usuario = UsuarioUtil.obterUsuario(this);
+        novaTroca.getJogosTroca().setIdUsuarioOferta(usuario.getId());
+        novaTroca.getJogosTroca().setNomeUsuarioOferta(usuario.getNome());
 
-        imagemJogoTroca.setOnClickListener(new View.OnClickListener() {
+        temp_jogoBuscaCRUD = new TempJogoBuscaCRUD(this);
+
+        imgJogoTroca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 imagemBusca = IMG_BUSCA.IMG_TROCA;
                 Intent it = new Intent(v.getContext(), ActivityBuscarJogoUsuario.class);
-                startActivityForResult(it, 190);
+                startActivityForResult(it, COD_BUSCAR_JOGO_TROCA);
             }
         });
 
-        imagemJogoOferta.setOnClickListener(new View.OnClickListener() {
+        imgJogoOferta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 imagemBusca = IMG_BUSCA.IMG_OFERTA;
                 Intent it = new Intent(v.getContext(), ActivityListarColecao.class);
-                startActivityForResult(it, 100);
+                startActivityForResult(it, COD_BUSCAR_JOGO_OFERTA);
             }
         });
 
@@ -131,7 +131,7 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 100){
+        if (requestCode == COD_BUSCAR_JOGO_OFERTA){
             if (resultCode == RESULT_OK){
                 int idJogo = data.getExtras().getInt("idJogo", 0);
                 JogoCRUD jogoCRUD = new JogoCRUD(this);
@@ -144,7 +144,7 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
         }else{
             if (resultCode == RESULT_OK){
                 int idJogo = data.getExtras().getInt("idCodJogo", 0);
-                TempJogoBusca itensJogoTroca = temp_jogoBuscaCRUD.obterDadosJogo(idJogo);
+                JogoBuscaUsuario itensJogoTroca = temp_jogoBuscaCRUD.obterDadosJogo(idJogo);
                 itemTroca.getJogoTroca().setId(itensJogoTroca.getId());
                 itemTroca.getJogoTroca().setImagem(itensJogoTroca.getImagem());
                 itemTroca.getJogoTroca().setAno(itensJogoTroca.getAno());
@@ -154,7 +154,6 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
                 itemTroca.getJogoTroca().setNomejogo(itensJogoTroca.getNomejogo());
                 itemTroca.getJogoTroca().setIdJogoPlataforma(itensJogoTroca.getIdJogoPlataforma());
 
-                //novaTroca.setIdUsuarioTroca(itemTroca.getIdUsuarioTroca());
                 novaTroca.getJogosTroca().setNomeUsuarioTroca(itensJogoTroca.getNomeUsuarioTroca());
                 novaTroca.getJogosTroca().setIdUsuarioTroca(itensJogoTroca.getIdUsuarioTroca());
                 AtualizarDescricaoTroca(itensJogoTroca);
@@ -171,14 +170,14 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
 
         imagemCache.setCodJogo(jogo.getId());
         if (imagemCache.imageInCacheDir()){
-            imagemJogoOferta.setImageBitmap(imagemCache.loadImageCacheDir());
+            imgJogoOferta.setImageBitmap(imagemCache.loadImageCacheDir());
         }else{
-            imagemJogoOferta.setImageBitmap(ImagemUtil.getBitmapFromString(jogo.getImagem()));
+            imgJogoOferta.setImageBitmap(ImagemUtil.getBitmapFromString(jogo.getImagem()));
             imagemCache.loadImageRemoteServer();
         }
     }
 
-    private void AtualizarDescricaoTroca(TempJogoBusca itensJogoTroca){
+    private void AtualizarDescricaoTroca(JogoBuscaUsuario itensJogoTroca){
         txtTituloTroca.setText(itensJogoTroca.getNomejogo());
         txtAnoTroca.setText(String.valueOf(itensJogoTroca.getAno()));
         txtCategoriaTroca.setText(ParserArray.categoriaJogo(itensJogoTroca.getCategoria()));
@@ -188,9 +187,9 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
 
         imagemCache.setCodJogo(itensJogoTroca.getId());
         if (imagemCache.imageInCacheDir()){
-            imagemJogoTroca.setImageBitmap(imagemCache.loadImageCacheDir());
+            imgJogoTroca.setImageBitmap(imagemCache.loadImageCacheDir());
         }else{
-            imagemJogoTroca.setImageBitmap(ImagemUtil.getBitmapFromString(itensJogoTroca.getImagem()));
+            imgJogoTroca.setImageBitmap(ImagemUtil.getBitmapFromString(itensJogoTroca.getImagem()));
             imagemCache.loadImageRemoteServer();
         }
     }
@@ -243,15 +242,6 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
             sincronizarTroca();
     }
 
-    @Override
-    public void onTaskReturnNull(String msg) {
-        new SnackBar.Builder(this)
-                .withMessage(msg)
-                .withStyle(SnackBar.Style.DEFAULT)
-                .withDuration((short)3000)
-                .show();
-    }
-
     private boolean isTrocaValida(){
         boolean retorno = true;
 
@@ -287,9 +277,9 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
             retorno = false;
         }
 
-        ItensJogoTrocaCRUD itensJogoTrocaCRUD = new ItensJogoTrocaCRUD(this);
+        ItemJogoTrocaCRUD itemJogoTrocaCRUD = new ItemJogoTrocaCRUD(this);
 
-        if ((retorno) && (itensJogoTrocaCRUD.itemJogoTrocaEmOferta(novaTroca.getJogosTroca().getJogoOferta().getId(), novaTroca.getJogosTroca().getJogoTroca().getPlataforma().getId()))){
+        if ((retorno) && (itemJogoTrocaCRUD.itemJogoTrocaEmOferta(novaTroca.getJogosTroca().getJogoOferta().getId(), novaTroca.getJogosTroca().getJogoTroca().getPlataforma().getId()))){
             new SnackBar.Builder(this)
                     .withMessage("Jogo de oferta já está participando de uma troca!")
                     .withStyle(SnackBar.Style.DEFAULT)
@@ -299,7 +289,7 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
             retorno = false;
         }
 
-        if ((retorno) && (itensJogoTrocaCRUD.itemJogoTrocaEmTroca(novaTroca.getJogosTroca().getJogoTroca().getId(), novaTroca.getJogosTroca().getJogoTroca().getPlataforma().getId()))){
+        if ((retorno) && (itemJogoTrocaCRUD.itemJogoTrocaEmTroca(novaTroca.getJogosTroca().getJogoTroca().getId(), novaTroca.getJogosTroca().getJogoTroca().getPlataforma().getId()))){
             new SnackBar.Builder(this)
                     .withMessage("Jogo de troca já está participando de uma troca!")
                     .withStyle(SnackBar.Style.DEFAULT)
@@ -313,11 +303,6 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
         return retorno;
     }
 
-    private void gravarTrocaLocal(int idTroca){
-        novaTroca.setId(idTroca);
-        TrocaCRUD trocaCRUD = new TrocaCRUD(getApplicationContext());
-        trocaCRUD.inserirTroca(novaTroca);
-    }
 
     private void sincronizarTroca(){
 
@@ -345,6 +330,12 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
                     .show();
         }
 
+    }
+
+    private void gravarTrocaLocal(int idTroca){
+        novaTroca.setId(idTroca);
+        TrocaCRUD trocaCRUD = new TrocaCRUD(getApplicationContext());
+        trocaCRUD.inserirTroca(novaTroca);
     }
 
     @Override
@@ -377,10 +368,18 @@ public class ActivityNovaTroca extends FragmentActivity implements AsyncTaskComp
     }
 
     @Override
+    public void onTaskReturnNull(String msg) {
+        new SnackBar.Builder(this)
+                .withMessage(msg)
+                .withStyle(SnackBar.Style.DEFAULT)
+                .withDuration((short)3000)
+                .show();
+    }
+    @Override
     public void onTaskCompleteImageCache() throws JSONException {
         if (imagemBusca == IMG_BUSCA.IMG_OFERTA)
-            imagemJogoOferta.setImageBitmap(imagemCache.loadImageCacheDir());
+            imgJogoOferta.setImageBitmap(imagemCache.loadImageCacheDir());
         else
-            imagemJogoTroca.setImageBitmap(imagemCache.loadImageCacheDir());
+            imgJogoTroca.setImageBitmap(imagemCache.loadImageCacheDir());
     }
 }

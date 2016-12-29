@@ -238,7 +238,7 @@ public class ActivityCadastroEndereco extends FragmentActivity implements AsyncT
     }
 
     public void loadDataShared() {
-        Usuario usuario = UsuarioUtil.obterUsuario(this, "dadosUsuario");
+        Usuario usuario = UsuarioUtil.obterUsuario(this);
 
         _cep.getEditText().setText(usuario.getCep());
         _logradouro.getEditText().setText(usuario.getLogradouro());

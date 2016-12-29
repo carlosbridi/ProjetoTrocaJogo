@@ -22,6 +22,8 @@ public class JogoCRUD {
     private SQLiteDatabase db;
     private PersistenceHelper banco;
 
+    private final String tabelaJogoUsuario = "jogousuario";
+
     public JogoCRUD(Context context){
         banco = new PersistenceHelper(context);
     }
@@ -50,7 +52,7 @@ public class JogoCRUD {
             contentValues.put("ano", jogo.getAno());
             contentValues.put("imagem", jogo.getImagem());
             contentValues.put("interesse", jogo.isInteresse());
-            resultado = db.insert("jogousuario", null, contentValues);
+            resultado = db.insert(tabelaJogoUsuario, null, contentValues);
             db.setTransactionSuccessful();
         }catch (Exception e){
             db.endTransaction();
@@ -67,7 +69,7 @@ public class JogoCRUD {
         db.beginTransaction();
         try {
 
-            db.delete("jogousuario", where, null);
+            db.delete(tabelaJogoUsuario, where, null);
 
             db.setTransactionSuccessful();
         }catch(Exception e){
@@ -88,7 +90,7 @@ public class JogoCRUD {
         db.beginTransaction();
         try {
 
-            resultado = db.delete("jogousuario", where, null);
+            resultado = db.delete(tabelaJogoUsuario, where, null);
 
             db.setTransactionSuccessful();
         }catch(Exception e){
@@ -104,12 +106,14 @@ public class JogoCRUD {
     public long removerJogoColecao(Jogo jogo){
         long resultado;
 
-        String where = "interesse = 0 and id = "+ jogo.getId()+ " and plataforma = "+jogo.getPlataforma().getId()+ " and categoria = " + jogo.getCategoria();
+        String where = "interesse = 0 and id = "+ jogo.getId()+
+                                    " and plataforma = "+jogo.getPlataforma().getId()+
+                                    " and categoria = " + jogo.getCategoria();
         db = banco.getReadableDatabase();
         db.beginTransaction();
         try {
 
-            resultado = db.delete("jogousuario", where, null);
+            resultado = db.delete(tabelaJogoUsuario, where, null);
 
             db.setTransactionSuccessful();
         }catch(Exception e){

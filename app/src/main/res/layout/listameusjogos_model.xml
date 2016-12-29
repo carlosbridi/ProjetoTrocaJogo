@@ -95,7 +95,6 @@
 
                 <ImageView
                     android:id="@+id/crossView"
-                    android:onClick="teste"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:padding="14dp"

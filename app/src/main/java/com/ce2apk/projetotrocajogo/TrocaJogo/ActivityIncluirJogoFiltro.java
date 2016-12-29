@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.ce2apk.projetotrocajogo.Jogo.JogoUtil;
-import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoCRUD;
+import com.ce2apk.projetotrocajogo.Jogo.TempJogoCRUD;
 import com.ce2apk.projetotrocajogo.R;
 import com.ce2apk.projetotrocajogo.WebService.AsyncTaskCompleteListener;
 import com.ce2apk.projetotrocajogo.WebService.WebServiceTask;
@@ -18,7 +18,6 @@ import com.ce2apk.projetotrocajogo.consts;
 import com.github.mrengineer13.snackbar.SnackBar;
 import com.iangclifton.android.floatlabel.FloatLabel;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -102,7 +101,7 @@ public class ActivityIncluirJogoFiltro extends AppCompatActivity implements Asyn
             Bundle extras = getIntent().getExtras();
             boolean isInteresses = ((extras != null) && (extras.getBoolean("interesses")));
 
-            Temp_JogoCRUD temp_jogoCRUD = new Temp_JogoCRUD(getApplicationContext());
+            TempJogoCRUD temp_jogoCRUD = new TempJogoCRUD(getApplicationContext());
             temp_jogoCRUD.removerTodaListaTemp();
 
             try {

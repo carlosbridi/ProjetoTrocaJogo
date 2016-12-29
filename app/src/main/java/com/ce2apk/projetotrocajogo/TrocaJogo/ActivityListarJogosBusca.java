@@ -12,8 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.ce2apk.projetotrocajogo.Jogo.TempJogoBusca;
-import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoBuscaCRUD;
+import com.ce2apk.projetotrocajogo.Jogo.JogoBuscaUsuario;
+import com.ce2apk.projetotrocajogo.Jogo.TempJogoBuscaCRUD;
 import com.ce2apk.projetotrocajogo.R;
 import com.ce2apk.projetotrocajogo.TrocaJogo.Adapters.JogoBuscaUsuariosListAdapter;
 
@@ -26,7 +26,7 @@ import java.util.List;
 public class ActivityListarJogosBusca extends ListActivity {
 
 
-    private List<TempJogoBusca> mListaJogos;
+    private List<JogoBuscaUsuario> mListaJogos;
     private int mAdicionarJogoColecao = 0; // 0 = Adicionando / 1 = Removendo
     private int mWebServiceRequest = 0; // 0 = Adicionando / 1 = Removendo
     private JogoBuscaUsuariosListAdapter mAdapter;
@@ -52,7 +52,7 @@ public class ActivityListarJogosBusca extends ListActivity {
     protected void onStart() {
         super.onStart();
 
-        Temp_JogoBuscaCRUD temp_jogoCRUD = new Temp_JogoBuscaCRUD(getApplicationContext());
+        TempJogoBuscaCRUD temp_jogoCRUD = new TempJogoBuscaCRUD(getApplicationContext());
 
         mListaJogos = temp_jogoCRUD.listarJogo();
         mAdapter = new JogoBuscaUsuariosListAdapter(this, mListaJogos);

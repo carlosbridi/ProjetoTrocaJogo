@@ -9,23 +9,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ce2apk.projetotrocajogo.Imagens.ImagemUtil;
-import com.ce2apk.projetotrocajogo.Jogo.Jogo;
-import com.ce2apk.projetotrocajogo.Jogo.JogoDAO;
-import com.ce2apk.projetotrocajogo.Jogo.TempJogoBusca;
+import com.ce2apk.projetotrocajogo.Jogo.JogoBuscaUsuario;
 import com.ce2apk.projetotrocajogo.R;
-import com.ce2apk.projetotrocajogo.Troca.ItensJogoTroca;
 import com.ce2apk.projetotrocajogo.Util.ParserArray;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 public class JogoBuscaUsuariosListAdapter extends BaseAdapter{
 
 	private Context context;
-	private List<TempJogoBusca> lista;
+	private List<JogoBuscaUsuario> lista;
 
-	public JogoBuscaUsuariosListAdapter(Context context, List<TempJogoBusca> lista) {
+	public JogoBuscaUsuariosListAdapter(Context context, List<JogoBuscaUsuario> lista) {
 		this.context = context;
 		this.lista = lista;
 	}
@@ -43,7 +38,7 @@ public class JogoBuscaUsuariosListAdapter extends BaseAdapter{
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		TempJogoBusca itensJogoTroca = lista.get(position);
+		JogoBuscaUsuario itensJogoTroca = lista.get(position);
 
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.listarjogos_buscamodel, null);

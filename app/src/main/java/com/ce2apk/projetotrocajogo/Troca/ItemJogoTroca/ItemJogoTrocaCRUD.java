@@ -1,4 +1,4 @@
-package com.ce2apk.projetotrocajogo.Troca;
+package com.ce2apk.projetotrocajogo.Troca.ItemJogoTroca;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,23 +6,21 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.ce2apk.projetotrocajogo.Helper.PersistenceHelper;
-import com.ce2apk.projetotrocajogo.Util.TrocaJogoUtil;
-
-import java.util.List;
+import com.ce2apk.projetotrocajogo.Troca.ItemJogoTroca.ItemJogoTroca;
 
 /**
  * Created by carlosbridi on 19/01/16.
  */
-public class ItensJogoTrocaCRUD {
+public class ItemJogoTrocaCRUD {
 
     private SQLiteDatabase db;
     private PersistenceHelper banco;
 
-    public ItensJogoTrocaCRUD(Context context){
+    public ItemJogoTrocaCRUD(Context context){
         banco = new PersistenceHelper(context);
     }
 
-    public long inserirJogosTroca(int idTroca, ItensJogoTroca itemJogoTroca){
+    public long inserirJogosTroca(int idTroca, ItemJogoTroca itemJogoTroca){
 
         ContentValues contentValues;
         long resultado = 0;

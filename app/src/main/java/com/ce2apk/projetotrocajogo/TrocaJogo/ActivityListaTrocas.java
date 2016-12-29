@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.ce2apk.projetotrocajogo.Jogo.Plataforma.Plataforma;
 import com.ce2apk.projetotrocajogo.R;
-import com.ce2apk.projetotrocajogo.Troca.ItensJogoTroca;
+import com.ce2apk.projetotrocajogo.Troca.ItemJogoTroca.ItemJogoTroca;
 import com.ce2apk.projetotrocajogo.Troca.StatusTroca;
 import com.ce2apk.projetotrocajogo.Troca.Troca;
 import com.ce2apk.projetotrocajogo.Troca.TrocaCRUD;
@@ -55,7 +55,7 @@ public class ActivityListaTrocas extends android.support.v4.app.ListFragment imp
         tela = this;
         mListaTroca = new ArrayList<Troca>();
         mListaWebService = new ArrayList<Troca>();
-        dadosUsuario = UsuarioUtil.obterUsuario(activitytrocas.getContext(), "dadosUsuario");
+        dadosUsuario = UsuarioUtil.obterUsuario(activitytrocas.getContext());
         return activitytrocas;
     }
 
@@ -166,17 +166,17 @@ public class ActivityListaTrocas extends android.support.v4.app.ListFragment imp
             }
 
 
-            ItensJogoTroca itensJogoTroca = new ItensJogoTroca();
+            ItemJogoTroca itemJogoTroca = new ItemJogoTroca();
 
-            itensJogoTroca.setNomeUsuarioTroca(jsonObject.getString("nomeUsuarioTroca"));
-            itensJogoTroca.setNomeUsuarioOferta(jsonObject.getString("nomeUsuarioOferta"));
-            itensJogoTroca.setIdUsuarioTroca(jsonObject.getInt("idUsuarioTroca"));
-            itensJogoTroca.setIdUsuarioOferta(jsonObject.getInt("idUsuarioOferta"));
+            itemJogoTroca.setNomeUsuarioTroca(jsonObject.getString("nomeUsuarioTroca"));
+            itemJogoTroca.setNomeUsuarioOferta(jsonObject.getString("nomeUsuarioOferta"));
+            itemJogoTroca.setIdUsuarioTroca(jsonObject.getInt("idUsuarioTroca"));
+            itemJogoTroca.setIdUsuarioOferta(jsonObject.getInt("idUsuarioOferta"));
 
-            definirJogoOferta(jsonObject, itensJogoTroca);
-            definirJogoTroca(jsonObject, itensJogoTroca);
+            definirJogoOferta(jsonObject, itemJogoTroca);
+            definirJogoTroca(jsonObject, itemJogoTroca);
 
-            troca.setJogosTroca(itensJogoTroca);
+            troca.setJogosTroca(itemJogoTroca);
 
             return troca;
 
@@ -188,46 +188,46 @@ public class ActivityListaTrocas extends android.support.v4.app.ListFragment imp
     }
 
 
-    private void definirJogoOferta(JSONObject jsonJogos, ItensJogoTroca itensJogoTroca){
+    private void definirJogoOferta(JSONObject jsonJogos, ItemJogoTroca itemJogoTroca){
         try {
             JSONObject jsonItemTroca = jsonJogos = jsonJogos.getJSONObject("itemTroca");
             JSONObject jsonJogoOferta = jsonItemTroca.getJSONObject("jogoOferta");
 
-            itensJogoTroca.getJogoOferta().setId(jsonJogoOferta.getInt("id"));
-            itensJogoTroca.getJogoOferta().setNomejogo(jsonJogoOferta.getString("nomejogo"));
-            itensJogoTroca.getJogoOferta().setDescricao(jsonJogoOferta.getString("descricao"));
-            itensJogoTroca.getJogoOferta().setCategoria(jsonJogoOferta.getInt("categoria"));
+            itemJogoTroca.getJogoOferta().setId(jsonJogoOferta.getInt("id"));
+            itemJogoTroca.getJogoOferta().setNomejogo(jsonJogoOferta.getString("nomejogo"));
+            itemJogoTroca.getJogoOferta().setDescricao(jsonJogoOferta.getString("descricao"));
+            itemJogoTroca.getJogoOferta().setCategoria(jsonJogoOferta.getInt("categoria"));
 
             JSONObject jsonJogoPlataforma = jsonItemTroca.getJSONObject("jogoPlataformaTroca");
             JSONObject jsonPlataforma = jsonJogoPlataforma.getJSONObject("plataforma");
-            itensJogoTroca.getJogoOferta().setPlataforma(new Plataforma(jsonPlataforma.getInt("id")));
+            itemJogoTroca.getJogoOferta().setPlataforma(new Plataforma(jsonPlataforma.getInt("id")));
 
-            itensJogoTroca.getJogoOferta().setIdJogoPlataforma(jsonJogoPlataforma.getInt("id"));
-            itensJogoTroca.getJogoOferta().setImagem(jsonJogoOferta.getString("imagem"));
-            itensJogoTroca.getJogoOferta().setAno(jsonJogoOferta.getInt("ano"));
+            itemJogoTroca.getJogoOferta().setIdJogoPlataforma(jsonJogoPlataforma.getInt("id"));
+            itemJogoTroca.getJogoOferta().setImagem(jsonJogoOferta.getString("imagem"));
+            itemJogoTroca.getJogoOferta().setAno(jsonJogoOferta.getInt("ano"));
         }catch (JSONException e){
             throw new RuntimeException("Erro ao definir jogo de oferta.");
         }
     }
 
-    private void definirJogoTroca(JSONObject jsonJogos, ItensJogoTroca itensJogoTroca){
+    private void definirJogoTroca(JSONObject jsonJogos, ItemJogoTroca itemJogoTroca){
         try {
             JSONObject jsonItemTroca = jsonJogos = jsonJogos.getJSONObject("itemTroca");
             JSONObject jsonJogoTroca = jsonItemTroca.getJSONObject("jogoTroca");
 
-            itensJogoTroca.getJogoTroca().setId(jsonJogoTroca.getInt("id"));
-            itensJogoTroca.getJogoTroca().setNomejogo(jsonJogoTroca.getString("nomejogo"));
-            itensJogoTroca.getJogoTroca().setDescricao(jsonJogoTroca.getString("descricao"));
-            itensJogoTroca.getJogoTroca().setCategoria(jsonJogoTroca.getInt("categoria"));
+            itemJogoTroca.getJogoTroca().setId(jsonJogoTroca.getInt("id"));
+            itemJogoTroca.getJogoTroca().setNomejogo(jsonJogoTroca.getString("nomejogo"));
+            itemJogoTroca.getJogoTroca().setDescricao(jsonJogoTroca.getString("descricao"));
+            itemJogoTroca.getJogoTroca().setCategoria(jsonJogoTroca.getInt("categoria"));
 
             JSONObject jsonJogoPlataforma = jsonItemTroca.getJSONObject("jogoPlataformaTroca");
             JSONObject jsonPlataforma = jsonJogoPlataforma.getJSONObject("plataforma");
-            itensJogoTroca.getJogoTroca().setPlataforma(new Plataforma(jsonPlataforma.getInt("id")));
+            itemJogoTroca.getJogoTroca().setPlataforma(new Plataforma(jsonPlataforma.getInt("id")));
 
-            itensJogoTroca.getJogoOferta().setIdJogoPlataforma(jsonJogoPlataforma.getInt("id"));
+            itemJogoTroca.getJogoOferta().setIdJogoPlataforma(jsonJogoPlataforma.getInt("id"));
 
-            itensJogoTroca.getJogoTroca().setImagem(jsonJogoTroca.getString("imagem"));
-            itensJogoTroca.getJogoTroca().setAno(jsonJogoTroca.getInt("ano"));
+            itemJogoTroca.getJogoTroca().setImagem(jsonJogoTroca.getString("imagem"));
+            itemJogoTroca.getJogoTroca().setAno(jsonJogoTroca.getInt("ano"));
         }catch(JSONException e){
             throw new RuntimeException("Erro ao definir jogo de troca.");
         }

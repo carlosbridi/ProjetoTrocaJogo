@@ -6,19 +6,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ce2apk.projetotrocajogo.Imagens.AsyncTaskCompleteImageCache;
 import com.ce2apk.projetotrocajogo.Imagens.ImagemCache;
 import com.ce2apk.projetotrocajogo.Imagens.ImagemUtil;
 import com.ce2apk.projetotrocajogo.Jogo.Jogo;
-import com.ce2apk.projetotrocajogo.Jogo.JogoCRUD;
 import com.ce2apk.projetotrocajogo.R;
-import com.ce2apk.projetotrocajogo.Troca.ItensJogoTroca;
+import com.ce2apk.projetotrocajogo.Troca.ItemJogoTroca.ItemJogoTroca;
 import com.ce2apk.projetotrocajogo.Troca.StatusTroca;
 import com.ce2apk.projetotrocajogo.Troca.Troca;
 import com.ce2apk.projetotrocajogo.Troca.TrocaCRUD;
@@ -32,9 +29,6 @@ import com.ce2apk.projetotrocajogo.consts;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.Serializable;
 
 /**
  * Created by carlosbridi on 07/04/16.
@@ -111,13 +105,12 @@ public class ActivityDetalheTroca extends Activity implements AsyncTaskCompleteL
         llFechar = (LinearLayout) findViewById(R.id.llfechar);
         llCancelar = (LinearLayout) findViewById(R.id.llcancelarTroca);
 
-        mUsuario = UsuarioUtil.obterUsuario(this, "dadosUsuario");
+        mUsuario = UsuarioUtil.obterUsuario(this);
 
         llAceitarRejeitar.setVisibility(View.GONE);
         llDadosConluir.setVisibility(View.GONE);
         llFechar.setVisibility(View.GONE);
         llCancelar.setVisibility(View.GONE);
-
 
         imagemCacheTroca = new ImagemCache();
         imagemCacheTroca.setContext(this);
@@ -169,11 +162,7 @@ public class ActivityDetalheTroca extends Activity implements AsyncTaskCompleteL
             }
         }
 
-        JogoCRUD jogoCRUD = new JogoCRUD(this);
-
-
-        //Jogo jogo = jogoCRUD.obterDadosJogo(mTroca.getJogosTroca().getIdJogoOferta());
-        AtualizarDescricaoOferta(mTroca.getJogosTroca().getJogoOferta());
+            AtualizarDescricaoOferta(mTroca.getJogosTroca().getJogoOferta());
         }
     }
 
@@ -197,20 +186,20 @@ public class ActivityDetalheTroca extends Activity implements AsyncTaskCompleteL
         }
     }
 
-    private void AtualizarDescricaoTroca(ItensJogoTroca itensJogoTroca){
-        txtDetalheTituloTroca.setText(itensJogoTroca.getJogoTroca().getNomejogo());
-        txtDetalheAnoTroca.setText(String.valueOf(itensJogoTroca.getJogoTroca().getAno()));
-        txtDetalheCategoriaTroca.setText(ParserArray.categoriaJogo(itensJogoTroca.getJogoTroca().getCategoria()));
-        txtDetalheDescricaoTroca.setText(itensJogoTroca.getJogoTroca().getDescricao());
-        txtDetalhePlataformaTroca.setText(ParserArray.plataformaJogo(itensJogoTroca.getJogoTroca().getPlataforma().getId()));
-        txtDetalheNomeUsuarioTroca.setText(itensJogoTroca.getNomeUsuarioTroca());
+    private void AtualizarDescricaoTroca(ItemJogoTroca itemJogoTroca){
+        txtDetalheTituloTroca.setText(itemJogoTroca.getJogoTroca().getNomejogo());
+        txtDetalheAnoTroca.setText(String.valueOf(itemJogoTroca.getJogoTroca().getAno()));
+        txtDetalheCategoriaTroca.setText(ParserArray.categoriaJogo(itemJogoTroca.getJogoTroca().getCategoria()));
+        txtDetalheDescricaoTroca.setText(itemJogoTroca.getJogoTroca().getDescricao());
+        txtDetalhePlataformaTroca.setText(ParserArray.plataformaJogo(itemJogoTroca.getJogoTroca().getPlataforma().getId()));
+        txtDetalheNomeUsuarioTroca.setText(itemJogoTroca.getNomeUsuarioTroca());
 
         imagemBusca = IMG_BUSCA.IMG_TROCA;
-        imagemCacheTroca.setCodJogo(itensJogoTroca.getJogoTroca().getId());
+        imagemCacheTroca.setCodJogo(itemJogoTroca.getJogoTroca().getId());
         if (imagemCacheTroca.imageInCacheDir()){
             imagemJogoTroca.setImageBitmap(imagemCacheTroca.loadImageCacheDir());
         }else{
-            imagemJogoTroca.setImageBitmap(ImagemUtil.getBitmapFromString(itensJogoTroca.getJogoTroca().getImagem()));
+            imagemJogoTroca.setImageBitmap(ImagemUtil.getBitmapFromString(itemJogoTroca.getJogoTroca().getImagem()));
             imagemCacheTroca.loadImageRemoteServer();
         }
     }

@@ -47,6 +47,8 @@
 
     <string name="nomejogooferta">Nome jogo Oferta</string>
     <string name="nomejogotroca">Nome jogo Troca</string>
+    <string name="nomeplataformaoferta">Nome Plataforma Oferta</string>
+    <string name="nomeplataformatroca">Nome Plataforma Troca</string>
     <string name="statustroca">Status Troca</string>
 
     <string name="adicionarContatos">Adicionar a contatos</string>

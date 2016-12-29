@@ -22,11 +22,10 @@ import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.HorizontalScrollView;
-import android.widget.Toast;
 
 import com.ce2apk.projetotrocajogo.Jogo.JogoCRUD;
 import com.ce2apk.projetotrocajogo.Jogo.JogoInteresseCRUD;
-import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoCRUD;
+import com.ce2apk.projetotrocajogo.Jogo.TempJogoCRUD;
 import com.ce2apk.projetotrocajogo.R;
 import com.ce2apk.projetotrocajogo.Troca.TrocaCRUD;
 import com.ce2apk.projetotrocajogo.TrocaJogo.Adapters.PagerAdapter;
@@ -206,7 +205,7 @@ public class ActivityPrincipal  extends AppCompatActivity
         jogoCRUD.removerJogos();
 
         JogoInteresseCRUD jogoInteresseCRUD = new JogoInteresseCRUD(this);
-        Temp_JogoCRUD temp_jogoCRUD = new Temp_JogoCRUD(this);
+        TempJogoCRUD temp_jogoCRUD = new TempJogoCRUD(this);
 
         jogoInteresseCRUD.removerJogosInteresse();
         temp_jogoCRUD.removerTodaListaTemp();
@@ -249,10 +248,6 @@ public class ActivityPrincipal  extends AppCompatActivity
             }
         });
         fab.startAnimation(shrink);
-    }
-
-    public void teste(View view){
-        Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show();
     }
 
     public void registerClickFloatingButton(final int position){

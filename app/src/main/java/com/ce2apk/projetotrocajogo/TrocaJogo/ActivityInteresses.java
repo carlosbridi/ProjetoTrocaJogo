@@ -81,7 +81,7 @@ public class ActivityInteresses extends android.support.v4.app.ListFragment impl
             WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.DELETE_TASK, view.getContext(), "Removendo interesse...", this);
 
             webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoInteresseWS?" +
-                    "idUsuario="+ UsuarioUtil.obterUsuario(view.getContext(), "dadosUsuario").getId()+"" +
+                    "idUsuario="+ UsuarioUtil.obterUsuario(view.getContext()).getId()+"" +
                     "&idJogoPlataforma="+jogo.getIdJogoPlataforma()});
 
         }else{

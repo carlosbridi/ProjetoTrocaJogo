@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.ce2apk.projetotrocajogo.Jogo.JogoUtil;
-import com.ce2apk.projetotrocajogo.Jogo.Temp_JogoBuscaCRUD;
+import com.ce2apk.projetotrocajogo.Jogo.TempJogoBuscaCRUD;
 import com.ce2apk.projetotrocajogo.R;
 import com.ce2apk.projetotrocajogo.Usuario.UsuarioUtil;
 import com.ce2apk.projetotrocajogo.WebService.AsyncTaskCompleteListener;
@@ -89,7 +89,7 @@ public class ActivityBuscarJogoUsuario extends AppCompatActivity implements Asyn
         }
 
         webServiceTask = new WebServiceTask(WebServiceTask.POST_TASK, this, "Buscando jogos", this);
-        webServiceTask.addParameter("idUsuario", String.valueOf(UsuarioUtil.obterUsuario(this, "dadosUsuario").getId()));
+        webServiceTask.addParameter("idUsuario", String.valueOf(UsuarioUtil.obterUsuario(this).getId()));
         webServiceTask.addParameter("nome", _nomeJogo.getEditText().getText().toString());
         webServiceTask.addParameter("categoria", String.valueOf(_categoriaJogo.getSelectedItemPosition()));
         webServiceTask.addParameter("plataforma", String.valueOf(_plataformaJogo.getSelectedItemPosition()));
@@ -102,7 +102,7 @@ public class ActivityBuscarJogoUsuario extends AppCompatActivity implements Asyn
     public void onTaskComplete(JSONObject result) throws JSONException {
         if(!result.toString().equals("{}")){
 
-            Temp_JogoBuscaCRUD temp_jogoCRUD = new Temp_JogoBuscaCRUD(getApplicationContext());
+            TempJogoBuscaCRUD temp_jogoCRUD = new TempJogoBuscaCRUD(getApplicationContext());
             temp_jogoCRUD.removerTodaColecao();
 
             try {

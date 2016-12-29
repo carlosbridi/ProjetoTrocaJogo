@@ -21,12 +21,7 @@ public class SharedPrefDAO {
         return editor;
     }
 
-
     public boolean gravarSharedPref(SharedPref sharedPref) {
         return gravarValoresSharedPref(sharedPref).commit();
-    }
-
-    public void editarSharedPref(SharedPref sharedPref) {
-        gravarValoresSharedPref(sharedPref).apply();
     }
 }

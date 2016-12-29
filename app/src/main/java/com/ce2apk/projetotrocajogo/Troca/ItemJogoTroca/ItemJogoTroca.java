@@ -1,4 +1,4 @@
-package com.ce2apk.projetotrocajogo.Troca;
+package com.ce2apk.projetotrocajogo.Troca.ItemJogoTroca;
 
 import android.os.Parcel;
 
@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * Created by carlosbridi on 19/01/16.
  */
-public class ItensJogoTroca implements Serializable {
+public class ItemJogoTroca implements Serializable {
 
     private Jogo jogoOferta;
     private Jogo jogoTroca;
@@ -19,7 +19,7 @@ public class ItensJogoTroca implements Serializable {
     private String nomeUsuarioTroca;
     private String nomeUsuarioOferta;
 
-    public ItensJogoTroca(){
+    public ItemJogoTroca(){
         this.jogoOferta = new Jogo();
         this.jogoTroca = new Jogo();
     }

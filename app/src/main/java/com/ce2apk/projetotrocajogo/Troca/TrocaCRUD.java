@@ -4,11 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.wifi.WifiConfiguration;
 
 import com.ce2apk.projetotrocajogo.Helper.PersistenceHelper;
-import com.ce2apk.projetotrocajogo.Jogo.Jogo;
 import com.ce2apk.projetotrocajogo.Jogo.Plataforma.Plataforma;
+import com.ce2apk.projetotrocajogo.Troca.ItemJogoTroca.ItemJogoTroca;
+import com.ce2apk.projetotrocajogo.Troca.ItemJogoTroca.ItemJogoTrocaCRUD;
 import com.ce2apk.projetotrocajogo.Usuario.UsuarioUtil;
 import com.ce2apk.projetotrocajogo.Util.TrocaJogoUtil;
 
@@ -63,8 +63,8 @@ public class TrocaCRUD {
         db.endTransaction();
 
         try{
-            ItensJogoTrocaCRUD itensJogoTrocaCRUD = new ItensJogoTrocaCRUD(context);
-            itensJogoTrocaCRUD.inserirJogosTroca(troca.getId(), troca.getJogosTroca());
+            ItemJogoTrocaCRUD itemJogoTrocaCRUD = new ItemJogoTrocaCRUD(context);
+            itemJogoTrocaCRUD.inserirJogosTroca(troca.getId(), troca.getJogosTroca());
         }catch (Exception e){
             e.printStackTrace();
             throw e;
@@ -186,7 +186,7 @@ public class TrocaCRUD {
                 db.endTransaction();
 
                 if (troca.getStatusTroca().equals(StatusTroca.TROCA_ANDAMENTO) && statusTroca.equals(StatusTroca.TROCA_CONCLUIDA)) {
-                    TrocaConcluida trocaConcluida = new TrocaConcluida(idTroca, context, UsuarioUtil.obterUsuario(context, "dadosUsuario"));
+                    TrocaConcluida trocaConcluida = new TrocaConcluida(idTroca, context, UsuarioUtil.obterUsuario(context));
                     trocaConcluida.efetuarTroca();
                 }
             }
@@ -221,8 +221,8 @@ public class TrocaCRUD {
         db.close();
 
 
-        ItensJogoTrocaCRUD itensJogoTrocaCRUD = new ItensJogoTrocaCRUD(context);
-        itensJogoTrocaCRUD.deleteAllItensTroca();
+        ItemJogoTrocaCRUD itemJogoTrocaCRUD = new ItemJogoTrocaCRUD(context);
+        itemJogoTrocaCRUD.deleteAllItensTroca();
     }
 
 
@@ -255,30 +255,30 @@ public class TrocaCRUD {
         }
 
         //carregando jogos da base
-        ItensJogoTroca itensJogoTroca = new ItensJogoTroca();
+        ItemJogoTroca itemJogoTroca = new ItemJogoTroca();
 
-        itensJogoTroca.setIdUsuarioTroca(cursor.getInt(cursor.getColumnIndex("idusuariotroca")));
-        itensJogoTroca.setIdUsuarioOferta(cursor.getInt(cursor.getColumnIndex("idusuariooferta")));
-        itensJogoTroca.setNomeUsuarioTroca(cursor.getString(cursor.getColumnIndex("nomeusuariotroca")));
-        itensJogoTroca.setNomeUsuarioOferta(cursor.getString(cursor.getColumnIndex("nomeusuariooferta")));
+        itemJogoTroca.setIdUsuarioTroca(cursor.getInt(cursor.getColumnIndex("idusuariotroca")));
+        itemJogoTroca.setIdUsuarioOferta(cursor.getInt(cursor.getColumnIndex("idusuariooferta")));
+        itemJogoTroca.setNomeUsuarioTroca(cursor.getString(cursor.getColumnIndex("nomeusuariotroca")));
+        itemJogoTroca.setNomeUsuarioOferta(cursor.getString(cursor.getColumnIndex("nomeusuariooferta")));
 
-        itensJogoTroca.getJogoOferta().setId(cursor.getInt(cursor.getColumnIndex("idjogooferta")));
-        itensJogoTroca.getJogoOferta().setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogooferta")));
-        itensJogoTroca.getJogoOferta().setDescricao(cursor.getString(cursor.getColumnIndex("descricaooferta")));
-        itensJogoTroca.getJogoOferta().setCategoria(cursor.getInt(cursor.getColumnIndex("categoriaoferta")));
-        itensJogoTroca.getJogoOferta().setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataformaOferta"))));
-        itensJogoTroca.getJogoOferta().setAno(cursor.getInt(cursor.getColumnIndex("anooferta")));
-        itensJogoTroca.getJogoOferta().setImagem(cursor.getString(cursor.getColumnIndex("imagemoferta")));
+        itemJogoTroca.getJogoOferta().setId(cursor.getInt(cursor.getColumnIndex("idjogooferta")));
+        itemJogoTroca.getJogoOferta().setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogooferta")));
+        itemJogoTroca.getJogoOferta().setDescricao(cursor.getString(cursor.getColumnIndex("descricaooferta")));
+        itemJogoTroca.getJogoOferta().setCategoria(cursor.getInt(cursor.getColumnIndex("categoriaoferta")));
+        itemJogoTroca.getJogoOferta().setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataformaOferta"))));
+        itemJogoTroca.getJogoOferta().setAno(cursor.getInt(cursor.getColumnIndex("anooferta")));
+        itemJogoTroca.getJogoOferta().setImagem(cursor.getString(cursor.getColumnIndex("imagemoferta")));
 
-        itensJogoTroca.getJogoTroca().setId(cursor.getInt(cursor.getColumnIndex("idjogotroca")));
-        itensJogoTroca.getJogoTroca().setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogotroca")));
-        itensJogoTroca.getJogoTroca().setDescricao(cursor.getString(cursor.getColumnIndex("descricaotroca")));
-        itensJogoTroca.getJogoTroca().setCategoria(cursor.getInt(cursor.getColumnIndex("categoriatroca")));
-        itensJogoTroca.getJogoTroca().setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataformaTroca"))));
-        itensJogoTroca.getJogoTroca().setAno(cursor.getInt(cursor.getColumnIndex("anotroca")));
-        itensJogoTroca.getJogoTroca().setImagem(cursor.getString(cursor.getColumnIndex("imagemtroca")));
+        itemJogoTroca.getJogoTroca().setId(cursor.getInt(cursor.getColumnIndex("idjogotroca")));
+        itemJogoTroca.getJogoTroca().setNomejogo(cursor.getString(cursor.getColumnIndex("nomejogotroca")));
+        itemJogoTroca.getJogoTroca().setDescricao(cursor.getString(cursor.getColumnIndex("descricaotroca")));
+        itemJogoTroca.getJogoTroca().setCategoria(cursor.getInt(cursor.getColumnIndex("categoriatroca")));
+        itemJogoTroca.getJogoTroca().setPlataforma(new Plataforma(cursor.getInt(cursor.getColumnIndex("plataformaTroca"))));
+        itemJogoTroca.getJogoTroca().setAno(cursor.getInt(cursor.getColumnIndex("anotroca")));
+        itemJogoTroca.getJogoTroca().setImagem(cursor.getString(cursor.getColumnIndex("imagemtroca")));
 
-        troca.setJogosTroca(itensJogoTroca);
+        troca.setJogosTroca(itemJogoTroca);
         return troca;
     }
 

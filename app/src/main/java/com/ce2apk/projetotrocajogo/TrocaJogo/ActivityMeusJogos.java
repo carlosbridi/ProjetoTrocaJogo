@@ -68,7 +68,7 @@ public class ActivityMeusJogos extends android.support.v4.app.ListFragment imple
             setListAdapter(mAdapter);
         }else {
             WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.GET_TASK, getActivity().getApplicationContext(), "Buscando dados do usuário", this, false);
-            webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoColecaoWS?idUsuario="+UsuarioUtil.obterUsuario(getActivity().getApplicationContext(), "dadosUsuario").getId()});
+            webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoColecaoWS?idUsuario="+UsuarioUtil.obterUsuario(getActivity().getApplicationContext()).getId()});
         }
 
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -115,8 +115,8 @@ public class ActivityMeusJogos extends android.support.v4.app.ListFragment imple
         final Jogo jogo = listaJogo.get(mPosicaoJogo);
         if (jogoCRUD.removerJogoColecao(jogo) > 0){
             WebServiceTask webServiceTask = new WebServiceTask(WebServiceTask.DELETE_TASK, viewAux.getContext(), "Removendo jogo", tela);
-            webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoColecaoWS?idUsuario="+ String.valueOf(UsuarioUtil.obterUsuario(viewAux.getContext(), "dadosUsuario").getId()) +
-                                                                        "&idJogoPlataforma="+ String.valueOf(jogo.getIdJogoPlataforma())});
+            webServiceTask.execute(new String[]{consts.SERVICE_URL + "JogoColecaoWS?idUsuario="+ String.valueOf(UsuarioUtil.obterUsuario(viewAux.getContext()).getId()) +
+                                                                                  "&idJogoPlataforma="+ String.valueOf(jogo.getIdJogoPlataforma())});
 
         }else{
             Toast.makeText(viewAux.getContext(), "Problemas ao remover", Toast.LENGTH_SHORT).show();

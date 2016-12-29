@@ -20,11 +20,11 @@ public class UsuarioUtil {
         return sharedPreferences.getBoolean("usuariologado", false);
     }
 
-    public static Usuario obterUsuario(Context ctx, String sharedPreffName){
+    public static Usuario obterUsuario(Context ctx){
 
         Usuario usuarioLogado = new Usuario();
 
-        SharedPreferences sharedPreferences = ctx.getSharedPreferences(sharedPreffName, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences("dadosUsuario", Context.MODE_PRIVATE);
         usuarioLogado.setId(Integer.valueOf(sharedPreferences.getString("id", "0")));
         usuarioLogado.setNome(sharedPreferences.getString("nome", ""));
         usuarioLogado.setNomeUsuario(sharedPreferences.getString("nomeusuario", ""));

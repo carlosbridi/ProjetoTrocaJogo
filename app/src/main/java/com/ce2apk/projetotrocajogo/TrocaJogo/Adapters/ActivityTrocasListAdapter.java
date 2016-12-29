@@ -101,23 +101,25 @@ public class ActivityTrocasListAdapter extends BaseAdapter  {
             imgViewJogoTroca.setImageBitmap(ImagemUtil.getBitmapFromString(troca.getJogosTroca().getJogoTroca().getImagem()));
         }
 
-
         if (troca.getJogosTroca().getJogoOferta().getImagem() != null) {
             ImageView imgViewJogoOferta = (ImageView) view.findViewById(R.id.imgJogoOferta);
             imgViewJogoOferta.setImageBitmap(ImagemUtil.getBitmapFromString(troca.getJogosTroca().getJogoOferta().getImagem()));
         }
 
         TextView txtNomeJogoOferta = (TextView) view.findViewById(R.id.nomeJogoOferta);
+        TextView txtPlataformaJogoOferta = (TextView) view.findViewById(R.id.nomePlataformaOferta);
         txtNomeJogoOferta.setText(troca.getJogosTroca().getJogoOferta().getNomejogo());
+        txtPlataformaJogoOferta.setText(troca.getJogosTroca().getJogoOferta().getPlataforma().getDescricao());
 
         TextView txtNomeJogoTroca = (TextView) view.findViewById(R.id.nomeJogoTroca);
+        TextView txtPlataformaJogoTroca = (TextView) view.findViewById(R.id.nomePlataformaTroca);
         txtNomeJogoTroca.setText(troca.getJogosTroca().getJogoTroca().getNomejogo());
+        txtPlataformaJogoTroca.setText(troca.getJogosTroca().getJogoTroca().getPlataforma().getDescricao());
 
         ImageView imgView1 = (ImageView) view.findViewById(R.id.imageView);
         ImageView imgView2 = (ImageView) view.findViewById(R.id.imageView2);
 
-
-        if (UsuarioUtil.obterUsuario(view.getContext(), "dadosUsuario").getId() == troca.getJogosTroca().getIdUsuarioOferta()) {
+        if (UsuarioUtil.obterUsuario(view.getContext()).getId() == troca.getJogosTroca().getIdUsuarioOferta()) {
             imgView1.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_jogorecebido));
             imgView2.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_jogoenviado));
         }else{

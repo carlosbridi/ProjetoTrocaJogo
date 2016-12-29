@@ -101,7 +101,7 @@ public class ActivityCadastro extends FragmentActivity implements AsyncTaskCompl
                 _nomeUsuarioText.getEditText().setEnabled(false);
                 _linkLogin.setVisibility(View.INVISIBLE);
 
-                Usuario usuario = UsuarioUtil.obterUsuario(this, "dadosUsuario");
+                Usuario usuario = UsuarioUtil.obterUsuario(this);
 
                 _nomeText.setText(usuario.getNome());
                 _nomeUsuarioText.setText(usuario.getNomeUsuario());

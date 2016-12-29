@@ -14,24 +14,24 @@ import java.util.List;
 /**
  * Created by carlosbridi on 19/12/15.
  */
-public class Temp_JogoBuscaCRUD {
+public class TempJogoBuscaCRUD {
 
     private SQLiteDatabase db;
     private PersistenceHelper banco;
 
-    public Temp_JogoBuscaCRUD(Context context){
+    public TempJogoBuscaCRUD(Context context){
         banco = new PersistenceHelper(context);
     }
 
-    public long inserirJogoColecao(List<TempJogoBusca> listaJogo){
+    public long inserirJogoColecao(List<JogoBuscaUsuario> listaJogo){
         int xQuantidadeInclusao = 0;
-        for (TempJogoBusca jogoColecaoUsuarios : listaJogo) {
+        for (JogoBuscaUsuario jogoColecaoUsuarios : listaJogo) {
             xQuantidadeInclusao += inserirJogoColecao(jogoColecaoUsuarios);
         }
         return xQuantidadeInclusao;
     }
 
-    public long inserirJogoColecao(TempJogoBusca itensJogoTroca){
+    public long inserirJogoColecao(JogoBuscaUsuario itensJogoTroca){
         ContentValues contentValues;
         long resultado;
 
@@ -82,17 +82,17 @@ public class Temp_JogoBuscaCRUD {
         return resultado;
     }
 
-    public List<TempJogoBusca> listarJogo() {
+    public List<JogoBuscaUsuario> listarJogo() {
 
         String sql = "select * from TEMP_JOGOBUSCAUSUARIOS";
-        List<TempJogoBusca> listaJogos = new ArrayList<TempJogoBusca>();
+        List<JogoBuscaUsuario> listaJogos = new ArrayList<JogoBuscaUsuario>();
 
         try{
             db = banco.getReadableDatabase();
             Cursor cursor = db.rawQuery(sql, null);
 
             while (cursor.moveToNext()){
-                TempJogoBusca itensJogoTroca = new TempJogoBusca();
+                JogoBuscaUsuario itensJogoTroca = new JogoBuscaUsuario();
                 itensJogoTroca.setId(cursor.getInt(cursor.getColumnIndex("id")));
                 itensJogoTroca.setId(cursor.getInt(cursor.getColumnIndex("idjogotroca")));
                 itensJogoTroca.setNomeUsuarioTroca(cursor.getString(cursor.getColumnIndex("nomeusuario")));
@@ -112,10 +112,10 @@ public class Temp_JogoBuscaCRUD {
         return listaJogos;
     }
 
-    public TempJogoBusca obterDadosJogo(int idJogo){
+    public JogoBuscaUsuario obterDadosJogo(int idJogo){
 
         String sql = "select * from temp_jogobuscausuarios where id = " + idJogo ;
-        TempJogoBusca jogo = new TempJogoBusca();
+        JogoBuscaUsuario jogo = new JogoBuscaUsuario();
 
         try{
             db = banco.getReadableDatabase();
